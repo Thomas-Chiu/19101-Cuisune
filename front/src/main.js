@@ -9,9 +9,9 @@ import style from './scss/style.scss'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
-library.add(faUser, faUserPlus)
+library.add(faUser, faUserPlus, faAngleDown)
 
 Vue.config.productionTip = false
 Vue.use(style)

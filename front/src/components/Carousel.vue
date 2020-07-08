@@ -1,7 +1,7 @@
 <template lang="pug">
-  #carousel.container
+  #carousel.container-fluid
     .row
-      .col
+      .col-12
         b-carousel#carousel-1(
           v-model='slide'
           :interval='4000'
@@ -27,7 +27,7 @@
                 src="https://picsum.photos/1024/768/?image=55"
                 alt="image slot"
               )
-      .col
+      .col-12
         b-carousel#carousel-1(
           v-model='slide'
           :interval='4000'
@@ -54,6 +54,8 @@
                 alt="image slot"
               )
       .logo LOGO
+      .arrow-icon
+        font-awesome-icon(:icon="['fas', 'angle-down']")
 </template>
 
 <script>
