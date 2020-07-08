@@ -3,14 +3,21 @@
     section#entrance
       navbar
       carousel
+    section#about
+      about
+    section#events
+    section#menu
+    section#contact
+    section#footer
 </template>
 
 <script>
 import navbar from './components/Navbar.vue'
 import carousel from './components/Carousel.vue'
+import about from './components/About.vue'
 
 export default {
   name: 'App',
-  components: { carousel, navbar }
+  components: { carousel, navbar, about }
 }
 </script>
