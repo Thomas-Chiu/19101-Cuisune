@@ -5,7 +5,8 @@
       carousel
     section#about
       about
-    section#events
+    section#event
+      event
     section#menu
     section#contact
     section#footer
@@ -15,9 +16,10 @@
 import navbar from './components/Navbar.vue'
 import carousel from './components/Carousel.vue'
 import about from './components/About.vue'
+import event from './components/Event.vue'
 
 export default {
   name: 'App',
-  components: { carousel, navbar, about }
+  components: { carousel, navbar, about, event }
 }
 </script>

@@ -20,6 +20,12 @@ img {
   object-fit: cover;
 }
 
+h2 {
+  text-align: center;
+  letter-spacing: 10px;
+  padding-bottom: 2rem;
+}
+
 section {
   height: 100vh;
   &:nth-child(even) {
@@ -105,7 +111,7 @@ section {
   }
 }
 
-// About
+// About --------------------------------------------------
 #about {
   color: $danger;
   background: $text;
@@ -119,10 +125,56 @@ section {
   }
 
   .col-12 {
+    &:last-child {
+      position: relative;
+      top: -50%;
+      transform: translateY(25%);
+    }
     h2 {
       margin-top: 5rem;
-      text-align: center;
-      letter-spacing: 10px;
+      position: relative;
+      &::before {
+        content: "";
+        width: 10%;
+        border-bottom: 1px solid $danger;
+        position: absolute;
+        top: 50%;
+        left: 15%;
+      }
+      &::after {
+        content: "";
+        width: 10%;
+        border-bottom: 1px solid $danger;
+        position: absolute;
+        top: 50%;
+        right: 15%;
+      }
     }
+  }
+
+  .carousel-caption {
+    color: inherit;
+    letter-spacing: 2.5px;
+
+    p {
+      letter-spacing: 5px;
+      padding-top: 1rem;
+    }
+  }
+}
+
+// Event ------------------------------------------------------------
+#event {
+  height: auto;
+  padding: 2rem;
+
+  .card {
+    border: 2px solid $secondary;
+    background: transparent;
+  }
+
+  .card-body,
+  img {
+    padding: 2.5rem;
   }
 }
