@@ -17,6 +17,7 @@ body {
 
 img {
   max-width: 100%;
+  max-height: 100%;
   object-fit: cover;
 }
 
@@ -118,18 +119,13 @@ section {
 
   .container,
   .row {
-    height: 100vmax;
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
   }
 
   .col-12 {
-    &:last-child {
-      position: relative;
-      top: -50%;
-      transform: translateY(25%);
-    }
+    position: relative;
     h2 {
       margin-top: 5rem;
       position: relative;
@@ -152,9 +148,20 @@ section {
     }
   }
 
+  #carousel-fade {
+    img {
+      height: 100vmin;
+    }
+  }
+
   .carousel-caption {
+    width: 100%;
     color: inherit;
     letter-spacing: 2.5px;
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    transform: translateX(-50%);
 
     p {
       letter-spacing: 5px;
@@ -176,5 +183,39 @@ section {
   .card-body,
   img {
     padding: 2.5rem;
+    border-radius: 12.5%;
+  }
+
+  .nav-item {
+    a {
+      color: $secondary;
+      transition: all 0.5s ease;
+      &:hover {
+        transform: translateY(-0.25rem);
+        font-weight: bold;
+      }
+    }
+
+    .active {
+      background: transparent;
+      border-bottom: 3px solid $info;
+      font-weight: bold;
+    }
+  }
+
+  .tab-content {
+    color: $secondary;
+  }
+
+  .btn-function {
+    .btn {
+      color: $warning;
+      text-shadow: 1.5px 1.5px 1.5px #333;
+      border: none;
+      &:hover,
+      &:focus {
+        background: $info;
+      }
+    }
   }
 }
