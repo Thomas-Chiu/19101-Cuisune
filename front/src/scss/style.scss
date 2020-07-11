@@ -150,7 +150,7 @@ section {
 
   #carousel-fade {
     img {
-      height: 100vmin;
+      height: 25vmin;
     }
   }
 
@@ -166,6 +166,19 @@ section {
     p {
       letter-spacing: 5px;
       padding-top: 1rem;
+    }
+  }
+
+  // YT Video
+  .ytvideo {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+
+    #accordion:checked + .accordion {
+      transform: translateX(125%);
     }
   }
 }

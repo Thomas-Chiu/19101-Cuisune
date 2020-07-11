@@ -21,7 +21,20 @@
             img-blank
             )
             p 猴頭菇跟臭豆腐是招牌，然後<br>剛好有不少的食材是有機的。
-
+        h2
+          b-button(variant="link")
+            label(for="accordion") VIDEO
+      .ytvideo
+        .vid-switch
+          input#accordion(type="checkbox")
+          .accordion
+            b-card
+              b-card-body(title="quiet/ refined/ vegetarian")
+              b-embed(
+                type="iframe"
+                aspect="21by9"
+                src="https://www.youtube.com/embed/XJ2knN8d5sg"
+              )
 </template>
 
 <script>
