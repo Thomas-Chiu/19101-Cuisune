@@ -23,7 +23,6 @@
           b-button(block) BOOK A TABLE
         b-col(md="6")
           b-button(block) ORDER A DISH
-
 </template>
 
 <script>

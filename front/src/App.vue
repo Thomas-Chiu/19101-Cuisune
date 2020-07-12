@@ -1,25 +1,27 @@
 <template lang="pug">
   #app
     section#entrance
-      navbar
-      carousel
+      Navbar
+      Carousel
     section#about
-      about
+      About
     section#event
-      event
+      Event
     section#menu
+      Menu
     section#contact
     section#footer
 </template>
 
 <script>
-import navbar from './components/Navbar.vue'
-import carousel from './components/Carousel.vue'
-import about from './components/About.vue'
-import event from './components/Event.vue'
+import Navbar from './components/Navbar.vue'
+import Carousel from './components/Carousel.vue'
+import About from './components/About.vue'
+import Event from './components/Event.vue'
+import Menu from './components/Menu.vue'
 
 export default {
   name: 'App',
-  components: { carousel, navbar, about, event }
+  components: { Carousel, Navbar, About, Event, Menu }
 }
 </script>
