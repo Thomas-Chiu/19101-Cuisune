@@ -11,7 +11,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import { faUserPlus, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
-library.add(faUser, faUserPlus, faAngleDown)
+import { faYoutube } from '@fortawesome/free-brands-svg-icons'
+library.add(faUser, faUserPlus, faAngleDown, faYoutube)
 
 Vue.config.productionTip = false
 Vue.use(style)

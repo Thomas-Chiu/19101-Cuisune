@@ -28,7 +28,6 @@ h2 {
 }
 
 section {
-  height: 100vh;
   &:nth-child(even) {
     background: $secondary;
   }
@@ -67,12 +66,10 @@ section {
   // Navbar
   #nav {
     background: $success;
-
     .navbar-toggler {
       font-size: 0.5rem;
       border: none;
     }
-
     .navbar-nav {
       flex-direction: row;
       justify-content: space-around;
@@ -88,11 +85,9 @@ section {
   #carousel {
     margin: 0 !important;
     display: flex;
-
     img {
       height: 45vh;
     }
-
     .logo {
       color: $warning;
       font-size: 3rem;
@@ -101,7 +96,6 @@ section {
       top: 50%;
       transform: translate(-50%, -50%);
     }
-
     .arrow-icon {
       font-size: 1.5rem;
       position: absolute;
@@ -116,14 +110,12 @@ section {
 #about {
   color: $danger;
   background: $text;
-
   .container,
   .row {
     flex-flow: row wrap;
     justify-content: flex-start;
     align-items: center;
   }
-
   .col-12 {
     position: relative;
     h2 {
@@ -146,14 +138,30 @@ section {
         right: 15%;
       }
     }
-  }
-
-  #carousel-fade {
-    img {
-      height: 25vmin;
+    .accordion-trigger {
+      color: $danger;
+      font-size: 2rem;
+      padding: 0;
+      border: none;
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+      cursor: pointer;
+      transition: all 0.5s ease;
+      &:hover {
+        color: $primary;
+      }
     }
   }
-
+  #carousel-fade {
+    img {
+      height: 30vmin;
+    }
+  }
+  .carousel-inner {
+    overflow-y: auto;
+  }
   .carousel-caption {
     width: 100%;
     color: inherit;
@@ -162,7 +170,6 @@ section {
     left: 50%;
     top: 0%;
     transform: translateX(-50%);
-
     p {
       letter-spacing: 5px;
       padding-top: 1rem;
@@ -176,9 +183,26 @@ section {
     padding: 2rem;
     display: flex;
     justify-content: center;
-
+    #accordion {
+      visibility: hidden;
+    }
     #accordion:checked + .accordion {
-      transform: translateX(125%);
+      transform: translateX(70vw);
+    }
+    .accordion {
+      transition: all 1.5s ease;
+    }
+    .card {
+      width: 50vmax;
+      color: $secondary;
+      text-align: center;
+      background: $warning;
+      .vid-head {
+        padding: 0;
+      }
+      .card-title {
+        font-size: 1rem;
+      }
     }
   }
 }
@@ -187,18 +211,15 @@ section {
 #event {
   height: auto;
   padding: 2rem;
-
   .card {
     border: 2px solid $secondary;
     background: transparent;
   }
-
   .card-body,
   img {
     padding: 2.5rem;
     border-radius: 12.5%;
   }
-
   .nav-item {
     a {
       color: $secondary;
@@ -208,18 +229,15 @@ section {
         font-weight: bold;
       }
     }
-
     .active {
       background: transparent;
       border-bottom: 3px solid $info;
       font-weight: bold;
     }
   }
-
   .tab-content {
     color: $secondary;
   }
-
   .btn-function {
     .btn {
       color: $warning;
