@@ -11,7 +11,7 @@
           style='text-shadow: 1px 1px 2px #333;'
           )
           //- Text slides with image
-          b-carousel-slide(caption='First slide' text='我是圖片文字' img-src='../../../materials/images/19101_cuisine.jpg')
+          b-carousel-slide(caption='First slide' text='我是圖片文字' img-src="https://picsum.photos/1024/768/?random=1")
           //- Slides with custom text
           b-carousel-slide(img-src='https://picsum.photos/1024/768/?image=54')
             h1 Hello world!
@@ -36,7 +36,7 @@
           style='text-shadow: 1px 1px 2px #333;'
           )
           //- Text slides with image
-          b-carousel-slide(caption='First slide' text='我是圖片文字' img-src='../../../materials/images/19101_cuisine.jpg')
+          b-carousel-slide(caption='First slide' text='我是圖片文字' img-src="https://picsum.photos/1024/768/?random=1")
           //- Slides with custom text
           b-carousel-slide(img-src='https://picsum.photos/1024/768/?image=54')
             h1 Hello world!
