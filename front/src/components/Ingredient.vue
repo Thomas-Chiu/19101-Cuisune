@@ -2,6 +2,7 @@
   .container-fluid
     .wrapper
       h2 FRIENDLINESS
+      hr
       b-row
         b-col.friend(md="6")
           h4 友善食材
@@ -19,6 +20,7 @@
           h4 友善大地
           p 製作好吃又健康的蔬食，提供客人食用，並期望在食材的挑選和烹調的過程中，達到友善地球的目的。
       h2 INGREDIENTS
+      hr
       b-row
         b-col( v-for="n in 6")
           .box(v-for="n in 3")

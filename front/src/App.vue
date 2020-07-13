@@ -9,7 +9,9 @@
       Event
     section#ingredient
       Ingredient
+      Overview
     section#contact
+      Contact
     section#footer
 </template>
 
@@ -19,9 +21,11 @@ import Carousel from './components/Carousel.vue'
 import About from './components/About.vue'
 import Event from './components/Event.vue'
 import Ingredient from './components/Ingredient.vue'
+import Contact from './components/Contact.vue'
+import Overview from './components/Overview.vue'
 
 export default {
   name: 'App',
-  components: { Carousel, Navbar, About, Event, Ingredient }
+  components: { Carousel, Navbar, About, Event, Ingredient, Contact, Overview }
 }
 </script>
