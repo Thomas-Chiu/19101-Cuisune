@@ -14,11 +14,8 @@
         <template v-slot:header="slotProps">
           <strong>我是菜名: {{ slotProps.headerProp.id }}</strong>
         </template>
-        <template v-slot:default="slotProps">
-          <img v-for="(img, index) in imgs" :key="index" src="" alt="餐點照片">
-          <div v-for="n in 5" :key="n">
-            {{ slotProps.bodyProp.cMainId }}. Hello from the Parent.
-          </div>
+        <template>
+          <img src="https://scontent.ftpe7-4.fna.fbcdn.net/v/t1.0-9/p960x960/97053182_705931250152240_7873890409053683712_o.jpg?_nc_cat=107&_nc_sid=8024bb&_nc_oc=AQlefAOmNSO0ppx8qPyXrUXMTLAk0fLGGcbES4NTc9xQISj5a40-8TTel7_jLYATBlE&_nc_ht=scontent.ftpe7-4.fna&_nc_tp=6&oh=54db421725a30abc905392db3cb35dab&oe=5F31A623" alt="餐點照片">
         </template>
         <template v-slot:footer="slotProps">
           <strong>Id: {{ slotProps.footerProp.id }}</strong>
@@ -55,9 +52,9 @@ export default {
           src: ''
         }
       ],
-      listOfTodos: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }],
+      listOfTodos: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }],
       headerOpt: { isVisible: true, backgroundColor: '#a9afc97e' },
-      footerOpt: { isVisible: true, backgroundColor: '#a9afc97e' }
+      footerOpt: { isVisible: false, backgroundColor: '#a9afc97e' }
     }
   }
 }
