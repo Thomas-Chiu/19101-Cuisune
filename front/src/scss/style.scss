@@ -291,26 +291,77 @@ section ~ section {
     margin-top: 2rem !important;
   }
   .vcc {
-    width: 75%;
+    width: 100%;
     margin: auto;
+    @media (min-width: 768px) {
+      width: 75%;
+    }
   }
 }
 
-// Contact
+// Contact ---------------------------------------------------------
 #contact {
+  .wrapper {
+    font-size: 1.25rem;
+    background: $danger;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    @media (min-width: 768px) {
+      width: 75vmin;
+      padding: 2rem;
+      font-size: 1.5rem;
+    }
+  }
+
+  .msg-form {
+    padding: 0 3.5rem;
+    input,
+    textarea {
+      border: none;
+      border-bottom: 1px solid $secondary;
+      background: transparent;
+    }
+    .form-control:focus {
+      box-shadow: 0 0 0 0.2rem $warning;
+    }
+    .btn-link {
+      color: $secondary;
+      text-decoration: none;
+      border: 1px solid $secondary;
+      border-radius: 5px;
+      &:hover {
+        border: 1px solid $text;
+        color: $warning;
+        background: $text;
+      }
+      &:focus {
+        box-shadow: 0 0 0 0.2rem $warning;
+      }
+    }
+  }
+
   .icon {
     width: 75%;
     display: flex;
     align-items: flex-start;
-    margin: 1rem;
+    padding: 1rem;
+    color: $text;
     p {
-      color: $text;
+      color: #fff;
+      text-shadow: 1.5px 1px 1.5px $text;
       margin-left: 1.5rem;
+      text-align: left;
+    }
+    svg {
+      width: 24px;
+      height: 24px;
+      font-size: 1.5rem;
     }
   }
 
   iframe {
     max-width: 100%;
+    border-radius: 10px;
     filter: contrast(0.5);
     transition: all 0.5s ease;
     &:hover {
