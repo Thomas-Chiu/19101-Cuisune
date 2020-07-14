@@ -13,6 +13,7 @@
     section#contact
       Contact
     section#footer
+      SubBrand
 </template>
 
 <script>
@@ -23,9 +24,19 @@ import Event from './components/Event.vue'
 import Ingredient from './components/Ingredient.vue'
 import Contact from './components/Contact.vue'
 import Overview from './components/Overview.vue'
+import SubBrand from './components/SubBrand'
 
 export default {
   name: 'App',
-  components: { Carousel, Navbar, About, Event, Ingredient, Contact, Overview }
+  components: {
+    Carousel,
+    Navbar,
+    About,
+    Event,
+    Ingredient,
+    Contact,
+    Overview,
+    SubBrand
+  }
 }
 </script>

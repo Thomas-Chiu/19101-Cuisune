@@ -21,7 +21,7 @@
               b-form-group#input-group-1
                 b-form-input#input-1(v-model='form.name' type="text" required placeholder='Name')
               b-form-group#input-group-2
-                b-form-input#input-2(v-model='form.phone' type="text" required placeholder='Phone Number')
+                b-form-input#input-2(v-model='form.phone' type="tel" required placeholder='Phone Number')
               b-form-group#input-group-3
                 b-form-input#input-3(v-model='form.email' type='email' required placeholder='Email Addrss')
               b-form-group#input-group-4
