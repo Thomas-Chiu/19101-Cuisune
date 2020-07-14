@@ -10,10 +10,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueCardCarousel from 'vue-card-carousel'
 
-import { faUserPlus, faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
-library.add(faUser, faUserPlus, faAngleDown, faYoutube)
+library.add(faUser, faUserPlus, faYoutube)
 
 Vue.config.productionTip = false
 Vue.use(style)

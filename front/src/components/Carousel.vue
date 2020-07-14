@@ -52,13 +52,19 @@
                 alt="image slot"
               )
       .logo LOGO
-      .arrow-icon
-        font-awesome-icon(:icon="['fas', 'angle-down']")
+      p.icon
+        b-icon(icon="arrow-down" scale="2" animation="cylon-vertical")
 </template>
 
 <script>
+import { BIcon, BIconArrowDown } from 'bootstrap-vue'
+
 export default {
   name: 'Carousel',
+  components: {
+    BIcon,
+    BIconArrowDown
+  },
   data () {
     return {
       slide: 0,
