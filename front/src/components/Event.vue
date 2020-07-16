@@ -22,7 +22,8 @@
         b-col(md="6")
           b-button(block) BOOK A TABLE
         b-col(md="6")
-          b-button(block) ORDER A DISH
+          b-button(block to="/Menu") ORDER A DISH
+
 </template>
 
 <script>

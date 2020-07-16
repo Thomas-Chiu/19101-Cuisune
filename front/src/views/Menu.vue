@@ -1,12 +1,9 @@
 <template lang="pug">
-  #app
-    b-container(fluid)
-      router-view
+  #menu THIS IS MENU PAGE
 </template>
-
 <script>
 
 export default {
-  name: 'App'
+  name: 'Menu'
 }
 </script>
