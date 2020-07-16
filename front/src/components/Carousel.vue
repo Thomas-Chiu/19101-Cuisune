@@ -51,7 +51,7 @@
                 src="https://picsum.photos/1024/768/?image=55"
                 alt="image slot"
               )
-      .logo LOGO
+      .logo
       p.icon
         b-icon(icon="arrow-down" scale="2" animation="cylon-vertical")
 </template>

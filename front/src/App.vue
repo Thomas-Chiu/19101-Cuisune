@@ -12,8 +12,9 @@
       Overview
     section#contact
       Contact
-    section#footer
+    section#fatFooter
       SubBrand
+      Footer
 </template>
 
 <script>
@@ -24,7 +25,8 @@ import Event from './components/Event.vue'
 import Ingredient from './components/Ingredient.vue'
 import Contact from './components/Contact.vue'
 import Overview from './components/Overview.vue'
-import SubBrand from './components/SubBrand'
+import SubBrand from './components/SubBrand.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
@@ -36,7 +38,8 @@ export default {
     Ingredient,
     Contact,
     Overview,
-    SubBrand
+    SubBrand,
+    Footer
   }
 }
 </script>

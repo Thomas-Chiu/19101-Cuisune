@@ -12,8 +12,8 @@ import VueCardCarousel from 'vue-card-carousel'
 
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
-import { faYoutube } from '@fortawesome/free-brands-svg-icons'
-library.add(faUser, faUserPlus, faYoutube)
+import { faYoutube, faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
+library.add(faUser, faUserPlus, faYoutube, faFacebookSquare, faInstagram)
 
 Vue.config.productionTip = false
 Vue.use(style)
