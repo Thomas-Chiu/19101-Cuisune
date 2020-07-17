@@ -24,6 +24,10 @@
         h2 VIDEO
           label.accordion-trigger(for="accordion")
             font-awesome-icon(:icon="['fab', 'youtube']")
+        p.icon
+          b-icon(icon="arrow-up" scale="2" animation="cylon-vertical")
+          br
+          h6 CLICK
       .ytvideo
         .vid-switch
           input#accordion(type="checkbox" checked)
@@ -38,7 +42,13 @@
 </template>
 
 <script>
+import { BIcon, BIconArrowUp } from 'bootstrap-vue'
+
 export default {
-  name: 'About'
+  name: 'About',
+  components: {
+    BIcon,
+    BIconArrowUp
+  }
 }
 </script>

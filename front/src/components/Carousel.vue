@@ -52,6 +52,7 @@
                 alt="image slot"
               )
       .logo
+        img(:src="imgs[0].src")
       p.icon
         b-icon(icon="arrow-down" scale="2" animation="cylon-vertical")
 </template>
@@ -68,7 +69,10 @@ export default {
   data () {
     return {
       slide: 0,
-      sliding: null
+      sliding: null,
+      imgs: [
+        { src: './images/logo/logo_mushroom.png' }
+      ]
     }
   },
   methods: {

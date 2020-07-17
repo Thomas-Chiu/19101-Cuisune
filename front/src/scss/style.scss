@@ -54,13 +54,7 @@ section ~ section {
 .row,
 .col,
 .col-12 {
-  margin: 0 !important;
   padding: 0 !important;
-}
-
-.container,
-.container-fluid,
-.row {
   width: 100% !important;
 }
 
@@ -107,15 +101,11 @@ section ~ section {
     .logo {
       width: 150px;
       height: 150px;
-      color: $warning;
-      font-size: 3rem;
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      background: url("../../../materials/logo/mushroom_logo.png") no-repeat
-        center/contain;
-      opacity: 0.8;
+      opacity: 0.9;
       z-index: 9999999;
     }
     .icon {
@@ -197,6 +187,9 @@ section ~ section {
       padding-top: 1rem;
     }
   }
+  .icon {
+    margin-top: 3.5rem;
+  }
   // YT Video
   .ytvideo {
     width: 100%;
@@ -208,10 +201,10 @@ section ~ section {
       visibility: hidden;
     }
     #accordion:checked + .accordion {
-      transform: translateX(70vw);
+      transform: translateX(95vw);
     }
     .accordion {
-      transition: all 1.5s ease;
+      transition: all 2s ease;
     }
     .card {
       width: 50vmax;
@@ -230,7 +223,7 @@ section ~ section {
 
 // Event ------------------------------------------------------------
 #event {
-  height: auto;
+  margin-bottom: 2rem;
   .card {
     border: 2px solid $secondary;
     background: transparent;
@@ -275,7 +268,7 @@ section ~ section {
 #ingredient {
   .wrapper {
     margin: auto;
-    width: 75vw;
+    // width: 75vw;
   }
   .friend {
     margin: 1.5rem 0;
@@ -300,7 +293,10 @@ section ~ section {
   .vcc {
     width: 100%;
     img {
-      width: 50%;
+      width: 100%;
+      @media (min-width: 768px) {
+        width: 50%;
+      }
     }
   }
 }
@@ -395,17 +391,22 @@ section ~ section {
         rgba(0, 0, 0, 0.75),
         rgba(172, 163, 180, 0.25)
       ),
-      url("https://scontent.ftpe7-2.fna.fbcdn.net/v/t1.0-9/101179645_127636508949813_4694772946747523072_o.jpg?_nc_cat=109&_nc_sid=dd9801&_nc_oc=AQn4PIqHlyZjbAuZFJyiOoMRrr3R25H9Vn0ui3gSh1XO9G3WeXdZvJA1VHK6nWLJuK0&_nc_ht=scontent.ftpe7-2.fna&oh=8caf08741c2a819d3c1718078a6deb38&oe=5F32CC23")
-        no-repeat center/cover;
+      url("../../public/images/bg_subbrand.jpg") no-repeat center/cover;
   }
   .jumbotron {
-    height: 100%;
+    height: 100vh;
     color: whitesmoke;
     background: rgba(0, 0, 0, 0.25);
-    h1 {
-      padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media (min-width: 768px) {
+      text-align: left;
+      justify-content: center;
+      align-items: flex-start;
+      padding-left: 200px !important;
     }
-
     p {
       margin-top: 1rem;
       padding-left: 1.5rem;
@@ -415,11 +416,11 @@ section ~ section {
       }
       // LearnMore
       a {
-        margin-bottom: 1rem;
+        margin-top: 1.5rem;
         color: rgb(170, 170, 170);
         background: #000;
         text-decoration: none;
-        border: 2px solid rgb(187, 187, 187);
+        border: 2px solid rgb(170, 170, 170);
         border-radius: 0;
         opacity: 0.5;
         transition: all 0.5s ease 0s;
@@ -432,20 +433,11 @@ section ~ section {
         }
       }
     }
-    @media (min-width: 768px) {
-      text-align: left;
-      padding-left: 3rem !important;
-    }
   }
   // Footer
   .footer {
     color: $info;
-    height: 33.333vh;
     padding: 1rem 0 !important;
-    background: url("../../../materials/logo/直立招牌_dark.png") no-repeat 85%
-        center/25vmin,
-      url("../../../materials/logo/恍繆日常_dark.png") no-repeat 15%
-        center/25vmin;
     position: relative;
     &::before {
       content: "© 2020 19101 cuisine. ALL RIGHTS RESERVED.";
@@ -454,19 +446,31 @@ section ~ section {
       font-size: 0.75rem;
       position: absolute;
       left: 50%;
-      bottom: 5%;
+      bottom: 2.5%;
       transform: translateX(-50%);
     }
+    .left-brand,
+    .right-brand {
+      width: 150px;
+      height: 150px;
+    }
     .row {
-      height: 100%;
+      height: 75vmin;
+      margin: auto;
+      justify-content: center;
+      align-items: center;
       flex-direction: column;
+      @media (min-width: 768px) {
+        text-align: left;
+        flex-direction: row;
+        height: 20vmin;
+        padding-left: 15% !important;
+      }
     }
     .wrapper {
-      font-size: 1rem;
       a {
         color: inherit;
         text-decoration: none;
-        padding: 0 0.5rem;
         opacity: 0.75;
         transition: all 0.75s ease;
         &:hover {
@@ -477,9 +481,6 @@ section ~ section {
         svg {
           margin-right: 0.5rem;
         }
-      }
-      @media (min-width: 768px) {
-        font-size: 1.5rem;
       }
     }
   }
