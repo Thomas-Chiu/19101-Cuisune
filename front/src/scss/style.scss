@@ -70,15 +70,18 @@ section ~ section {
     content: "";
     background: $warning;
     position: absolute;
-    bottom: 0%;
+    bottom: -2.5%;
   }
 
   // Navbar
   #nav {
     background: $warning;
     .navbar-toggler {
-      font-size: 0.5rem;
+      font-size: 0.75rem;
       border: none;
+      &:focus {
+        outline: 5px auto $secondary;
+      }
     }
     .navbar-nav {
       flex-direction: row;
@@ -188,8 +191,17 @@ section ~ section {
     }
   }
   .icon {
+    padding: 0 1.5rem;
+    font-size: 1.5rem;
+    transition: all 0.5s ease;
+    &:hover {
+      color: $primary;
+    }
+  }
+  .icon-arrow {
     margin-top: 3.5rem;
   }
+
   // YT Video
   .ytvideo {
     width: 100%;
@@ -254,6 +266,7 @@ section ~ section {
   .btn-function {
     .btn {
       color: $warning;
+      font-size: 1.5rem;
       text-shadow: 1.5px 1.5px 1.5px #333;
       border: none;
       &:hover,
@@ -268,7 +281,6 @@ section ~ section {
 #ingredient {
   .wrapper {
     margin: auto;
-    // width: 75vw;
   }
   .friend {
     margin: 1.5rem 0;
@@ -286,6 +298,7 @@ section ~ section {
       border-radius: 15px;
     }
   }
+
   // VueCardCarousel
   .overview {
     margin-top: 2rem !important;
@@ -384,6 +397,7 @@ section ~ section {
   padding: 0;
   position: relative;
   background: $text;
+
   // Sub-brand
   .subBrand {
     background: linear-gradient(
@@ -401,39 +415,43 @@ section ~ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    p {
+      letter-spacing: 5px;
+      margin-top: 1rem;
+      &:nth-last-child(2) {
+        letter-spacing: 2px;
+      }
+    }
     @media (min-width: 768px) {
       text-align: left;
       justify-content: center;
       align-items: flex-start;
-      padding-left: 200px !important;
-    }
-    p {
-      margin-top: 1rem;
-      padding-left: 1.5rem;
-      letter-spacing: 5px;
-      &:nth-last-child(2) {
-        letter-spacing: 2px;
+      padding-left: 10% !important;
+      p {
+        padding-left: 1.5rem;
       }
-      // LearnMore
-      a {
-        margin-top: 1.5rem;
-        color: rgb(170, 170, 170);
-        background: #000;
-        text-decoration: none;
-        border: 2px solid rgb(170, 170, 170);
-        border-radius: 0;
-        opacity: 0.5;
-        transition: all 0.5s ease 0s;
-        &:hover {
-          opacity: 1;
-          transform: scale(0.95);
-        }
-        &:focus {
-          box-shadow: none;
-        }
+    }
+
+    // LearnMore
+    a {
+      margin-top: 1.5rem;
+      color: rgb(170, 170, 170);
+      background: #000;
+      text-decoration: none;
+      border: 2px solid rgb(170, 170, 170);
+      border-radius: 0;
+      opacity: 0.5;
+      transition: all 0.5s ease 0s;
+      &:hover {
+        opacity: 1;
+        transform: scale(0.95);
+      }
+      &:focus {
+        box-shadow: none;
       }
     }
   }
+
   // Footer
   .footer {
     color: $info;
@@ -442,7 +460,7 @@ section ~ section {
     &::before {
       content: "© 2020 19101 cuisine. ALL RIGHTS RESERVED.";
       width: 100%;
-      opacity: 0.75;
+      opacity: 0.5;
       font-size: 0.75rem;
       position: absolute;
       left: 50%;
@@ -453,17 +471,18 @@ section ~ section {
     .right-brand {
       width: 150px;
       height: 150px;
+      padding: 0.75rem;
     }
     .row {
-      height: 75vmin;
       margin: auto;
       justify-content: center;
       align-items: center;
       flex-direction: column;
+      padding-bottom: 2rem !important;
       @media (min-width: 768px) {
         text-align: left;
         flex-direction: row;
-        height: 20vmin;
+        height: 25vmin;
         padding-left: 15% !important;
       }
     }

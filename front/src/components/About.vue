@@ -21,10 +21,14 @@
             img-blank
             )
             p 猴頭菇跟臭豆腐是招牌，然後<br>剛好有不少的食材是有機的。
+        a.icon(href="https://www.facebook.com/19101cuisine/" target="blank")
+          font-awesome-icon(:icon="['fab', 'facebook-square']")
+        a.icon(href="https://www.instagram.com/19101_cuisine/" target="blank")
+          font-awesome-icon(:icon="['fab', 'instagram']")
         h2 VIDEO
           label.accordion-trigger(for="accordion")
             font-awesome-icon(:icon="['fab', 'youtube']")
-        p.icon
+        p.icon-arrow
           b-icon(icon="arrow-up" scale="2" animation="cylon-vertical")
           br
           h6 CLICK
