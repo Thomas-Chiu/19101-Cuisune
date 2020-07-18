@@ -32,6 +32,10 @@ hr {
   padding-bottom: 1.5rem;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 section ~ section {
   padding: 2rem;
   text-align: center;
@@ -109,7 +113,7 @@ section ~ section {
       top: 50%;
       transform: translate(-50%, -50%);
       opacity: 0.9;
-      z-index: 9999999;
+      z-index: 99;
     }
     .icon {
       width: 100%;
