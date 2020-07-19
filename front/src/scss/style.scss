@@ -70,16 +70,22 @@ section ~ section {
   &::before {
     // 下排的色塊
     width: 100%;
-    height: 10%;
+    height: 5%;
     content: "";
     background: $warning;
+    box-shadow: -2px -2px 10px #333;
     position: absolute;
-    bottom: -2.5%;
+    bottom: 0%;
+    z-index: 9;
   }
 
   // Navbar
   #nav {
+    padding: 0 1.5rem;
+    font-size: 0.75rem;
     background: $warning;
+    box-shadow: 2px 2px 10px #333;
+    z-index: 9;
     .navbar-toggler {
       font-size: 0.75rem;
       border: none;
@@ -92,7 +98,7 @@ section ~ section {
       justify-content: space-around;
       svg {
         width: 20px;
-        height: 16px;
+        height: 15px;
         margin-left: 0.5rem;
       }
     }
@@ -104,6 +110,9 @@ section ~ section {
     display: flex;
     img {
       height: 45vh;
+    }
+    .row {
+      margin: 0;
     }
     .logo {
       width: 150px;
@@ -119,7 +128,7 @@ section ~ section {
       width: 100%;
       margin: 0;
       text-align: center;
-      line-height: 2.5;
+      z-index: 10;
     }
   }
 }
