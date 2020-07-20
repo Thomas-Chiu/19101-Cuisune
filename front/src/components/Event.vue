@@ -21,10 +21,17 @@
                 | 這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案
         b-row.btn-function(no-gutters)
           b-col(md="6")
-            b-button(block) BOOK A TABLE
+            b-button(
+              block
+              v-b-modal.booking
+            ) BOOK A TABLE
           b-col(md="6")
-            b-button(block to="/Menu") ORDER A DISH
-
+            router-link(to="/Menu")
+              b-button(block) ORDER A DISH
+          //- Sidebar
+          b-modal#booking(
+            centered
+          )
 </template>
 
 <script>
