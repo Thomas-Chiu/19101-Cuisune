@@ -7,33 +7,43 @@ dotenv.config()
 
 const Schema = mongoose.Schema
 mongoose.connect(process.env.DBURL)
-mongoose.plugin(beautifyUnique)
+mongoose.plugin(beautifyUnique) // 自訂unique message 套件
 
-const userSchema = new Schema(
+const userSchema = new Schema( // 定義資料表
   {
+    name: { // 欄位名稱
+      type: String,
+      // required: [true, '使用者名稱必填'],
+      minlength: [2, '使用者名稱最少 2 個字'],
+      maxlength: [20, '使用者名稱最多 20 個字'],
+      trim: true
+    },
     account: {
       type: String,
       minlength: [4, '帳號必須四個字以上'],
       maxlength: [20, '帳號不超過二十字'],
       unique: '帳號已使用',
-      required: [true, '請輸入帳號']
+      required: [true, '請輸入帳號'],
+      trim: true
     },
     password: {
       type: String,
-      required: [true, '請輸入密碼']
+      required: [true, '請輸入密碼'],
+      trim: true
     },
     email: {
       type: String,
-      required: [true, '請輸入信箱'],
+      // required: [true, '請輸入信箱'],
+      trim: true,
       validate: {
-        validator (value) {
+        validator (value) { // 使用驗證套件檢查是不是 email
           return validator.isEmail(value)
         },
         message: '信箱格式錯誤'
       }
     }
   }, {
-    versionKey: false
+    versionKey: false // 拿掉自動產生的 "__v" (不記錄資料修改次數)
   }
 )
 
@@ -41,34 +51,35 @@ const productSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, '請輸入菜名']
+      required: [true, '請輸入菜名'],
+      trim: true
     },
     amount: {
       type: Number,
-      required: [true, '請輸入數量']
+      required: [true, '請輸入數量'],
+      min: 1,
+      max: 100
     },
     price: {
       type: Number,
-      required: [true, '請輸入價錢']
+      required: [true, '請輸入價錢'],
+      min: 1
     },
     description: {
       type: String,
       maxlength: [200, '圖文說明 200 字以下']
     },
     sauce: {
-      type: String
+      type: Array
     },
     drink: {
-      type: String
+      type: Array
     },
     mainCourse: {
-      type: String
+      type: Array
     },
     noodle: {
-      type: String
-    },
-    img: {
-      type: String
+      type: Array
     }
   }, {
     versionKey: false
@@ -79,7 +90,8 @@ const orderSchema = new Schema(
   {
     name: {
       type: String,
-      required: [true, '請輸入訂購人姓名']
+      required: [true, '請輸入訂購人姓名'],
+      trim: true
     },
     gender: {
       type: Boolean
