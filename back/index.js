@@ -59,5 +59,9 @@ app.listen(process.env.PORT, () => {
 
 // API 區 --------------------------------------------------------------------------------
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.status(200).send(
+    {
+      key: 'value'
+    }
+  )
 })

@@ -103,14 +103,29 @@ const orderSchema = new Schema(
   }
 )
 
+const fileSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, '請輸入檔案名稱']
+    },
+    description: {
+      type: String,
+      maxlength: [100, '圖文說明 100 字以下']
+    }
+  }
+)
+
 const users = mongoose.model(process.env.COLLECTION_USERS, userSchema)
 const products = mongoose.model(process.env.COLLECTION_PRODUCTS, productSchema)
 const orders = mongoose.model(process.env.COLLECTION_ORDERS, orderSchema)
+const files = mongoose.model(process.env.COLLECTION_FILES, fileSchema)
 const connection = mongoose.connection
 
 export default {
   users,
   products,
   orders,
+  files,
   connection
 }
