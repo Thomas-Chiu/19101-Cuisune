@@ -53,12 +53,12 @@ app.use(session({ // express-session 設定
 
 // 監聽server 區 ---------------------------------------------------------------------------
 app.listen(process.env.PORT, () => {
+  console.log('網頁伺服器已開啟')
   console.log('http://localhost:3000')
-  console.log('SERVER IS ON!!!')
 })
 
 // API Post 新增區 --------------------------------------------------------------------------------
-app.post('/signup', async (req, res) => { // 新增使用者
+app.post('/signup', async (req, res) => { // 新增使用者帳戶
   if (req.headers['content-type'] !== 'application/json') {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
@@ -191,21 +191,24 @@ app.post('/order', async (req, res) => { // 新增點餐訂單
 // API Patch 修改區 --------------------------------------------------------------------------------
 
 // API Delete 刪除區 --------------------------------------------------------------------------------
-app.delete('/signout', async (req, res) => { // 登出
+app.delete('/signout', async (req, res) => { // 登出刪除session
   req.session.destroy((err) => {
     if (err) res.status(500).send({ success: false, message: '伺服器錯誤' })
     else res.clearCookie().status(200).send({ success: true, message: '登出成功' })
   })
 })
 
-app.delete('/delete', async (req, res) => {
-  // res.send('DELETE')
+app.delete('/cancelOrder', async (req, res) => { // 刪除點餐訂單
+  if (req.headers['content-type'] !== 'application/json') {
+    res.status(400).send({ success: false, message: '請用json 格式' })
+    return
+  }
   try {
     const result = await db.orders.findByIdAndDelete(req.body.id)
-    console.log(result)
-    res.send('YAYA')
+    if (result === null) res.status(404).send({ success: false, message: '找不到訂單刪除' })
+    else res.status(200).send({ success: true, message: '訂單刪除成功', result })
   } catch (err) {
-    res.send(err.message)
+    res.status(400).send(err.message)
   }
 })
 

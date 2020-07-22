@@ -7,7 +7,7 @@ dotenv.config()
 
 const Schema = mongoose.Schema
 mongoose.set('useCreateIndex', true)
-mongoose.connect(process.env.DBURL)
+mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.plugin(beautifyUnique) // 自訂unique message 套件
 
 const userSchema = new Schema( // 定義資料表
