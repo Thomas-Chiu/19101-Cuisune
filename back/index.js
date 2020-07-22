@@ -198,7 +198,7 @@ app.delete('/signout', async (req, res) => { // 登出刪除session
   })
 })
 
-app.delete('/cancelOrder', async (req, res) => { // 刪除點餐訂單
+app.delete('/cancelorder', async (req, res) => { // 刪除點餐訂單
   if (req.headers['content-type'] !== 'application/json') {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
