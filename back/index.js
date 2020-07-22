@@ -62,8 +62,7 @@ app.post('/signup', async (req, res) => { // 新增使用者
   if (req.headers['content-type'] !== 'application/json') {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
-  }
-  if (
+  } if (
     req.body.name === undefined ||
     req.body.account === undefined ||
     req.body.password === undefined ||
@@ -122,10 +121,8 @@ app.post('/product', async (req, res) => { // 新增菜單商品
   if (req.headers['content-type'] !== 'application/json') {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
-  }
-  if (
+  } if (
     req.body.name === undefined ||
-    req.body.amount > 100 ||
     req.body.price < 1 ||
     req.body.description === undefined ||
     req.body.sauce === undefined ||
@@ -133,7 +130,7 @@ app.post('/product', async (req, res) => { // 新增菜單商品
     req.body.mainCourse === undefined ||
     req.body.noodle === undefined
   ) {
-    res.status(400).send({ success: false, message: '資料欄位不正確', amount: '數量最多100', price: '金額不能為0' })
+    res.status(400).send({ success: false, message: '資料欄位不正確', price: '金額不能為 0' })
     return
   }
   try {
@@ -151,7 +148,44 @@ app.post('/product', async (req, res) => { // 新增菜單商品
     )
     res.status(200).send({ success: true, result })
   } catch (err) {
-    console.log(err.message)
+    res.status(400).send({ success: false, message: err.message })
+  }
+})
+
+app.post('/order', async (req, res) => { // 新增點餐訂單
+  if (req.headers['content-type'] !== 'application/json') {
+    res.status(400).send({ success: false, message: '請用json 格式' })
+    return
+  } if (
+    req.body.name === undefined ||
+    req.body.male === undefined ||
+    req.body.mobile === undefined ||
+    req.body.amount < 1 ||
+    req.body.amount > 100 ||
+    req.body.here === undefined ||
+    req.body.pickupTime === undefined ||
+    req.body.items === undefined ||
+    req.body.memo === undefined
+  ) {
+    res.status(400).send({ success: false, message: '資料欄位不正確', amount: '數量最少 1，最多 100' })
+    return
+  }
+  try {
+    const result = await db.orders.create(
+      {
+        name: req.body.name,
+        male: req.body.male,
+        mobile: req.body.mobile,
+        amount: req.body.amount,
+        here: req.body.here,
+        pickupTime: req.body.pickupTime,
+        items: req.body.items,
+        memo: req.body.memo
+      }
+    )
+    res.status(200).send({ success: true, result })
+  } catch (err) {
+    res.status(400).send({ success: false, message: err.message })
   }
 })
 // API Patch 修改區 --------------------------------------------------------------------------------
@@ -162,6 +196,17 @@ app.delete('/signout', async (req, res) => { // 登出
     if (err) res.status(500).send({ success: false, message: '伺服器錯誤' })
     else res.clearCookie().status(200).send({ success: true, message: '登出成功' })
   })
+})
+
+app.delete('/delete', async (req, res) => {
+  // res.send('DELETE')
+  try {
+    const result = await db.orders.findByIdAndDelete(req.body.id)
+    console.log(result)
+    res.send('YAYA')
+  } catch (err) {
+    res.send(err.message)
+  }
 })
 
 // API Get 查詢區 --------------------------------------------------------------------------------

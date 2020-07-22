@@ -6,6 +6,7 @@ import validator from 'validator' // 驗證套件
 dotenv.config()
 
 const Schema = mongoose.Schema
+mongoose.set('useCreateIndex', true)
 mongoose.connect(process.env.DBURL)
 mongoose.plugin(beautifyUnique) // 自訂unique message 套件
 
@@ -54,12 +55,6 @@ const productSchema = new Schema(
       required: [true, '請輸入菜名'],
       trim: true
     },
-    amount: {
-      type: Number,
-      required: [true, '請輸入數量'],
-      min: 1,
-      max: 100
-    },
     price: {
       type: Number,
       required: [true, '請輸入價錢'],
@@ -69,16 +64,16 @@ const productSchema = new Schema(
       type: String,
       maxlength: [200, '圖文說明 200 字以下']
     },
-    sauce: {
+    sauces: {
       type: Array
     },
-    drink: {
+    drinks: {
       type: Array
     },
-    mainCourse: {
+    mainCourses: {
       type: Array
     },
-    noodle: {
+    noodles: {
       type: Array
     }
   }, {
@@ -93,12 +88,18 @@ const orderSchema = new Schema(
       required: [true, '請輸入訂購人姓名'],
       trim: true
     },
-    gender: {
+    male: {
       type: Boolean
     },
     mobile: {
-      type: Number,
+      type: String,
       required: [true, '請輸入電話號碼']
+    },
+    amount: {
+      type: Number,
+      required: [true, '請輸入餐點數量'],
+      min: 1,
+      max: 100
     },
     here: {
       type: Boolean,
@@ -106,6 +107,10 @@ const orderSchema = new Schema(
     },
     pickupTime: {
       type: String
+    },
+    items: {
+      type: Array,
+      required: [true, '請選擇餐點']
     },
     memo: {
       type: String
