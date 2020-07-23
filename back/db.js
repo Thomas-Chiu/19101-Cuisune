@@ -2,13 +2,16 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import beautifyUnique from 'mongoose-beautiful-unique-validation'
 import validator from 'validator' // 驗證套件
+import idPlugin from 'mongoose-id' // 將 _id 欄位顯示為 id 的套件
 
 dotenv.config()
 
 const Schema = mongoose.Schema
 mongoose.set('useCreateIndex', true)
+mongoose.set('useFindAndModify', false)
 mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.plugin(beautifyUnique) // 自訂unique message 套件
+mongoose.plugin(idPlugin) // res 的 _id 改成 id
 
 const userSchema = new Schema( // 定義資料表
   {
@@ -95,12 +98,12 @@ const orderSchema = new Schema(
       type: String,
       required: [true, '請輸入電話號碼']
     },
-    amount: {
-      type: Number,
-      required: [true, '請輸入餐點數量'],
-      min: 1,
-      max: 100
-    },
+    // amount: {
+    //   type: Array,
+    //   required: [true, '請輸入餐點數量'],
+    //   min: 1,
+    //   max: 100
+    // },
     here: {
       type: Boolean,
       required: [true, '請選擇內用或外帶']
@@ -110,7 +113,9 @@ const orderSchema = new Schema(
     },
     items: {
       type: Array,
-      required: [true, '請選擇餐點']
+      required: [true, '請選擇餐點和數量'],
+      min: 1,
+      max: 100
     },
     memo: {
       type: String
