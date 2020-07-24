@@ -1,0 +1,14 @@
+// adminLogin -----------------------------------------------------
+#admin {
+  width: 100%;
+  margin: auto;
+
+  .wrapper {
+    width: 100%;
+    background: $info;
+
+    .md-field label {
+      color: #666 !important;
+    }
+  }
+}

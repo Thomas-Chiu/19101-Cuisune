@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import Product from '../components/menu/Product.vue'
-import Shopping from '../components/menu/Shopping.vue'
+import Product from './menu/Product.vue'
+import Shopping from './menu/Shopping.vue'
 
 export default {
   name: 'Menu',

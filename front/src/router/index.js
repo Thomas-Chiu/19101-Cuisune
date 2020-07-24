@@ -15,13 +15,20 @@ const routes = [
     }
   },
   {
-    path: '/Menu',
+    path: '/menu',
     name: 'Menu',
     component: () => import(/* webpackChunkName: "Menu" */ '../views/Menu.vue'),
     meta: {
       title: '19101 cuisine | Menu'
     }
-
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue'),
+    meta: {
+      title: '19101 cuisine | Admin'
+    }
   }
 ]
 

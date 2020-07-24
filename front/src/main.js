@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueCardCarousel from 'vue-card-carousel'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
+import '@/assets/scss/material-kit.scss'
 
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
