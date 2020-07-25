@@ -19,6 +19,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'login-card',
   props: {
@@ -45,5 +46,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css"></style>

@@ -1,14 +1,39 @@
 // adminLogin -----------------------------------------------------
 #admin {
   width: 100%;
-  margin: auto;
+  text-shadow: 1.5px 1.5px 2px #333;
+  background: $info;
 
   .wrapper {
-    width: 100%;
-    background: $info;
+    width: 75%;
+    margin: auto;
+    background: inherit;
+  }
+  .md-field label {
+    color: #666 !important;
+    text-shadow: none;
+  }
 
-    .md-field label {
-      color: #666 !important;
+  .card-title {
+    margin-bottom: 3.5rem;
+  }
+
+  // 眼睛
+  .md-input-action {
+    position: absolute;
+    top: 5px;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    button {
+      background: $success !important;
+    }
+    // 按鈕
+    .md-button:not(.md-just-icon):not(.md-btn-fab):not(.md-icon-button):not(.md-toolbar-toggle)
+      .md-ripple {
+      padding: 7.5px 0px;
     }
   }
 }

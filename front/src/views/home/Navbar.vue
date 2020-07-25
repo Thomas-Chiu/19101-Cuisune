@@ -19,7 +19,10 @@
           backdrop
           right
           )
-          input
+          b-input
+          hr
+          router-link(to="/admin")
+            b-btn admin
         b-sidebar#signUp(
           title="Sign Up"
           bg-variant="dark"

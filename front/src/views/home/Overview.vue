@@ -10,7 +10,6 @@
           hideBackdrop
           :items="listOfTodos"
           :header-options="headerOpt"
-          :body-options="bodyOpt"
           :footer-options="footerOpt"
         >
           <template v-slot:header="slotProps">
