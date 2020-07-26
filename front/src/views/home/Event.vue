@@ -28,10 +28,19 @@
           b-col(md="6")
             router-link(to="/menu")
               b-button(block) ORDER A DISH
-          //- Sidebar
+          //- Modal
           b-modal#booking(
             centered
+            title="訂位"
           )
+            form
+              b-row.justify-content-center
+                b-calendar(
+                  locale="zh-tw"
+                )
+                b-form-select
+                b-form-select
+
 </template>
 
 <script>

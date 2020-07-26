@@ -12,7 +12,7 @@
           v-b-toggle.signUp
         ) Sign up
           font-awesome-icon(:icon="['fas', 'user-plus']")
-        //- Modal
+        //- sidebar
         b-sidebar#signIn(
           title="Sign In"
           bg-variant="dark"
