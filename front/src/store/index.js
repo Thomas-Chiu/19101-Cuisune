@@ -8,34 +8,24 @@ export default new Vuex.Store({
     products: [
       {
         id: 1,
-        name: 'Samsung Galaxy A8 Spy Phone',
-        image:
-          'https://www.mobilitaria.com/wp-content/uploads/2019/10/Samsung-Galaxy-A8-Spy-Phone.jpg',
-        price: 340
+        name: '猴頭菇套餐',
+        src: 'https://picsum.photos/200/200/?random=1',
+        price: 340,
+        description: '好吃的套餐'
       },
-
       {
         id: 2,
-        name: 'Asus Rog Phone',
-        image:
-          'https://i.gadgets360cdn.com/products/large/1543479620_635_asus_rog_phone_db.jpg',
-        price: 500
+        name: '猴頭菇套餐2',
+        src: 'https://picsum.photos/200/200/?random=2',
+        price: 3400,
+        description: '好吃的套餐'
       },
-
       {
         id: 3,
-        name: 'Cat Phone',
-        image:
-          'https://www.catphones.com/wp-content/uploads/2018/08/cat-s41-front.png',
-        price: 600
-      },
-
-      {
-        id: 4,
-        name: 'Trainer Socks Black',
-        image:
-          'https://schoolkits.ng/wp-content/uploads/2019/08/Trainer-Socks-Black.jpg',
-        price: 700
+        name: '猴頭菇套餐3',
+        src: 'https://picsum.photos/200/200/?random=3',
+        price: 34000,
+        description: '好吃的套餐'
       }
     ],
     StoreCart: []

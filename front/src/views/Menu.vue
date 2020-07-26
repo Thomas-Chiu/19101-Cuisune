@@ -1,30 +1,19 @@
 <template lang="pug">
-  #menu THIS IS MENU PAGE
-    Shopping
-    Product(
-      v-for="(product,index) in products"
-      :key="index"
-      :id="product.id"
-      :name="product.name"
-      :image="product.image"
-      :price="product.price"
-    )
+  #menu
+    Product
+    Cart
+
 </template>
 
 <script>
 import Product from './menu/Product.vue'
-import Shopping from './menu/Shopping.vue'
+import Cart from './menu/Cart.vue'
 
 export default {
   name: 'Menu',
-  computed: {
-    products () {
-      return this.$store.getters.products
-    }
-  },
   components: {
     Product,
-    Shopping
+    Cart
   }
 }
 </script>

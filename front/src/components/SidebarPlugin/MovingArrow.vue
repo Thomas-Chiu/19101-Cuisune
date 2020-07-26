@@ -11,7 +11,7 @@ export default {
     }
   },
   computed: {
-    /**
+    /*
      * Styles to animate the arrow
      * @returns {{transform: string}}
      */

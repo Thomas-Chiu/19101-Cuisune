@@ -1,0 +1,22 @@
+// Product
+#product {
+  margin-top: 75px;
+
+  .navbar-toggler {
+    margin-right: 50px;
+    border: none;
+  }
+}
+
+// Cart
+#cart {
+  height: 50vh;
+  background: red;
+
+  .icon-cart {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    z-index: 9999;
+  }
+}

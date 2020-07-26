@@ -72,3 +72,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" >
+/* 把原本(main.js 引用)paperDashboard.js 引用的core css 改在這裡引用，才不影響到首頁的排版 */
+@import "../assets/scss/paper-dashboard.scss";
+@import "../assets/css/themify-icons.css";
+</style>
