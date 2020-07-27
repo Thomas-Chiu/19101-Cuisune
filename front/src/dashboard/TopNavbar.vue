@@ -34,9 +34,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="ti-settings"></i>
-              <p>
-                Settings
-              </p>
+              <p @click="logout"> logout</p>
             </a>
           </li>
         </ul>
@@ -71,6 +69,33 @@ export default {
     },
     hideSidebar () {
       this.$sidebar.displaySidebar(false)
+    },
+    logout () {
+      this.axios.delete(process.env.VUE_APP_APIURL + '/signout')
+        .then(res => {
+          const data = res.data
+          if (data.success) {
+            this.$swal({
+              toast: true,
+              showConfirmButton: false,
+              icon: 'success',
+              title: '登出成功',
+              position: 'top-end',
+              timer: 3000,
+              timerProgressBar: true
+            })
+            this.$store.commit('logout')
+            this.$router.push('/')
+            location.reload()
+          } else {
+            this.$swal({
+              title: data.message
+            })
+          }
+        })
+        .catch(err => {
+          alert(err.response.data.message)
+        })
     }
   }
 }

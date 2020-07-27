@@ -17,7 +17,7 @@ const userSchema = new Schema( // 定義資料表
   {
     name: { // 欄位名稱
       type: String,
-      // required: [true, '使用者名稱必填'],
+      required: [true, '使用者名稱必填'],
       minlength: [2, '使用者名稱最少 2 個字'],
       maxlength: [20, '使用者名稱最多 20 個字'],
       trim: true
@@ -33,11 +33,12 @@ const userSchema = new Schema( // 定義資料表
     password: {
       type: String,
       required: [true, '請輸入密碼'],
+      minlength: [4, '密碼必須四個字以上'],
       trim: true
     },
     email: {
       type: String,
-      // required: [true, '請輸入信箱'],
+      required: [true, '請輸入信箱'],
       trim: true,
       validate: {
         validator (value) { // 使用驗證套件檢查是不是 email
@@ -45,6 +46,10 @@ const userSchema = new Schema( // 定義資料表
         },
         message: '信箱格式錯誤'
       }
+    },
+    admin: {
+      type: Boolean,
+      required: [true, '請輸入權限 0 or 1']
     }
   }, {
     versionKey: false // 拿掉自動產生的 "__v" (不記錄資料修改次數)

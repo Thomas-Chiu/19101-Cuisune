@@ -59,7 +59,7 @@ app.listen(process.env.PORT, () => {
 
 // API Post 新增區 --------------------------------------------------------------------------------
 app.post('/signin', async (req, res) => { // 登入驗證
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
@@ -86,14 +86,15 @@ app.post('/signin', async (req, res) => { // 登入驗證
 })
 
 app.post('/signup', async (req, res) => { // 新增帳戶
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   } if (
     req.body.name === undefined ||
     req.body.account === undefined ||
     req.body.password === undefined ||
-    req.body.email === undefined
+    req.body.email === undefined ||
+    req.body.admin === undefined
   ) {
     res.status(400).send({ success: false, message: '資料欄位不正確' })
     return
@@ -104,7 +105,8 @@ app.post('/signup', async (req, res) => { // 新增帳戶
         name: req.body.name,
         account: req.body.account,
         password: md5(req.body.password),
-        email: req.body.email
+        email: req.body.email,
+        admin: req.body.admin
       }
     )
     res.status(200).send({ success: true, result })
@@ -118,7 +120,7 @@ app.post('/signup', async (req, res) => { // 新增帳戶
 })
 
 app.post('/order', async (req, res) => { // 新增訂單
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
@@ -165,7 +167,7 @@ app.post('/order', async (req, res) => { // 新增訂單
 })
 
 app.post('/product', async (req, res) => { // 新增商品
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   } if (
@@ -200,7 +202,7 @@ app.post('/product', async (req, res) => { // 新增商品
 
 // API Patch 修改區 --------------------------------------------------------------------------------
 app.patch('/user', async (req, res) => { // 修改帳戶
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
@@ -221,7 +223,7 @@ app.patch('/user', async (req, res) => { // 修改帳戶
 })
 
 app.patch('/order', async (req, res) => { // 修改訂單
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
@@ -240,7 +242,7 @@ app.patch('/order', async (req, res) => { // 修改訂單
 })
 
 app.patch('/product', async (req, res) => { // 修改商品
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
@@ -273,7 +275,7 @@ app.delete('/signout', async (req, res) => { // 登出刪除session
 })
 
 app.delete('/deluser', async (req, res) => { // 刪除帳戶
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
@@ -288,7 +290,7 @@ app.delete('/deluser', async (req, res) => { // 刪除帳戶
 })
 
 app.delete('/delorder', async (req, res) => { // (id)刪除訂單
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
@@ -303,7 +305,7 @@ app.delete('/delorder', async (req, res) => { // (id)刪除訂單
 })
 
 app.delete('/delproduct', async (req, res) => { // (name)刪除商品
-  if (req.headers['content-type'] !== 'application/json') {
+  if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
@@ -325,10 +327,10 @@ app.get('/heartbeat', async (req, res) => { // 維持前端登入狀態
 })
 
 app.get('/user', async (req, res) => { // 查詢帳戶
-  if (req.session.user === undefined) { // 檢查登入狀態
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
+  // if (req.session.user === undefined) { // 檢查登入狀態
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
   try {
     let result = await db.users.find() // 預設查詢所有資料
     if (req.query.id) { // id 查詢
@@ -349,10 +351,10 @@ app.get('/user', async (req, res) => { // 查詢帳戶
 })
 
 app.get('/order', async (req, res) => { // 查詢訂單
-  if (req.session.user === undefined) { // 檢查登入狀態
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
+  // if (req.session.user === undefined) { // 檢查登入狀態
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
   try {
     let result = await db.orders.find() // 預設查詢所有資料
     if (req.query.id) { // id 查詢

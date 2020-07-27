@@ -13,6 +13,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.1",
     "@fortawesome/free-solid-svg-icons": "^5.13.1",
     "@fortawesome/vue-fontawesome": "^0.1.10",
+    "axios": "^0.19.2",
     "bootstrap-vue": "^2.1.0",
     "chartist": "^0.11.0",
     "core-js": "^3.6.5",
@@ -20,13 +21,16 @@
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.11",
+    "vue-axios": "^2.1.5",
     "vue-card-carousel": "^1.0.0",
     "vue-clickaway": "^2.1.0",
     "vue-fontawesome": "0.0.2",
     "vue-material": "^1.0.0-beta-14",
     "vue-notifyjs": "^0.3.0",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vue-sweetalert2": "^3.0.6",
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^3.0.1"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.7.0",

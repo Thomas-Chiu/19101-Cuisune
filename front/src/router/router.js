@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-// import store from '../store/index.js'
+import store from '../store/index.js'
 
 Vue.use(VueRouter)
 
@@ -11,7 +11,8 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      title: '19101 cuisine'
+      title: '19101 cuisine',
+      login: false
     }
   },
   {
@@ -27,7 +28,8 @@ const routes = [
     name: 'Menu',
     component: () => import(/* webpackChunkName: "Menu" */ '../views/Menu.vue'),
     meta: {
-      title: '19101 cuisine | Menu'
+      title: '19101 cuisine | Menu',
+      login: false
     }
   },
   {
@@ -35,7 +37,8 @@ const routes = [
     name: 'Admin',
     component: () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue'),
     meta: {
-      title: '19101 cuisine | Admin'
+      title: '19101 cuisine | Admin',
+      login: false
     }
   },
   {
@@ -49,7 +52,8 @@ const routes = [
         name: 'Dashboard',
         component: () => import(/* webpackChunkName: "Dashboard" */ '@/views/admin/Dashboard.vue'),
         meta: {
-          title: 'Admin | Board'
+          title: 'Admin | Board',
+          login: true
         }
       },
       {
@@ -57,7 +61,8 @@ const routes = [
         name: 'Stats',
         component: () => import(/* webpackChunkName: "Stats" */ '@/views/admin/UserProfile.vue'),
         meta: {
-          title: 'Admin | Stats'
+          title: 'Admin | Stats',
+          login: true
         }
       },
       {
@@ -65,7 +70,8 @@ const routes = [
         name: 'Notifications',
         component: () => import(/* webpackChunkName: "Notifications" */ '@/views/admin/Notifications.vue'),
         meta: {
-          title: 'Admin | Notifications'
+          title: 'Admin | Notifications',
+          login: true
         }
       },
       {
@@ -73,7 +79,8 @@ const routes = [
         name: 'Table-list',
         component: () => import(/* webpackChunkName: "Table-list" */ '@/views/admin/TableList.vue'),
         meta: {
-          title: 'Admin | Table-list'
+          title: 'Admin | Table-list',
+          login: true
         }
       },
       {
@@ -81,7 +88,8 @@ const routes = [
         name: 'Typography',
         component: () => import(/* webpackChunkName: "Typography" */ '@/views/admin/Typography.vue'),
         meta: {
-          title: 'Admin | Typography'
+          title: 'Admin | Typography',
+          login: true
         }
       },
       {
@@ -89,7 +97,8 @@ const routes = [
         name: 'Icons',
         component: () => import(/* webpackChunkName: "Icons" */ '@/views/admin/Icons.vue'),
         meta: {
-          title: 'Admin | Icons'
+          title: 'Admin | Icons',
+          login: true
         }
       }
     ]
@@ -100,6 +109,15 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.login && !store.state.user) {
+    next('/')
+    alert('請登入管理者帳號')
+  } else {
+    next()
+  }
 })
 
 router.afterEach((to, from) => {

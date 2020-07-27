@@ -32,7 +32,7 @@
         <li class="nav-item">
           <a class="nav-link">
             <i class="ti-settings"></i>
-            <p>Settings</p>
+            <p>登出</p>
           </a>
         </li>
         <li class="divider"></li>

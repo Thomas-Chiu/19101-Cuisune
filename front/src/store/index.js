@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    user: '',
     products: [
       {
         id: 1,
@@ -31,31 +33,24 @@ export default new Vuex.Store({
     StoreCart: []
   },
   getters: {
+    user (state) {
+      return state.user
+    },
     products (state) {
       return state.products
-    },
-    StoreCart (state) {
-      return state.StoreCart
     }
   },
   mutations: {
-    ADD_Item (state, id) {
-      state.StoreCart.push(id)
+    login (state, data) {
+      state.user = data
     },
-
-    REMOVE_Item (state, index) {
-      state.StoreCart.splice(index, 1)
+    logout (state, data) {
+      state.user = ''
     }
   },
   actions: {
-    addItem (context, id) {
-      context.commit('ADD_Item', id)
-    },
-
-    removeItem (context, index) {
-      context.commit('REMOVE_Item', index)
-    }
   },
   modules: {
-  }
+  },
+  plugins: [createPersistedState()]
 })
