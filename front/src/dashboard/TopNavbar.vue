@@ -34,7 +34,7 @@
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="ti-settings"></i>
-              <p @click="logout"> logout</p>
+              <p @click="signout"> sign out</p>
             </a>
           </li>
         </ul>
@@ -70,7 +70,7 @@ export default {
     hideSidebar () {
       this.$sidebar.displaySidebar(false)
     },
-    logout () {
+    signout () {
       this.axios.delete(process.env.VUE_APP_APIURL + '/signout')
         .then(res => {
           const data = res.data
@@ -84,7 +84,7 @@ export default {
               timer: 3000,
               timerProgressBar: true
             })
-            this.$store.commit('logout')
+            this.$store.commit('signout')
             this.$router.push('/')
             location.reload()
           } else {

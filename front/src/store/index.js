@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: '',
+    admin: '',
     products: [
       {
         id: 1,
@@ -36,16 +37,23 @@ export default new Vuex.Store({
     user (state) {
       return state.user
     },
+    admin (state) {
+      return state.admin
+    },
     products (state) {
       return state.products
     }
   },
   mutations: {
-    login (state, data) {
+    signin (state, data) {
       state.user = data
     },
-    logout (state, data) {
+    adminSignin (state, data) {
+      state.admin = data
+    },
+    signout (state, data) {
       state.user = ''
+      state.admin = ''
     }
   },
   actions: {

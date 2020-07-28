@@ -7,12 +7,20 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/album',
+    name: 'Album',
+    component: () => import(/* webpackChunkName: "album" */ '../views/Album.vue'),
+    meta: {
+      login: true
+    }
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,
     meta: {
       title: '19101 cuisine',
-      login: false
+      signin: false
     }
   },
   {
@@ -29,7 +37,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "Menu" */ '../views/Menu.vue'),
     meta: {
       title: '19101 cuisine | Menu',
-      login: false
+      signin: false
     }
   },
   {
@@ -38,7 +46,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue'),
     meta: {
       title: '19101 cuisine | Admin',
-      login: false
+      signin: false
     }
   },
   {
@@ -53,7 +61,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "Dashboard" */ '@/views/admin/Dashboard.vue'),
         meta: {
           title: 'Admin | Board',
-          login: true
+          signin: true
         }
       },
       {
@@ -62,7 +70,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "Stats" */ '@/views/admin/UserProfile.vue'),
         meta: {
           title: 'Admin | Stats',
-          login: true
+          signin: true
         }
       },
       {
@@ -71,7 +79,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "Notifications" */ '@/views/admin/Notifications.vue'),
         meta: {
           title: 'Admin | Notifications',
-          login: true
+          signin: true
         }
       },
       {
@@ -80,7 +88,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "Table-list" */ '@/views/admin/TableList.vue'),
         meta: {
           title: 'Admin | Table-list',
-          login: true
+          signin: true
         }
       },
       {
@@ -89,7 +97,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "Typography" */ '@/views/admin/Typography.vue'),
         meta: {
           title: 'Admin | Typography',
-          login: true
+          signin: true
         }
       },
       {
@@ -98,7 +106,7 @@ const routes = [
         component: () => import(/* webpackChunkName: "Icons" */ '@/views/admin/Icons.vue'),
         meta: {
           title: 'Admin | Icons',
-          login: true
+          signin: true
         }
       }
     ]
@@ -112,7 +120,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.meta.login && !store.state.user) {
+  if (to.meta.signin && !store.state.admin) {
     next('/')
     alert('請登入管理者帳號')
   } else {

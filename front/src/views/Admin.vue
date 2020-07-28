@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { LoginCard } from '@/components/LoginCard.vue'
+import { LoginCard } from '../components/LoginCard.vue'
 
 export default {
   name: 'Admin',
@@ -83,14 +83,14 @@ export default {
               timer: 3000,
               timerProgressBar: true
             })
-            this.$store.commit('login', this.account) // 呼叫vuex 的登入
+            this.$store.commit('adminSignin', this.account) // 呼叫vuex 的登入
             this.$router.push('/adminboard')
           } else {
             this.$swal({
               toast: true,
               showConfirmButton: false,
               icon: 'error',
-              title: '登入失敗',
+              title: '請登入管理者帳號',
               position: 'top-end',
               timer: 3000,
               timerProgressBar: true

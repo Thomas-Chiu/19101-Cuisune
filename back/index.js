@@ -2,10 +2,11 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import md5 from 'md5'
-// import multer from 'multer' // 處理上傳的檔案
-// import FTPStorage from 'multer-ftp' // 將上傳的檔案丟到FTP
-// import path from 'path' // path 為node.js 內建套件，可處理路徑資訊
-// import fs from 'fs' // fs 為node.js 內建套件，可處理檔案系統
+// 處理上傳的檔案
+import multer from 'multer'
+import FTPStorage from 'multer-ftp' // 將上傳的檔案丟到FTP
+import path from 'path' // path 為node.js 內建套件，可處理路徑資訊
+import fs from 'fs' // fs 為node.js 內建套件，可處理檔案系統
 import dotenv from 'dotenv'
 import connectMongo from 'connect-mongo'
 import session from 'express-session'
@@ -50,6 +51,45 @@ app.use(session({ // express-session 設定
   rolling: true, // 重設過期時間
   resave: true
 }))
+
+let storage // 宣告stroage 變數，根據.env 環境決定storage 存放的位置
+if (process.env.FTP === 'false') {
+  storage = multer.diskStorage({ // 將上傳檔案放本機
+    destination (req, file, cb) {
+      cb(null, 'images/') // 傳到images 資料夾
+    },
+    filename (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname))
+    }
+  })
+} else {
+  storage = new FTPStorage({ // 將上傳檔案放FTP
+    basepath: '/19101-cuisine/', // 設定根路徑
+    ftp: { // FTP 設定 (寫在.env 裡)
+      host: process.env.FTP_HOST,
+      secure: false,
+      user: process.env.FTP_USER,
+      password: process.env.FTP_PASSWORD
+    },
+    destination (req, file, options, cb) {
+      cb(null, options.basepath + Date.now() + path.extname(file.originalname))
+    }
+  })
+}
+
+const upload = multer({ // multer 設定
+  storage,
+  fileFilter (req, file, cb) {
+    if (!file.mimetype.includes('image')) { // 觸發multer 錯誤，不接受檔案
+      cb(new multer.MulterError('LIMIT_FORMAT'), false) // LIMIT_FORMAT 是自訂的錯誤CODE，跟內建的錯誤CODE 格式統一
+    } else {
+      cb(null, true)
+    }
+  },
+  limits: {
+    fileSize: 1024 * 1024 // 1MB
+  }
+})
 
 // 監聽server 區 ---------------------------------------------------------------------------
 app.listen(process.env.PORT, () => {
@@ -200,6 +240,54 @@ app.post('/product', async (req, res) => { // 新增商品
   }
 })
 
+app.post('/file', async (req, res) => { // 上傳圖片 & db 圖檔資料
+  // if (req.session.user === undefined) { // 沒有登入
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
+  // 上傳檔案格式要用form-data
+  if (!req.headers['content-type'].includes('multipart/form-data')) {
+    res.status(400).send({ success: false, message: '請用form-data 格式' })
+    return
+  }
+  upload.single('image')(req, res, async err => { // 也可upload.array('fieldname(key)', num)
+    if (err instanceof multer.MulterError) { // 處理錯誤 Error handling
+      let message = ''
+      if (err.code === 'LIMIT_FILE_SIZE') message = '檔案太大'
+      else message = '檔案格式不符'
+      res.status(400).send({ success: false, message })
+    } else if (err) {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    } else {
+      try {
+        let name = ''
+        if (process.env.FTP === 'true') { // FTP 上傳時
+          name = path.basename(req.file.path) // basename() 是 node.js 回傳檔名的內建函式
+        } else { // 本機上傳時
+          name = req.file.filename
+        }
+        const result = await db.files.create(
+          {
+            user: req.session.user,
+            name,
+            title: req.body.title,
+            description: req.body.description
+          }
+        )
+        res.status(200).send({ success: true, result })
+      } catch (err) {
+        if (err.name === 'ValidationError') { // 資料格式錯誤
+          const key = Object.keys(err.errors)[0]
+          const message = err.errors[key].message
+          res.status(400).send({ success: false, message })
+        } else { // 伺服器錯誤
+          res.status(500).send({ success: false, message: '伺服器錯誤' })
+        }
+      }
+    }
+  })
+})
+
 // API Patch 修改區 --------------------------------------------------------------------------------
 app.patch('/user', async (req, res) => { // 修改帳戶
   if (!req.headers['content-type'].includes('application/json')) {
@@ -266,6 +354,32 @@ app.patch('/product', async (req, res) => { // 修改商品
   }
 })
 
+app.patch('/file/:id', async (req, res) => { // 修改圖檔db 資料
+  if (!req.headers['content-type'].includes('application/json')) {
+    res.status(400).send({ success: false, message: '請用json 格式' })
+    return
+  }
+  // if (!req.session.user) { // 若無登入
+  //   res.status(403).send({ success: false, msg: '請登入' })
+  //   return
+  // }
+  try {
+    const result = await db.files.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    res.status(200).send({ success: true, result })
+  } catch (err) {
+    if (err.name === 'CastError') { // 不是MongoDB 格式
+      res.status(400)
+      res.send({ success: false, message: 'id 格式錯誤' })
+    } else if (err.name === 'ValidationError') { // 資料格式錯誤
+      const key = Object.keys(err.errors)[0]
+      const message = err.errors[key].message
+      res.status(400).send({ success: false, message })
+    } else {
+      res.status(500).send({ success: false, message: '伺服器錯誤' })
+    }
+  }
+})
+
 // API Delete 刪除區 --------------------------------------------------------------------------------
 app.delete('/signout', async (req, res) => { // 登出刪除session
   req.session.destroy((err) => {
@@ -274,7 +388,7 @@ app.delete('/signout', async (req, res) => { // 登出刪除session
   })
 })
 
-app.delete('/deluser', async (req, res) => { // 刪除帳戶
+app.delete('/user', async (req, res) => { // 刪除帳戶
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
@@ -289,7 +403,7 @@ app.delete('/deluser', async (req, res) => { // 刪除帳戶
   }
 })
 
-app.delete('/delorder', async (req, res) => { // (id)刪除訂單
+app.delete('/order', async (req, res) => { // (id)刪除訂單
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
@@ -304,7 +418,7 @@ app.delete('/delorder', async (req, res) => { // (id)刪除訂單
   }
 })
 
-app.delete('/delproduct', async (req, res) => { // (name)刪除商品
+app.delete('/product', async (req, res) => { // (name)刪除商品
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
@@ -316,6 +430,28 @@ app.delete('/delproduct', async (req, res) => { // (name)刪除商品
   } catch (err) {
     if (err.name === 'CastError') res.status(404).send({ success: false, message: err.message }) // 不是mongodb 格式
     else res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+})
+
+app.delete('/file/:id', async (req, res) => { // (id)刪除圖檔db 資料
+  // if (!req.session.user) { // 若無登入
+  //   res.status(403)
+  //   res.send({ success: false, msg: '無權限' })
+  //   return
+  // }
+  try {
+    const result = await db.files.findByIdAndDelete(req.params.id)
+    if (result === null) {
+      res.status(404).send({ success: false, message: '找不到資料' })
+    } else {
+      res.status(200).send({ success: true, result })
+    }
+  } catch (err) {
+    if (err.name === 'CastError') { // 不是MongoDB 格式
+      res.status(400).send({ success: false, msg: 'id 格式錯誤' })
+    } else {
+      res.status(500).send({ success: false, msg: '伺服器錯誤' })
+    }
   }
 })
 
@@ -375,10 +511,10 @@ app.get('/order', async (req, res) => { // 查詢訂單
 })
 
 app.get('/product', async (req, res) => { // 查詢商品
-  if (req.session.user === undefined) { // 檢查登入狀態
-    res.status(401).send({ success: false, message: '未登入' })
-    return
-  }
+  // if (req.session.user === undefined) { // 檢查登入狀態
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
   try {
     let result = await db.products.find() // 預設查詢所有資料
     if (req.query.id) { // id 查詢
@@ -395,5 +531,35 @@ app.get('/product', async (req, res) => { // 查詢商品
     }
   } catch (err) {
     res.status(404).send({ success: false, message: '找不到訂單' })
+  }
+})
+
+app.get('/file', async (req, res) => { // 查詢圖檔db 資料
+  // if (req.session.user === undefined) {
+  //   res.status(401)
+  //   res.send({ success: false, msg: '未登入' })
+  //   return
+  // }
+  try {
+    const result = await db.files.find()
+    res.status(200).send({ success: true, result })
+  } catch (err) {
+    res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+})
+
+app.get('/file/:name', async (req, res) => { // 取得圖檔網址 (img-src用)
+  // if (req.session.user === undefined) {
+  //   res.status(401)
+  //   res.send({ success: false, message: '未登入' })
+  //   return
+  // }
+  if (process.env.FTP === 'false') { // express 傳送檔案只接受絕對路徑
+    const path = process.cwd() + '/images/' + req.params.name // process.cwd() 可取得目前執行工作的位置
+    const exists = fs.existsSync(path)
+    if (exists) res.status(200).sendFile(path)
+    else res.status(404).send({ success: false, message: '找不到圖片' })
+  } else {
+    res.redirect('http://' + process.env.FTP_HOST + '/' + process.env.FTP_USER + '/' + req.params.name)
   }
 })

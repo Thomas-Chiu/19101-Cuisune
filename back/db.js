@@ -13,7 +13,7 @@ mongoose.connect(process.env.DBURL, { useNewUrlParser: true, useUnifiedTopology:
 mongoose.plugin(beautifyUnique) // 自訂unique message 套件
 mongoose.plugin(idPlugin) // res 的 _id 改成 id
 
-const userSchema = new Schema( // 定義資料表
+const userSchema = new Schema( // 定義資料表欄位
   {
     name: { // 欄位名稱
       type: String,
@@ -132,14 +132,24 @@ const orderSchema = new Schema(
 
 const fileSchema = new Schema(
   {
+    user: {
+      type: String
+      // required: [true, '請輸入使用者名稱']
+    },
     name: {
       type: String,
       required: [true, '請輸入檔案名稱']
+    },
+    title: {
+      type: String,
+      required: [true, '請輸入標題']
     },
     description: {
       type: String,
       maxlength: [100, '圖文說明 100 字以下']
     }
+  }, {
+    versionKey: false
   }
 )
 
