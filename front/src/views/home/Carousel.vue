@@ -3,25 +3,31 @@
     b-row
       b-col(cols="12" md="6")
         agile.left(
-          auto-play="true"
-          fade="true"
-          pauseOnHover="false"
+          :nav-buttons="false"
+          :speed="3000"
+          :dots="false"
+          :pauseOnHover="false"
+          fade
+          autoplay
           )
-          .slide(
+          img.slide(
             v-for="(img, index) in leftSrc"
             :key="index"
-            :img-src='img'
+            :src='img'
             )
       b-col(cols="12" md="6")
         agile.right(
-          auto-play="true"
-          fade="true"
-          pauseOnHover="false"
+          :nav-buttons="false"
+          :speed="3000"
+          :dots="false"
+          :pauseOnHover="false"
+          fade
+          autoplay
           )
-          .slide(
+          img.slide(
             v-for="(img, index) in rightSrc"
             :key="index"
-            :img-src='img'
+            :src='img'
             )
       .logo
         img(:src="logoSrc")
