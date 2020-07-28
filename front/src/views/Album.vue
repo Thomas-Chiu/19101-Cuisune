@@ -27,20 +27,20 @@
       )
       b-button(type="submit" variant="secondary") 上傳
     hr
-    //- Photoswipe
-    b-row
-      b-col(cols="12" md="4" lg="3" v-for="(image, idx) in images" :key="idx")
-        b-card
-          b-card-img(:src="image.src" v-pswp="image")
-          b-card-body {{ image.title }}
-            b-btn(v-if="image.edit" variant="danger" @click="cancel(image)") 取消
-            b-btn(v-else variant="success" @click="edit(image)") 編輯
-            b-btn(v-if="image.edit" variant="success" @click="update(image)") 更新
-            b-btn(v-else variant="danger" @click="del(image,idx)") 刪除
-            hr
-            //- 用pre 標籤 textarea 才能顯示換行的效果
-            pre(v-if="!image.edit") {{ image.title }}
-            b-form-textarea(v-else v-model="image.model")
+    Photoswipe
+      b-row
+        b-col(cols="12" md="4" lg="3" v-for="(image, idx) in images" :key="idx")
+          b-card
+            b-card-img(:src="image.src" v-pswp="image")
+            b-card-body {{ image.title }}
+              b-btn(v-if="image.edit" variant="danger" @click="cancel(image)") 取消
+              b-btn(v-else variant="success" @click="edit(image)") 編輯
+              b-btn(v-if="image.edit" variant="success" @click="update(image)") 更新
+              b-btn(v-else variant="danger" @click="del(image,idx)") 刪除
+              hr
+              //- 用pre 標籤 textarea 才能顯示換行的效果
+              pre(v-if="!image.edit") {{ image.title }}
+              b-form-textarea(v-else v-model="image.model")
 </template>
 
 <script>
@@ -135,23 +135,23 @@ export default {
           alert('發生錯誤')
         })
     }
+  },
+  mounted () {
+    this.axios.get(process.env.VUE_APP_APIURL + '/file/' + this.user)
+      .then(res => {
+        this.images = res.data.result.map(d => {
+          return {
+            title: d.title, // 因為Photoswipe 套件只吃叫title 的key
+            src: process.env.VUE_APP_APIURL + '/file/' + d.name,
+            _id: d._id,
+            edit: false,
+            model: d.name
+          }
+        })
+      })
+      .catch(() => {
+        alert('發生錯誤')
+      })
   }
-  // mounted () {
-  //   this.axios.get(process.env.VUE_APP_APIURL + '/album/' + this.user)
-  //     .then(res => {
-  //       this.images = res.data.result.map(d => {
-  //         return {
-  //           title: d.description, // 因為Photoswipe 套件只吃叫title 的key
-  //           src: process.env.VUE_APP_APIURL + '/file/' + d.name,
-  //           _id: d._id,
-  //           edit: false,
-  //           model: d.name
-  //         }
-  //       })
-  //     })
-  //     .catch(() => {
-  //       alert('發生錯誤')
-  //     })
-  // }
 }
 </script>

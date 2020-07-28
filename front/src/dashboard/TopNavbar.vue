@@ -2,11 +2,11 @@
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">{{routeName}}</a>
-      <button class="navbar-toggler navbar-burger"
-              type="button"
-              @click="toggleSidebar"
-              :aria-expanded="$sidebar.showSidebar"
-              aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler navbar-burger"
+        type="button"
+        @click="toggleSidebar"
+      >
         <span class="navbar-toggler-bar"></span>
         <span class="navbar-toggler-bar"></span>
         <span class="navbar-toggler-bar"></span>
@@ -66,6 +66,7 @@ export default {
     },
     toggleSidebar () {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
+      console.log(this.$sidebar)
     },
     hideSidebar () {
       this.$sidebar.displaySidebar(false)

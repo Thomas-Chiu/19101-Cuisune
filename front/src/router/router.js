@@ -114,9 +114,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+  routes,
+  linkActiveClass: 'active' // 套後台版面加的
 })
 
 router.beforeEach((to, from, next) => {

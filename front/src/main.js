@@ -15,6 +15,7 @@ import VueMaterial from 'vue-material'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueSweetalert2 from 'vue-sweetalert2'
+import Photoswipe from 'vue-pswipe'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'mutationobserver-shim'
 import 'vue-material/dist/vue-material.min.css'
@@ -30,6 +31,7 @@ Vue.use(VueMaterial)
 Vue.use(PaperDashboard)
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2)
+Vue.use(Photoswipe)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
