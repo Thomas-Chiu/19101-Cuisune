@@ -1,58 +1,30 @@
 <template lang="pug">
-  #carousel.container-fluid
-    .row
-      .col-12
-        b-carousel#carousel-1(
-          v-model='slide'
-          :interval='4000'
-          @sliding-start='onSlideStart'
-          @sliding-end='onSlideEnd'
-          background='#ababab'
-          style='text-shadow: 1px 1px 2px #333;'
+  b-container#carousel(fluid)
+    b-row
+      b-col(cols="12" md="6")
+        agile.left(
+          auto-play="true"
+          fade="true"
+          pauseOnHover="false"
           )
-          //- Text slides with image
-          b-carousel-slide(caption='First slide' text='我是圖片文字' img-src="https://picsum.photos/1024/768/?random=1")
-          //- Slides with custom text
-          b-carousel-slide(img-src='https://picsum.photos/1024/768/?image=54')
-            h1 Hello world!
-          //- Slides with image only
-          b-carousel-slide(img-src='https://picsum.photos/1024/768/?image=58')
-          //- Slides with img slot
-          //-  Note the classes .d-block and .img-fluid to prevent browser default image alignment
-          b-carousel-slide
-            template(v-slot:img)
-              img(
-                class="d-block img-fluid w-100"
-                src="https://picsum.photos/1024/768/?image=55"
-                alt="image slot"
-              )
-      .col-12
-        b-carousel#carousel-1(
-          v-model='slide'
-          :interval='4000'
-          @sliding-start='onSlideStart'
-          @sliding-end='onSlideEnd'
-          background='#ababab'
-          style='text-shadow: 1px 1px 2px #333;'
+          .slide(
+            v-for="(img, index) in leftSrc"
+            :key="index"
+            :img-src='img'
+            )
+      b-col(cols="12" md="6")
+        agile.right(
+          auto-play="true"
+          fade="true"
+          pauseOnHover="false"
           )
-          //- Text slides with image
-          b-carousel-slide(caption='First slide' text='我是圖片文字' img-src="https://picsum.photos/1024/768/?random=1")
-          //- Slides with custom text
-          b-carousel-slide(img-src='https://picsum.photos/1024/768/?image=54')
-            h1 Hello world!
-          //- Slides with image only
-          b-carousel-slide(img-src='https://picsum.photos/1024/768/?image=58')
-          //- Slides with img slot
-          //-  Note the classes .d-block and .img-fluid to prevent browser default image alignment
-          b-carousel-slide
-            template(v-slot:img)
-              img(
-                class="d-block img-fluid w-100"
-                src="https://picsum.photos/1024/768/?image=55"
-                alt="image slot"
-              )
+          .slide(
+            v-for="(img, index) in rightSrc"
+            :key="index"
+            :img-src='img'
+            )
       .logo
-        img(:src="imgs[0].src")
+        img(:src="logoSrc")
       p.icon
         b-icon(icon="arrow-down" scale="2" animation="cylon-vertical")
 </template>
@@ -68,20 +40,26 @@ export default {
   },
   data () {
     return {
-      slide: 0,
-      sliding: null,
-      imgs: [
-        { src: './images/logo/logo_mushroom.png' }
+      logoSrc: './images/logo/logo_mushroom.png',
+      leftSrc: [
+        './images/place/place1.jpg',
+        './images/place/place2.jpg',
+        './images/place/place3.jpg',
+        './images/place/place4.jpg',
+        './images/place/place5.jpg',
+        './images/place/place6.jpg'
+      ],
+      rightSrc: [
+        './images/place/place7.jpg',
+        './images/place/place8.jpg',
+        './images/place/place9.jpg',
+        './images/place/place10.jpg',
+        './images/place/place11.jpg',
+        './images/place/place12.jpg'
       ]
     }
   },
   methods: {
-    onSlideStart (slide) {
-      this.sliding = true
-    },
-    onSlideEnd (slide) {
-      this.sliding = false
-    }
   }
 }
 </script>

@@ -23,10 +23,16 @@
         h2 INGREDIENTS
         hr
         Photoswipe
-          b-row
-            b-col(v-for="(img,index) in imgs" :key="index")
-              //- .box(v-for="n in 3")
-              img(:src="img.src" v-pswp="img" :title="title")
+          .box-bg
+            b-row
+              b-col(
+                cols="4"
+                md="2"
+                v-for="(img,index) in imgs"
+                :key="index"
+                )
+                .box
+                  b-img(:src="img.src" v-pswp="img" fluid)
 </template>
 
 <script>
@@ -36,9 +42,21 @@ export default {
     return {
       imgs: [
         {
-          src: './images/logo/logo_mushroom.png',
-          title: 'YA'
-          // size: '1600x1600'
+          src: './images/ingredient/稻鴨米.jpg',
+          title: '米／有機稻鴨米（宜蘭三星）'
+        }, {
+          src: './images/ingredient/有機蔬果.jpg',
+          title: '蔬果／能高有機農場、鄉田有機農場和其他有機農場及小農生產'
+        }, {
+          src: './images/ingredient/臭豆腐.jpg',
+          title: '臭豆腐／非基改有機臭豆腐製作（主婦聯盟同廠出品）'
+        }, {
+          src: './images/ingredient/滷豆干.jpg',
+          title: '豆製品／豆之味工廠（有機認證）'
+        },
+        {
+          src: './images/ingredient/鮮香蛋.jpg',
+          title: '雞蛋／亞植有機農場驗證雞蛋（有機黃豆和玉米飼養）'
         }
       ]
     }
