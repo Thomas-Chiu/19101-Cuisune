@@ -2,32 +2,20 @@
   b-container#carousel(fluid)
     b-row
       b-col(cols="12" md="6")
-        agile.left(
-          :nav-buttons="false"
-          :speed="3000"
-          :dots="false"
-          :pauseOnHover="false"
-          fade
-          autoplay
-          )
-          img.slide(
+        agile.left(:options="options")
+          b-img.slide(
             v-for="(img, index) in leftSrc"
             :key="index"
             :src='img'
+            fluid-grow
             )
       b-col(cols="12" md="6")
-        agile.right(
-          :nav-buttons="false"
-          :speed="3000"
-          :dots="false"
-          :pauseOnHover="false"
-          fade
-          autoplay
-          )
-          img.slide(
+        agile.right(:options="options")
+          b-img.slide(
             v-for="(img, index) in rightSrc"
             :key="index"
             :src='img'
+            fluid-grow
             )
       .logo
         img(:src="logoSrc")
@@ -46,7 +34,7 @@ export default {
   },
   data () {
     return {
-      logoSrc: './images/logo/logo_mushroom.png',
+      logoSrc: './images/logo/logo_mushroom_dark_animated.svg',
       leftSrc: [
         './images/place/place1.jpg',
         './images/place/place2.jpg',
@@ -62,7 +50,17 @@ export default {
         './images/place/place10.jpg',
         './images/place/place11.jpg',
         './images/place/place12.jpg'
-      ]
+      ],
+      options: {
+        dots: false,
+        fade: true,
+        autoplay: true,
+        navButtons: false,
+        pauseOnHover: false,
+        speed: 6000,
+        autoplaySpeed: 5000
+        // changeDelay: 5000
+      }
     }
   },
   methods: {
