@@ -1,3 +1,11 @@
+// Admin Global ---------------------------------------------------
+.row {
+  margin: 0 !important;
+}
+.content {
+  padding: 0 !important;
+}
+
 // adminLogin -----------------------------------------------------
 #admin {
   width: 100%;
@@ -41,5 +49,12 @@
       .md-ripple {
       padding: 7.5px 0px;
     }
+  }
+}
+
+// User 會員管理 -----------------------------------------------------------
+#user {
+  th {
+    margin-left: 17.5px;
   }
 }

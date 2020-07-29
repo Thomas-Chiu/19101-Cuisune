@@ -9,7 +9,7 @@
     <!-- -->
     <div class="sidebar-wrapper" id="style-3">
       <div class="logo">
-        <a href="#" class="simple-text">
+        <a class="simple-text">
             <div class="logo-img">
                 <img :src="src" alt="logo">
             </div>
@@ -30,20 +30,16 @@
           </sidebar-link>
         </slot>
       </ul>
-      <moving-arrow :move-y="arrowMovePx">
-
-      </moving-arrow>
     </div>
   </div>
 </template>
 <script>
-import MovingArrow from './MovingArrow.vue'
 import SidebarLink from './SidebarLink'
 export default {
   props: {
     title: {
       type: String,
-      default: 'Paper Dashboard'
+      default: '19101 cuisine'
     },
     backgroundColor: {
       type: String,
@@ -84,17 +80,7 @@ export default {
     }
   },
   components: {
-    MovingArrow,
     SidebarLink
-  },
-  computed: {
-    /**
-     * Styles to animate the arrow near the current active sidebar link
-     * @returns {{transform: string}}
-     */
-    arrowMovePx () {
-      return this.linkHeight * this.activeLinkIndex
-    }
   },
   data () {
     return {

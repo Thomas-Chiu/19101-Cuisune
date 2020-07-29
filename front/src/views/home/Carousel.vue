@@ -7,7 +7,6 @@
             v-for="(img, index) in leftSrc"
             :key="index"
             :src='img'
-            fluid-grow
             )
       b-col(cols="12" md="6")
         agile.right(:options="options")
@@ -15,7 +14,6 @@
             v-for="(img, index) in rightSrc"
             :key="index"
             :src='img'
-            fluid-grow
             )
       .logo
         img(:src="logoSrc")
@@ -59,7 +57,6 @@ export default {
         pauseOnHover: false,
         speed: 6000,
         autoplaySpeed: 5000
-        // changeDelay: 5000
       }
     }
   },

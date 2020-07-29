@@ -57,55 +57,46 @@ const routes = [
     children: [
       {
         path: '/dashboard',
-        name: 'Dashboard',
+        name: '首頁',
         component: () => import(/* webpackChunkName: "Dashboard" */ '@/views/admin/Dashboard.vue'),
         meta: {
-          title: 'Admin | Board',
+          title: '首頁',
           signin: true
         }
       },
       {
         path: '/stats',
-        name: 'Stats',
-        component: () => import(/* webpackChunkName: "Stats" */ '@/views/admin/UserProfile.vue'),
+        name: '會員管理',
+        component: () => import(/* webpackChunkName: "User" */ '@/views/admin/User.vue'),
         meta: {
-          title: 'Admin | Stats',
-          signin: true
-        }
-      },
-      {
-        path: '/notifications',
-        name: 'Notifications',
-        component: () => import(/* webpackChunkName: "Notifications" */ '@/views/admin/Notifications.vue'),
-        meta: {
-          title: 'Admin | Notifications',
+          title: '會員管理',
           signin: true
         }
       },
       {
         path: '/table-list',
-        name: 'Table-list',
-        component: () => import(/* webpackChunkName: "Table-list" */ '@/views/admin/TableList.vue'),
+        name: '商品管理',
+        component: () => import(/* webpackChunkName: "Product" */ '@/views/admin/Product.vue'),
         meta: {
-          title: 'Admin | Table-list',
+          title: '商品管理',
           signin: true
         }
       },
       {
         path: '/typography',
-        name: 'Typography',
-        component: () => import(/* webpackChunkName: "Typography" */ '@/views/admin/Typography.vue'),
+        name: '點餐管理',
+        component: () => import(/* webpackChunkName: "Order" */ '@/views/admin/Order.vue'),
         meta: {
-          title: 'Admin | Typography',
+          title: '點餐管理',
           signin: true
         }
       },
       {
         path: '/icons',
-        name: 'Icons',
-        component: () => import(/* webpackChunkName: "Icons" */ '@/views/admin/Icons.vue'),
+        name: '訂位管理',
+        component: () => import(/* webpackChunkName: "Booking" */ '@/views/admin/Booking.vue'),
         meta: {
-          title: 'Admin | Icons',
+          title: '訂位管理',
           signin: true
         }
       }
