@@ -267,12 +267,7 @@ app.post('/file', async (req, res) => { // 上傳圖片 & db 圖檔資料
           name = req.file.filename
         }
         const result = await db.files.create(
-          {
-            user: req.session.user,
-            name,
-            title: req.body.title,
-            description: req.body.description
-          }
+          { name, title: req.body.title }
         )
         res.status(200).send({ success: true, result })
       } catch (err) {
@@ -368,8 +363,7 @@ app.patch('/file/:id', async (req, res) => { // 修改圖檔db 資料
     res.status(200).send({ success: true, result })
   } catch (err) {
     if (err.name === 'CastError') { // 不是MongoDB 格式
-      res.status(400)
-      res.send({ success: false, message: 'id 格式錯誤' })
+      res.status(400).send({ success: false, message: 'id 格式錯誤' })
     } else if (err.name === 'ValidationError') { // 資料格式錯誤
       const key = Object.keys(err.errors)[0]
       const message = err.errors[key].message

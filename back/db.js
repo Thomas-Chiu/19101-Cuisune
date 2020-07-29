@@ -63,26 +63,17 @@ const productSchema = new Schema(
       required: [true, '請輸入菜名'],
       trim: true
     },
+    description: {
+      type: String,
+      maxlength: [200, '圖文說明 200 字以下']
+    },
     price: {
       type: Number,
       required: [true, '請輸入價錢'],
       min: 1
     },
-    description: {
-      type: String,
-      maxlength: [200, '圖文說明 200 字以下']
-    },
-    sauces: {
-      type: Array
-    },
-    drinks: {
-      type: Array
-    },
-    mainCourses: {
-      type: Array
-    },
-    noodles: {
-      type: Array
+    img: {
+      type: String
     }
   }, {
     versionKey: false
@@ -132,21 +123,13 @@ const orderSchema = new Schema(
 
 const fileSchema = new Schema(
   {
-    user: {
-      type: String
-      // required: [true, '請輸入使用者名稱']
-    },
     name: {
-      type: String,
-      required: [true, '請輸入檔案名稱']
+      type: String
+      // required: [true, '請輸入檔案名稱']
     },
     title: {
-      type: String,
-      required: [true, '請輸入標題']
-    },
-    description: {
-      type: String,
-      maxlength: [100, '圖文說明 100 字以下']
+      type: String
+      // required: [true, '請輸入標題']
     }
   }, {
     versionKey: false
