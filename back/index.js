@@ -281,10 +281,10 @@ app.post('/booking', async (req, res) => { // 新增訂位
     return
   } if (
     req.body.name === undefined ||
+    req.body.gender === undefined ||
     req.body.date === undefined ||
     req.body.time === undefined ||
-    req.body.adult === undefined ||
-    req.body.children === undefined ||
+    req.body.people === undefined ||
     req.body.mobile === undefined
   ) {
     res.status(400).send({ success: false, message: '資料欄位不正確', date: 'yyyy-mm-dd', time: '24小時制' })

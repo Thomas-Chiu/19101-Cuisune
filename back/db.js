@@ -87,6 +87,10 @@ const orderSchema = new Schema(
       required: [true, '請輸入訂購人姓名'],
       trim: true
     },
+    gender: {
+      type: String,
+      required: [true, '請選擇性別']
+    },
     mobile: {
       type: String,
       required: [true, '請輸入電話號碼']
@@ -124,6 +128,10 @@ const bookingSchema = new Schema(
       type: String,
       required: [true, '請輸入訂位人姓名']
     },
+    gender: {
+      type: String,
+      required: [true, '請選擇性別']
+    },
     date: {
       type: Date,
       required: [true, '請選擇訂位日期']
@@ -132,12 +140,9 @@ const bookingSchema = new Schema(
       type: String,
       required: [true, '請選擇訂位時間']
     },
-    adult: {
+    people: {
       type: Number,
       required: [true, '請選擇訂位人數']
-    },
-    children: {
-      type: Number
     },
     mobile: {
       type: String,
