@@ -32,19 +32,43 @@
           b-modal#booking(
             centered
             title="訂位"
+            hide-footer
           )
-            form
+            b-form(@submit="submit")
               b-row.justify-content-center
                 b-calendar(
                   locale="zh-tw"
+                  selected-variant="secondary"
+                  today-variant="info"
+                  v-model="booking.date"
                 )
                 b-form-select
                 b-form-select
+                p {{booking.date}}
+                b-button(type="submit") 送出
 
 </template>
 
 <script>
+
 export default {
-  name: 'Event'
+  name: 'Event',
+  data () {
+    return {
+      booking: {
+        date: '',
+        time: '',
+        name: '',
+        mobile: '',
+        adult: '',
+        children: ''
+      }
+    }
+  },
+  methods: {
+    submit (event) {
+      console.log(this.booking.date)
+    }
+  }
 }
 </script>
