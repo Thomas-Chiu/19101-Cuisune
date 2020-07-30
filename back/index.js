@@ -275,6 +275,29 @@ app.post('/imgproduct', async (req, res) => { // 新增圖片商品 (form-data)
   })
 })
 
+app.post('/booking', async (req, res) => { // 新增訂位
+  if (!req.headers['content-type'].includes('application/json')) {
+    res.status(400).send({ success: false, message: '請用json 格式' })
+    return
+  } if (
+    req.body.name === undefined ||
+    req.body.date === undefined ||
+    req.body.time === undefined ||
+    req.body.adult === undefined ||
+    req.body.children === undefined ||
+    req.body.mobile === undefined
+  ) {
+    res.status(400).send({ success: false, message: '資料欄位不正確', date: 'yyyy-mm-dd', time: '24小時制' })
+    return
+  }
+  try {
+    const result = await db.bookings.create(req.body)
+    res.status(200).send({ success: true, result })
+  } catch (err) {
+    res.status(400).send({ success: false, message: err.message })
+  }
+})
+
 // API Patch 修改區 --------------------------------------------------------------------------------
 app.patch('/user', async (req, res) => { // 修改帳戶
   if (!req.headers['content-type'].includes('application/json')) {
@@ -297,13 +320,13 @@ app.patch('/user', async (req, res) => { // 修改帳戶
   }
 })
 
-app.patch('/order', async (req, res) => { // 修改訂單
+app.patch('/order', async (req, res) => { // (id)修改訂單
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
   }
-  if (!req.body.name && !req.body.id) { // 沒輸入條件
-    res.status(400).send({ success: false, message: '請輸入id 或 name' })
+  if (!req.body.id) { // 沒輸入條件
+    res.status(400).send({ success: false, message: '請輸入id' })
     return
   }
   try {
@@ -316,7 +339,7 @@ app.patch('/order', async (req, res) => { // 修改訂單
   }
 })
 
-app.patch('/product', async (req, res) => { // 修改商品
+app.patch('/product', async (req, res) => { // (name/ id)修改商品
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
@@ -335,6 +358,25 @@ app.patch('/product', async (req, res) => { // 修改商品
       result = await db.products.findByIdAndUpdate(req.body.id, req.body, { new: true })
       res.status(200).send({ success: true, result })
     } else res.status(200).send({ success: true, result })
+  } catch (err) {
+    if (err.name === 'CastError') res.status(404).send({ success: false, message: err.message }) // 不是mongodb 格式
+    else res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+})
+
+app.patch('/booking', async (req, res) => { // (id)修改訂位
+  if (!req.headers['content-type'].includes('application/json')) {
+    res.status(400).send({ success: false, message: '請用json 格式' })
+    return
+  }
+  if (!req.body.id) { // 沒輸入條件
+    res.status(400).send({ success: false, message: '請輸入id' })
+    return
+  }
+  try {
+    const result = await db.bookings.findByIdAndUpdate(req.body.id, req.body, { new: true })
+    if (result === null) res.status(404).send({ success: false, message: '找不到資料修改' })
+    else res.status(200).send({ success: true, result })
   } catch (err) {
     if (err.name === 'CastError') res.status(404).send({ success: false, message: err.message }) // 不是mongodb 格式
     else res.status(500).send({ success: false, message: '伺服器錯誤' })
@@ -388,6 +430,21 @@ app.delete('/product', async (req, res) => { // (name)刪除商品
     const result = await db.products.findOneAndDelete({ name: req.body.name })
     if (result === null) res.status(404).send({ success: false, message: '找不到商品刪除' })
     else res.send({ success: true, result })
+  } catch (err) {
+    if (err.name === 'CastError') res.status(404).send({ success: false, message: err.message }) // 不是mongodb 格式
+    else res.status(500).send({ success: false, message: '伺服器錯誤' })
+  }
+})
+
+app.delete('/booking', async (req, res) => { // (id)刪除訂位
+  if (!req.headers['content-type'].includes('application/json')) {
+    res.status(400).send({ success: false, message: '請用json 格式' })
+    return
+  }
+  try {
+    const result = await db.bookings.findByIdAndDelete(req.body.id)
+    if (result === null) res.status(404).send({ success: false, message: '找不到訂位資料刪除' })
+    else res.status(200).send({ success: true, result })
   } catch (err) {
     if (err.name === 'CastError') res.status(404).send({ success: false, message: err.message }) // 不是mongodb 格式
     else res.status(500).send({ success: false, message: '伺服器錯誤' })
@@ -464,6 +521,30 @@ app.get('/product', async (req, res) => { // 查詢商品
     if (req.query.name) { // name 查詢
       result = await db.products.find({ name: req.query.name })
       res.status(200).send(result)
+      return
+    } else {
+      res.status(200).send({ success: true, result })
+    }
+  } catch (err) {
+    res.status(404).send({ success: false, message: '找不到訂單' })
+  }
+})
+
+app.get('/booking', async (req, res) => { // 查詢訂位
+  // if (req.session.user === undefined) { // 檢查登入狀態
+  //   res.status(401).send({ success: false, message: '未登入' })
+  //   return
+  // }
+  try {
+    let result = await db.bookings.find() // 預設查詢所有資料
+    if (req.query.id) { // id 查詢
+      result = await db.bookings.find({ _id: req.query.id })
+      res.status(200).send({ success: true, result })
+      return
+    }
+    if (req.query.name) { // name 查詢
+      result = await db.bookings.find({ name: req.query.name })
+      res.status(200).send({ success: true, result })
       return
     } else {
       res.status(200).send({ success: true, result })

@@ -87,9 +87,6 @@ const orderSchema = new Schema(
       required: [true, '請輸入訂購人姓名'],
       trim: true
     },
-    male: {
-      type: Boolean
-    },
     mobile: {
       type: String,
       required: [true, '請輸入電話號碼']
@@ -121,15 +118,30 @@ const orderSchema = new Schema(
   }
 )
 
-const fileSchema = new Schema(
+const bookingSchema = new Schema(
   {
     name: {
-      type: String
-      // required: [true, '請輸入檔案名稱']
+      type: String,
+      required: [true, '請輸入訂位人姓名']
     },
-    title: {
-      type: String
-      // required: [true, '請輸入標題']
+    date: {
+      type: Date,
+      required: [true, '請選擇訂位日期']
+    },
+    time: {
+      type: String,
+      required: [true, '請選擇訂位時間']
+    },
+    adult: {
+      type: Number,
+      required: [true, '請選擇訂位人數']
+    },
+    children: {
+      type: Number
+    },
+    mobile: {
+      type: String,
+      required: [true, '請輸入電話號碼']
     }
   }, {
     versionKey: false
@@ -139,13 +151,13 @@ const fileSchema = new Schema(
 const users = mongoose.model(process.env.COLLECTION_USERS, userSchema)
 const products = mongoose.model(process.env.COLLECTION_PRODUCTS, productSchema)
 const orders = mongoose.model(process.env.COLLECTION_ORDERS, orderSchema)
-const files = mongoose.model(process.env.COLLECTION_FILES, fileSchema)
+const bookings = mongoose.model(process.env.COLLECTION_BOOKINGS, bookingSchema)
 const connection = mongoose.connection
 
 export default {
   users,
   products,
   orders,
-  files,
+  bookings,
   connection
 }
