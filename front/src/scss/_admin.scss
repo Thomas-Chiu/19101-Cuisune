@@ -2,13 +2,43 @@
 .row {
   margin: 0 !important;
 }
+
 .content {
   padding: 0 !important;
+}
+
+.card {
+  margin: 1.5rem;
+  padding: 1.5rem;
+}
+
+th {
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+tr:nth-child(even) {
+  background: $primary-50;
+}
+
+.btn-just-icon {
+  height: 30px !important;
+  width: 30px !important;
+  min-width: 30px !important;
+  padding: 5px !important;
 }
 
 // User 會員管理 -----------------------------------------------------------
 #user {
   th {
     margin-left: 17.5px;
+  }
+}
+
+// Booling 訂位管理
+#booking {
+  .icon-col {
+    padding: 2.5px 0;
+    text-align: center;
   }
 }

@@ -26,8 +26,9 @@
           .box-bg
             b-row
               b-col(
-                cols="4"
-                md="2"
+                cols="6"
+                md="4"
+                lg="3"
                 v-for="(img,index) in imgs"
                 :key="index"
                 )
@@ -57,6 +58,30 @@ export default {
         {
           src: './images/ingredient/鮮香蛋.jpg',
           title: '雞蛋／亞植有機農場驗證雞蛋（有機黃豆和玉米飼養）'
+        },
+        {
+          src: './images/ingredient/水.jpg',
+          title: '水／三道過濾（可生飲）'
+        },
+        {
+          src: './images/ingredient/豆瓣辣醬.jpg',
+          title: '豆瓣醬、辣醬／豆油伯（非基改）'
+        },
+        {
+          src: './images/ingredient/香菇.jpg',
+          title: '香菇／竹山小農（有機認證）'
+        },
+        {
+          src: './images/ingredient/提味粉.jpg',
+          title: '提味粉／香菇與甜菜煎康蔬果粉（德國進口綠太陽生物科技）'
+        },
+        {
+          src: './images/ingredient/椰子粉.jpg',
+          title: '椰子粉／含中鏈脂肪酸（50%月桂酸，較短鍊，易吸收）'
+        },
+        {
+          src: './images/ingredient/醬油.jpg',
+          title: '醬油／西螺瑞春（非基改黑豆釀製而成）'
         }
       ]
     }

@@ -1,10 +1,7 @@
 <template lang="pug">
   #product
-    .row
-      .col-12
-        card(:title='table1.title')
-          .table-responsive(slot='raw-content')
-            paper-table(type='hover' :data='table1.data' :columns='table1.columns')
+    card(:title='table1.title')
+      paper-table(type='hover' :data='table1.data' :columns='table1.columns')
 
 </template>
 <script>

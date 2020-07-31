@@ -24,7 +24,6 @@
               footer.md-simple.md-lg(slot='footer')
                 md-button(type="reset") 取消
                 md-button(type="submit") 登入
-
 </template>
 
 <script>

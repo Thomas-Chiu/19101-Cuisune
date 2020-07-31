@@ -1,5 +1,5 @@
 <template lang="pug">
-  #product
+  #items
     b-navbar(toggleable="md" type="dark" variant="dark" fixed="top")
       b-navbar-brand
         router-link(to="/")
@@ -53,7 +53,7 @@
 
 <script>
 export default {
-  name: 'Product',
+  name: 'Items',
   data () {
     return {
       img: [

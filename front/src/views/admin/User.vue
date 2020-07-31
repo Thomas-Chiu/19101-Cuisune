@@ -84,7 +84,16 @@
 export default {
   data () {
     return {
-      users: [],
+      users: [
+        {
+          name: '',
+          account: '',
+          password: '',
+          email: '',
+          admin: '',
+          edit: ''
+        }
+      ],
       columns: ['姓名', '帳號', '密碼', '信箱', '管理員']
 
     }
