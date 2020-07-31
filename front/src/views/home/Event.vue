@@ -59,7 +59,7 @@
                 b-input-group-prepend(is-text)
                   b-icon(icon="watch")
                 b-form-select(v-model="booking.time" :options="time" required)
-              b-button(type="reset") 取消
+              b-button(type="reset" @click="cancel") 取消
               b-button(type="submit") 送出
               pre {{this.booking}}
 
@@ -80,16 +80,17 @@ export default {
     return {
       booking: {
         date: '',
-        time: '',
         name: '',
         gender: '',
         mobile: '',
-        people: ''
+        people: null,
+        time: null
       },
       gender: [
         { text: '先生', value: '先生' },
         { text: '小姐', value: '小姐' }
       ],
+      selected: [null], // b-form-select default value
       people: [
         { text: '訂位人數', value: null },
         { text: '1', value: 1 },
@@ -135,17 +136,31 @@ export default {
         people: this.booking.people,
         date: this.booking.date,
         time: this.booking.time
-      }).then(res => {
-        this.$swal({
-          icon: 'success',
-          title: '訂位成功'
-        }).catch(err => {
+      })
+        .then(res => {
+          this.$swal({
+            icon: 'success',
+            title: '訂位成功'
+          })
+          setTimeout(() => {
+            location.reload()
+          }, 3000)
+        })
+        .catch(err => {
           this.$swal({
             icon: 'error',
             title: err.message
           })
         })
-      })
+    },
+    cancel (event) {
+      event.preventDefault()
+      this.booking.date = ''
+      this.booking.name = ''
+      this.booking.gender = ''
+      this.booking.mobile = ''
+      this.booking.people = null
+      this.booking.time = null
     }
   }
 }

@@ -159,7 +159,7 @@ app.post('/signup', async (req, res) => { // 新增帳戶
   }
 })
 
-app.post('/order', async (req, res) => { // 新增訂單
+app.post('/order', async (req, res) => { // 新增點餐
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
@@ -320,7 +320,7 @@ app.patch('/user', async (req, res) => { // 修改帳戶
   }
 })
 
-app.patch('/order', async (req, res) => { // (id)修改訂單
+app.patch('/order', async (req, res) => { // (id)修改點餐
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
@@ -406,7 +406,7 @@ app.delete('/user', async (req, res) => { // 刪除帳戶
   }
 })
 
-app.delete('/order', async (req, res) => { // (id)刪除訂單
+app.delete('/order', async (req, res) => { // (id)刪除點餐
   if (!req.headers['content-type'].includes('application/json')) {
     res.status(400).send({ success: false, message: '請用json 格式' })
     return
@@ -482,7 +482,7 @@ app.get('/user', async (req, res) => { // 查詢帳戶
   }
 })
 
-app.get('/order', async (req, res) => { // 查詢訂單
+app.get('/order', async (req, res) => { // 查詢點餐
   // if (req.session.user === undefined) { // 檢查登入狀態
   //   res.status(401).send({ success: false, message: '未登入' })
   //   return

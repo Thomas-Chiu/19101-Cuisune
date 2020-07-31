@@ -21,10 +21,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'mutationobserver-shim'
 import 'vue-material/dist/vue-material.min.css'
 
-import { faUserPlus } from '@fortawesome/free-solid-svg-icons'
-import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faYoutube, faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
-library.add(faUser, faUserPlus, faYoutube, faFacebookSquare, faInstagram)
+library.add(faYoutube, faFacebookSquare, faInstagram)
 
 Vue.use(style)
 Vue.use(VueCardCarousel)

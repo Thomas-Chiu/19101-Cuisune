@@ -41,11 +41,11 @@ const routes = [
     }
   },
   {
-    path: '/admin',
-    name: 'Admin',
-    component: () => import(/* webpackChunkName: "Admin" */ '../views/Admin.vue'),
+    path: '/signin',
+    name: 'Signin',
+    component: () => import(/* webpackChunkName: "Signin" */ '../views/Signin.vue'),
     meta: {
-      title: '19101 cuisine | Admin',
+      title: '19101 cuisine | Signin',
       signin: false
     }
   },

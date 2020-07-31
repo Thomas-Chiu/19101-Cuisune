@@ -1,11 +1,11 @@
 <template lang="pug">
-  #admin
+  #signin
     .wrapper
       .section.page-header.header-filter
         b-form.container(@submit="submit")
           .md-layout
             .md-layout-item.md-size-33.md-small-size-66.md-xsmall-size-100.md-medium-size-40.mx-auto
-              h4.card-title(slot='title') Admin Login
+              h4.card-title(slot='title') Sign in
               p.description(slot='description')
               md-field.md-form-group(slot='inputs')
                 md-icon face
@@ -31,7 +31,7 @@
 import { LoginCard } from '../components/LoginCard.vue'
 
 export default {
-  name: 'Admin',
+  name: 'SignIn',
   components: {
     LoginCard
   },
@@ -83,23 +83,28 @@ export default {
               timer: 3000,
               timerProgressBar: true
             })
-            this.$store.commit('adminSignin', this.account) // 呼叫vuex 的登入
+            this.$store.commit('adminSignin', this.account) // 存進vuex
             this.$router.push('/adminboard')
-          } else {
+          } else { // user 登入後到菜單頁面
             this.$swal({
               toast: true,
               showConfirmButton: false,
-              icon: 'error',
-              title: '請登入管理者帳號',
+              icon: 'success',
+              title: '登入成功',
               position: 'top-end',
               timer: 3000,
               timerProgressBar: true
             })
+            this.$store.commit('signin', this.account) // 存進vuex
+            this.$router.push('/menu')
           }
         })
-        .catch(err => {
+        .catch(err => { // 登入失敗
           this.$swal({
-            title: err.response.data.message
+            icon: 'error',
+            title: err.response.data.message,
+            timer: 3000,
+            timerProgressBar: true
           })
         })
     }

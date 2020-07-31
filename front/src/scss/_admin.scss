@@ -6,52 +6,6 @@
   padding: 0 !important;
 }
 
-// adminLogin -----------------------------------------------------
-#admin {
-  width: 100%;
-  text-shadow: 1.5px 1.5px 2px #333;
-  background: $info;
-  h2 {
-    text-align: left;
-    letter-spacing: 0px;
-    padding: 1rem 0;
-    text-shadow: 0px 2px 2px #fff;
-  }
-
-  .wrapper {
-    width: 75%;
-    margin: auto;
-    background: inherit;
-  }
-  .md-field label {
-    color: #666 !important;
-    text-shadow: none;
-  }
-
-  .card-title {
-    margin-bottom: 3.5rem;
-  }
-
-  // 眼睛
-  .md-input-action {
-    position: absolute;
-    top: 5px;
-  }
-
-  footer {
-    display: flex;
-    justify-content: space-between;
-    button {
-      background: $success !important;
-    }
-    // 按鈕
-    .md-button:not(.md-just-icon):not(.md-btn-fab):not(.md-icon-button):not(.md-toolbar-toggle)
-      .md-ripple {
-      padding: 7.5px 0px;
-    }
-  }
-}
-
 // User 會員管理 -----------------------------------------------------------
 #user {
   th {

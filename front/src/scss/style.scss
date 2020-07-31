@@ -1,6 +1,7 @@
 @import "variables";
-@import "admin";
+@import "signin";
 @import "menu";
+@import "admin";
 
 // Global----------------------------------------------
 * {
@@ -82,17 +83,9 @@ section ~ section {
   // Navbar
   #nav {
     padding: 0 1rem;
-    font-size: 0.75rem;
     background: $warning;
     box-shadow: 2px 2px 10px #333;
     z-index: 9;
-    .navbar-toggler {
-      font-size: 0.75rem;
-      border: none;
-      &:focus {
-        outline: 5px auto $secondary;
-      }
-    }
     .navbar-nav {
       flex-direction: row;
       justify-content: space-around;
@@ -101,6 +94,19 @@ section ~ section {
         height: 15px;
         margin-left: 5px;
       }
+    }
+  }
+
+  // Sidebar
+  #list {
+    padding: 1rem 2rem;
+    h2 {
+      color: $warning;
+      text-shadow: none;
+    }
+
+    hr {
+      border-color: $warning;
     }
   }
 
