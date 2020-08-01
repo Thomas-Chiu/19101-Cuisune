@@ -29,8 +29,29 @@ td:last-child {
   padding: 0 !important;
 }
 
+.btn,
 .btn-outline-default {
   padding: 5px !important;
+}
+
+.btn-add {
+  color: #000 !important;
+  position: absolute;
+  left: 50%;
+  top: 2.5px;
+  transform: translateX(-50%);
+}
+
+.btn-add-cancel {
+  position: absolute;
+  right: 50%;
+  top: 2.5px;
+}
+
+.btn-confirm {
+  position: absolute;
+  left: 50%;
+  top: 2.5px;
 }
 
 .btn-just-icon {
@@ -41,16 +62,9 @@ td:last-child {
 }
 
 // User 會員管理 -----------------------------------------------------------
-#user {
-  th {
-    margin-left: 17.5px;
-  }
-}
+// #user {
+// }
 
 // Booling 訂位管理
-#booking {
-  .icon-col {
-    padding: 2.5px 0;
-    // text-align: center;
-  }
-}
+// #booking {
+// }

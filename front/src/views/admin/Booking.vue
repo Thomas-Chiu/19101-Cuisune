@@ -13,17 +13,17 @@
           template(slot-scope='{row}')
             td {{row.ID}}
             td {{row.name}}
-              fg-input(v-if="row.edit" v-model="model.name")
+              fg-input(v-if="row.edit" v-model="model.name" placeholder="點我編輯")
             td {{row.gender}}
-              fg-input(v-if="row.edit" v-model="model.gender")
+              fg-input(v-if="row.edit" v-model="model.gender" placeholder="點我編輯")
             td {{row.mobile}}
-              fg-input(v-if="row.edit" v-model="model.mobile")
+              fg-input(v-if="row.edit" v-model="model.mobile" placeholder="點我編輯")
             td {{row.people}}
-              fg-input(v-if="row.edit" v-model="model.people")
+              fg-input(v-if="row.edit" v-model="model.people" placeholder="點我編輯")
             td {{row.date}}
-              fg-input(v-if="row.edit" v-model="model.date")
+              fg-input(v-if="row.edit" v-model="model.date" placeholder="點我編輯")
             td {{row.time}}
-              fg-input(v-if="row.edit" v-model="model.time")
+              fg-input(v-if="row.edit" v-model="model.time" placeholder="點我編輯")
             td.icon-col
               .btn-default(v-if="!row.edit")
                 p-button(type='info' icon @click.native='handleEdit(row)')
@@ -33,7 +33,6 @@
               .btn-edit(v-else)
                 p-button(@click.native='handleUpdate(row)' outline) update
                 p-button(@click.native='handleCancel(row)' outline) cancel
-
 </template>
 
 <script>
@@ -44,7 +43,7 @@ export default {
   components: { PaperTable },
   data () {
     return {
-      tableColumns: ['ID', '姓名', '性別', '電話', '人數', '日期', '時間', ''],
+      tableColumns: ['ID', '姓名', '性別', '電話', '人數', '日期', '時間', '編輯 / 刪除'],
       tableData: [], // slot-scope='{row}'
       model: [
         {
@@ -62,7 +61,6 @@ export default {
   methods: {
     handleEdit (row) { // 編輯
       row.edit = true
-      console.log(row.edit)
     },
     handleDelete (row) { // 刪除
       event.preventDefault()
@@ -74,15 +72,17 @@ export default {
             icon: 'success',
             title: '刪除成功',
             position: 'top-end',
-            timer: 3000,
+            timer: 2000,
             timerProgressBar: true
           })
+          // this.tableData.splice(row, 1)
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
         })
         .catch(err => {
           alert(err.message)
-          console.log(err)
         })
-      console.log(row.id)
     },
     handleUpdate (row) { // 更新
       event.preventDefault()
@@ -102,13 +102,11 @@ export default {
           console.log(err.message)
         })
       row.edit = false
-      console.log(this.model)
     },
     handleCancel (row) { // 取消
       row.edit = false
-      console.log(row.edit)
     },
-    toggleSort (event) { // 排序功能.sort()
+    toggleSort (event) { // 排序功能.sort() 還沒做
       console.log(this.tableData)
     }
   },
