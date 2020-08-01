@@ -87,8 +87,8 @@ export default {
         time: null
       },
       gender: [
-        { text: '先生', value: '先生' },
-        { text: '小姐', value: '小姐' }
+        { text: '先生', value: 'male' },
+        { text: '小姐', value: 'female' }
       ],
       selected: [null], // b-form-select default value
       people: [

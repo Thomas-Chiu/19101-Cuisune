@@ -12,13 +12,25 @@
   padding: 1.5rem;
 }
 
+table {
+  text-align: center;
+}
+
 th {
-  font-size: 1rem;
+  font-weight: bold !important;
   background: rgba(0, 0, 0, 0.2);
 }
 
 tr:nth-child(even) {
   background: $primary-50;
+}
+
+td:last-child {
+  padding: 0 !important;
+}
+
+.btn-outline-default {
+  padding: 5px !important;
 }
 
 .btn-just-icon {
@@ -39,6 +51,6 @@ tr:nth-child(even) {
 #booking {
   .icon-col {
     padding: 2.5px 0;
-    text-align: center;
+    // text-align: center;
   }
 }

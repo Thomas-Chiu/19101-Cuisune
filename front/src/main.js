@@ -35,6 +35,7 @@ Vue.use(VueAgile)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
+axios.defaults.withCredentials = true // axios 預設傳送認證資訊(req.session.user)
 
 new Vue({
   router,

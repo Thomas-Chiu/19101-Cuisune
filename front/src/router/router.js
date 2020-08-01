@@ -65,7 +65,7 @@ const routes = [
         }
       },
       {
-        path: '/stats',
+        path: '/user',
         name: '會員管理',
         component: () => import(/* webpackChunkName: "User" */ '@/views/admin/User.vue'),
         meta: {
@@ -74,7 +74,7 @@ const routes = [
         }
       },
       {
-        path: '/table-list',
+        path: '/product',
         name: '商品管理',
         component: () => import(/* webpackChunkName: "Product" */ '@/views/admin/Product.vue'),
         meta: {
@@ -83,7 +83,7 @@ const routes = [
         }
       },
       {
-        path: '/typography',
+        path: '/order',
         name: '點餐管理',
         component: () => import(/* webpackChunkName: "Order" */ '@/views/admin/Order.vue'),
         meta: {
@@ -92,7 +92,7 @@ const routes = [
         }
       },
       {
-        path: '/icons',
+        path: '/booking',
         name: '訂位管理',
         component: () => import(/* webpackChunkName: "Booking" */ '@/views/admin/Booking.vue'),
         meta: {
