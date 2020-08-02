@@ -15,7 +15,7 @@
             b-form-radio-group(:options="options" v-model="addModel.admin")
 
         paper-table(:data='tableData' :columns='tableColumns' type='hover')
-          template(slot='columns')
+          template(v-slot='columns')
             th(
               v-for="(column, index) in tableColumns"
               :key="index"
