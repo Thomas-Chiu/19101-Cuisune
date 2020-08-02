@@ -13,10 +13,9 @@
 }
 
 .card-header {
-  padding: 0 !important;
+  padding: 10px 0 !important;
   text-align: center;
   background: $warning !important;
-  font-size: 1.25rem;
 }
 
 .card-title {
@@ -39,6 +38,11 @@ tr:nth-child(even) {
 
 td:last-child {
   padding: 0 !important;
+}
+
+.form-control {
+  padding: 7px 18px;
+  text-align: center;
 }
 
 .btn,
@@ -79,6 +83,7 @@ td:last-child {
 
 // Product 商品管理 ------------------------------------------------------
 #product {
+  position: relative;
   .card-body .card-title {
     margin-bottom: 1rem;
   }
@@ -88,9 +93,10 @@ td:last-child {
       margin: 0rem;
       padding-bottom: 1rem;
     }
-    .form-control {
-      padding: 0 !important;
-    }
+  }
+
+  .form-control {
+    text-align: left;
   }
 }
 

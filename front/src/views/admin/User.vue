@@ -25,13 +25,13 @@
           template(slot-scope='{row}')
             td {{row.ID}}
             td {{row.name}}
-              fg-input(v-if="row.edit" v-model="model.name" placeholder="點我編輯")
+              fg-input(v-if="row.edit" v-model="model.name")
             td {{row.account}}
-              fg-input(v-if="row.edit" v-model="model.account" placeholder="點我編輯")
+              fg-input(v-if="row.edit" v-model="model.account")
             td {{row.password}}
               fg-input(v-if="row.edit" disabled)
             td {{row.email}}
-              fg-input(v-if="row.edit" v-model="model.email" placeholder="點我編輯")
+              fg-input(v-if="row.edit" v-model="model.email")
             td {{row.admin}}
             td.icon-col
               .btn-default(v-if="!row.edit")
@@ -58,8 +58,7 @@ export default {
         {
           name: '',
           account: '',
-          email: '',
-          edit: false
+          email: ''
         }
       ],
       toggleAdd: false,
@@ -81,6 +80,11 @@ export default {
       this.toggleAdd = true
     },
     handleAddCancel () { // 取消新增
+      this.addModel.name = ''
+      this.addModel.account = ''
+      this.addModel.password = ''
+      this.addModel.email = ''
+      this.addModel.admin = false
       this.toggleAdd = false
     },
     handleConfirm () { // 確認
@@ -93,7 +97,6 @@ export default {
         admin: this.addModel.admin
       })
         .then(res => {
-          console.log(res)
           const data = res.data
           if (data.success) {
             this.$swal({
@@ -109,7 +112,7 @@ export default {
               location.reload()
             }, 2000)
           } else {
-            alert('OHNO')
+            alert('請檢查資料格式')
           }
         })
         .catch(err => {
@@ -118,9 +121,14 @@ export default {
         })
     },
     handleEdit (row) { // 編輯
+      this.model.name = row.name
+      this.model.account = row.account
+      this.model.email = row.email
       row.edit = true
     },
     handleDelete (row) { // 刪除
+      const warning = confirm('確定要刪除？')
+      if (!warning) return
       event.preventDefault()
       this.axios.delete(process.env.VUE_APP_APIURL + '/user/' + row.id)
         .then(res => {
@@ -151,7 +159,18 @@ export default {
         email: this.model.email
       })
         .then(res => {
-          location.reload()
+          this.$swal({
+            toast: true,
+            showConfirmButton: false,
+            icon: 'success',
+            title: '更新成功',
+            position: 'top-end',
+            timer: 2000,
+            timerProgressBar: true
+          })
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
         }).catch(err => {
           alert(err.message)
         })

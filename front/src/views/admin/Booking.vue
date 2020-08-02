@@ -12,18 +12,24 @@
             ) {{ column }}
           template(slot-scope='{row}')
             td {{row.ID}}
-            td {{row.name}}
-              fg-input(v-if="row.edit" v-model="model.name" placeholder="點我編輯")
-            td {{row.gender}}
-              fg-input(v-if="row.edit" v-model="model.gender" placeholder="點我編輯")
-            td {{row.mobile}}
-              fg-input(v-if="row.edit" v-model="model.mobile" placeholder="點我編輯")
-            td {{row.people}}
-              fg-input(v-if="row.edit" v-model="model.people" placeholder="點我編輯")
-            td {{row.date}}
-              fg-input(v-if="row.edit" v-model="model.date" placeholder="點我編輯")
-            td {{row.time}}
-              fg-input(v-if="row.edit" v-model="model.time" placeholder="點我編輯")
+            td(v-if="!row.edit") {{row.name}}
+            td(v-else)
+              fg-input(v-model="model.name")
+            td(v-if="!row.edit") {{row.gender}}
+            td(v-else)
+              fg-input(v-model="model.gender")
+            td(v-if="!row.edit") {{row.mobile}}
+            td(v-else)
+              fg-input(v-model="model.mobile")
+            td(v-if="!row.edit") {{row.people}}
+            td(v-else)
+              fg-input(v-model="model.people")
+            td(v-if="!row.edit") {{row.date}}
+            td(v-else)
+              fg-input(v-model="model.date")
+            td(v-if="!row.edit") {{row.time}}
+            td(v-else)
+              fg-input(v-model="model.time")
             td.icon-col
               .btn-default(v-if="!row.edit")
                 p-button(type='info' icon @click.native='handleEdit(row)')
@@ -52,17 +58,24 @@ export default {
           mobile: '',
           people: '',
           date: '',
-          time: '',
-          edit: false
+          time: ''
         }
       ]
     }
   },
   methods: {
     handleEdit (row) { // 編輯
+      this.model.name = row.name
+      this.model.gender = row.gender
+      this.model.mobile = row.mobile
+      this.model.people = row.people
+      this.model.date = row.date
+      this.model.time = row.time
       row.edit = true
     },
     handleDelete (row) { // 刪除
+      const warning = confirm('確定要刪除？')
+      if (!warning) return
       event.preventDefault()
       this.axios.delete(process.env.VUE_APP_APIURL + '/booking/' + row.id)
         .then(res => {
@@ -96,7 +109,18 @@ export default {
         time: this.model.time
       })
         .then(res => {
-          location.reload()
+          this.$swal({
+            toast: true,
+            showConfirmButton: false,
+            icon: 'success',
+            title: '更新成功',
+            position: 'top-end',
+            timer: 2000,
+            timerProgressBar: true
+          })
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
         }).catch(err => {
           alert('請按照格式，日期: yyyy-mm-dd，時間: hr:min')
           console.log(err.message)

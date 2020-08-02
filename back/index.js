@@ -326,7 +326,7 @@ app.patch('/order', async (req, res) => { // (id)修改點餐
   }
 })
 
-app.patch('/product', async (req, res) => { // (name/ id)修改商品
+app.patch('/product/:id', async (req, res) => { // (id)修改商品
   if (!req.session.user) { // 若無登入
     res.status(403).send({ success: false, msg: '請登入' })
     return
@@ -335,16 +335,10 @@ app.patch('/product', async (req, res) => { // (name/ id)修改商品
     res.status(400).send({ success: false, message: '商品金額不為 0' })
     return
   }
-  if (!req.body.name && !req.body.id) { // 沒輸入條件
-    res.status(400).send({ success: false, message: '請輸入id 或 name' })
-    return
-  }
-  try { // 預設用name 搜尋修改
-    let result = await db.products.findOneAndUpdate(req.body.name, req.body, { new: true })
-    if (req.body.id) { // 有id 時才用id 搜尋
-      result = await db.products.findByIdAndUpdate(req.body.id, req.body, { new: true })
-      res.status(200).send({ success: true, result })
-    } else res.status(200).send({ success: true, result })
+  try {
+    const result = await db.products.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    if (result === null) res.status(404).send({ success: false, message: '找不到資料修改' })
+    else res.status(200).send({ success: true, result })
   } catch (err) {
     if (err.name === 'CastError') res.status(404).send({ success: false, message: err.message }) // 不是mongodb 格式
     else res.status(500).send({ success: false, message: '伺服器錯誤' })
@@ -408,13 +402,13 @@ app.delete('/order/:id', async (req, res) => { // (id)刪除點餐
   }
 })
 
-app.delete('/product/:name', async (req, res) => { // (name)刪除商品
+app.delete('/product/:id', async (req, res) => { // (id)刪除商品
   if (!req.session.user) { // 若無登入
     res.status(403).send({ success: false, msg: '請登入' })
     return
   }
   try {
-    const result = await db.products.findOneAndDelete({ name: req.params.name })
+    const result = await db.products.findByIdAndDelete(req.params.id)
     if (result === null) res.status(404).send({ success: false, message: '找不到商品刪除' })
     else res.send({ success: true, result })
   } catch (err) {
@@ -432,7 +426,6 @@ app.delete('/booking/:id', async (req, res) => { // (id)刪除訂位
     const result = await db.bookings.findByIdAndDelete(req.params.id)
     if (result === null) res.status(404).send({ success: false, message: '找不到訂位資料刪除' })
     else res.status(200).send({ success: true, result })
-    console.log(result)
   } catch (err) {
     if (err.name === 'CastError') res.status(404).send({ success: false, message: err.message }) // 不是mongodb 格式
     else res.status(500).send({ success: false, message: '伺服器錯誤' })
