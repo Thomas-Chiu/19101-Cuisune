@@ -440,6 +440,7 @@ app.get('/user', async (req, res) => { // 查詢帳戶
     res.status(403).send({ success: false, msg: '請登入' })
     return
   }
+  console.log(req.session.user)
   try {
     let result = await db.users.find() // 預設查詢所有資料
     if (req.query.id) { // id 查詢
@@ -483,11 +484,11 @@ app.get('/order', async (req, res) => { // 查詢點餐
   }
 })
 
-app.get('/product', async (req, res) => { // 查詢商品
-  if (!req.session.user) { // 若無登入
-    res.status(403).send({ success: false, msg: '請登入' })
-    return
-  }
+app.get('/product', async (req, res) => { // 查詢商品(前台購物車需要用，先把登入驗證拿掉)
+  // if (!req.session.user) { // 若無登入
+  //   res.status(403).send({ success: false, msg: '請登入' })
+  //   return
+  // }
   try {
     let result = await db.products.find() // 預設查詢所有資料
     if (req.query.id) { // id 查詢

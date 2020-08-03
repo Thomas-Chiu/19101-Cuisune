@@ -1,11 +1,11 @@
 <template lang="pug">
   #app
     b-container(fluid)
-      router-view
+      vue-page-transition(name="fade-in-right")
+        router-view
 </template>
 
 <script>
-
 export default {
   name: 'App'
 }

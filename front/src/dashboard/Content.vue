@@ -3,7 +3,9 @@
     <div class="container-fluid">
         <transition name="fade" mode="out-in">
           <!-- your content here -->
+        <vue-page-transition  name="fade-in-left">
           <router-view></router-view>
+        </vue-page-transition>
         </transition>
     </div>
   </div>

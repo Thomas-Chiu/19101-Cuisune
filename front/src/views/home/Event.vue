@@ -31,13 +31,17 @@
           //- Modal
           b-modal#booking(
             centered
-            title="線上訂位"
             hide-footer
+            title="線上訂位"
+            header-bg-variant="info"
+            header-text-variant="light"
+            body-bg-variant="light"
           )
             b-form.text-center.px-5(@submit="submit")
               b-form-row.justify-content-center
                 b-form-group.date
                   b-calendar(
+                  hide-header
                   locale="zh-tw"
                   selected-variant="info"
                   today-variant="info"
@@ -59,8 +63,9 @@
                 b-input-group-prepend(is-text)
                   b-icon(icon="watch")
                 b-form-select(v-model="booking.time" :options="time" required)
-              b-button(type="reset" @click="cancel") 取消
-              b-button(type="submit") 送出
+              .btn-group
+                b-button(type="reset" @click="cancel") 取消
+                b-button(type="submit") 送出
 </template>
 
 <script>

@@ -112,9 +112,32 @@
               .btn-edit
                 p-button(@click.native="handleUpdate(item)" outline) update
                 p-button(@click.native="handleCancel(item)" outline) cancel
-    //- 其他
+    //- 單點類
     card(:title="cardTitles[4]")
-      b-card(no-body v-for="(item, index) in others" :key="index")
+      b-card(no-body v-for="(item, index) in aLaCartes" :key="index")
+        b-row(no-gutters)
+          b-col(md="4")
+            b-card-img(fluid :src="item.img")
+          b-col(md="8")
+            b-card-body(v-if="!item.edit")
+              h4 {{ item.name }}
+              p NT {{ item.price }}
+              p {{item.description}}
+              .btn-default
+                p-button(type='info' icon @click.native="handleEdit(item)")
+                  i.ti-pencil-alt
+                p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
+                  i.ti-close
+            b-card-body(v-else)
+              fg-input(v-model="model.name")
+              fg-input(v-model="model.price")
+              b-textarea(v-model="model.description" rows="5")
+              .btn-edit
+                p-button(@click.native="handleUpdate(item)" outline) update
+                p-button(@click.native="handleCancel(item)" outline) cancel
+    //- 預購類
+    card(:title="cardTitles[5]")
+      b-card(no-body v-for="(item, index) in preOrders" :key="index")
         b-row(no-gutters)
           b-col(md="4")
             b-card-img(fluid :src="item.img")
@@ -141,12 +164,13 @@ export default {
   name: 'Product',
   data () {
     return {
-      cardTitles: ['猴頭菇套餐', '火鍋類', '飯類', '麵類', '其他'],
+      cardTitles: ['猴頭菇套餐', '火鍋類', '飯類', '麵類', '單點類', '預購類'],
       setMeals: [],
       hotPots: [],
       rices: [],
       noodles: [],
-      others: [],
+      aLaCartes: [],
+      preOrders: [],
       model: [
         {
           name: '',
@@ -220,7 +244,7 @@ export default {
             name: this.addModel.name,
             price: this.addModel.price,
             description: this.addModel.description,
-            img: 'https://lh3.googleusercontent.com/proxy/Kev8TS13MuhV6ELlXTCKoF8un0PZ3zgh9UadrEByS7ikdUi5KJ0q7V49aZlRI5BD9rcO4aGGKRF9mxd5BegZUWYaiAfSjm3tJiAXYIxydAyZ21al8W_60Ij9dQ' // 目前尚無圖片的網址
+            img: 'http://220.128.133.15/s1090105/19101-cuisine/1596459193608.png' // 尚無照片網址
           })
             .then(res => {
               this.$swal({
@@ -324,18 +348,20 @@ export default {
             this.rices.push(push)
           } if (d.name.includes('麵')) {
             this.noodles.push(push)
-          } else {
-            if (
-              !d.name.includes('猴頭菇套餐') &&
-              !d.name.includes('火鍋') &&
-              !d.name.includes('飯') &&
-              !d.name.includes('麵')
-            ) {
-              this.others.push(push)
-            }
+          } if (d.name.includes('預購')) {
+            this.preOrders.push(push)
+          } if (
+            !d.name.includes('猴頭菇套餐') &&
+            !d.name.includes('火鍋') &&
+            !d.name.includes('飯') &&
+            !d.name.includes('麵') &&
+            !d.name.includes('預購')
+          ) {
+            this.aLaCartes.push(push)
           }
         })
-        console.log(result)
+        console.log(this.preOrders)
+        console.log(this.aLaCartes)
       }).catch(err => {
         alert(err.message + ' 伺服器錯誤')
       })

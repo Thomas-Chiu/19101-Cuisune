@@ -27,8 +27,7 @@
             b-row
               b-col(
                 cols="6"
-                md="4"
-                lg="3"
+                md="3"
                 v-for="(img,index) in imgs"
                 :key="index"
                 )
@@ -47,12 +46,12 @@ export default {
           title: '臭豆腐／非基改有機臭豆腐製作（主婦聯盟同廠出品）'
         },
         {
-          src: './images/ingredient/稻鴨米.jpg',
-          title: '米／有機稻鴨米（宜蘭三星）'
+          src: './images/ingredient/蔬果.jpg',
+          title: '蔬果／能高有機農場'
         },
         {
-          src: './images/ingredient/有機蔬果.jpg',
-          title: '蔬果／能高有機農場、鄉田有機農場和其他有機農場及小農生產'
+          src: './images/ingredient/蔬果2.jpg',
+          title: '蔬果／鄉田有機農場和其他有機農場及小農生產'
         },
         {
           src: './images/ingredient/滷豆干.jpg',
@@ -67,8 +66,8 @@ export default {
           title: '香菇／竹山小農（有機認證）'
         },
         {
-          src: './images/ingredient/水.jpg',
-          title: '水／三道過濾（可生飲）'
+          src: './images/ingredient/稻鴨米.jpg',
+          title: '米／有機稻鴨米（宜蘭三星）'
         },
         {
           src: './images/ingredient/醬油.jpg',
@@ -77,6 +76,18 @@ export default {
         {
           src: './images/ingredient/豆瓣辣醬.jpg',
           title: '豆瓣醬、辣醬／豆油伯（非基改）'
+        },
+        {
+          src: './images/ingredient/檸檬汁.jpg',
+          title: '有機精油檸檬汁／能高農場有機無籽檸檬'
+        },
+        {
+          src: './images/ingredient/水.jpg',
+          title: '水／三道過濾（可生飲）'
+        },
+        {
+          src: './images/ingredient/油.jpg',
+          title: '頂級冷壓初榨橄欖油／使用於煎、煮、炒、炸、烤'
         },
         {
           src: './images/ingredient/提味粉.jpg',
@@ -89,6 +100,10 @@ export default {
         {
           src: './images/ingredient/椰子粉.jpg',
           title: '椰子粉／含中鏈脂肪酸（50%月桂酸，較短鍊，易吸收）'
+        },
+        {
+          src: './images/ingredient/糖.jpg',
+          title: '糖／有機蔗糖與手工紅冰糖（蔗糖）'
         }
       ]
     }

@@ -73,6 +73,15 @@ export default {
     addItem (id) {
       this.$store.dispatch('addItem', id)
     }
+  },
+  mounted () {
+    this.axios.get(process.env.VUE_APP_APIURL + '/product')
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 }
 </script>
