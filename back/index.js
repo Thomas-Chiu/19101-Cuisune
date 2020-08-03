@@ -221,10 +221,6 @@ app.post('/imgproduct', async (req, res) => { // 新增圖片商品 (form-data)
     res.status(403).send({ success: false, msg: '請登入' })
     return
   }
-  // if (!req.headers['Content-Type'].includes('multipart/form-data')) { // 上傳檔案格式要用form-data
-  //   res.status(400).send({ success: false, message: '請用form-data 格式' })
-  //   return
-  // }
   upload.single('img')(req, res, async err => {
     if (err instanceof multer.MulterError) { // 處理錯誤 Error handling
       let message = ''

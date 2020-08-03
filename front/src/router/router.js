@@ -7,14 +7,6 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/album',
-    name: 'Album',
-    component: () => import(/* webpackChunkName: "album" */ '../views/Album.vue'),
-    meta: {
-      login: true
-    }
-  },
-  {
     path: '/',
     name: 'Home',
     component: Home,
@@ -46,6 +38,15 @@ const routes = [
     component: () => import(/* webpackChunkName: "Signin" */ '../views/Signin.vue'),
     meta: {
       title: '19101 cuisine | Signin',
+      signin: false
+    }
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: () => import(/* webpackChunkName: "Signup" */ '../views/Signup.vue'),
+    meta: {
+      title: '19101 cuisine | Signup',
       signin: false
     }
   },

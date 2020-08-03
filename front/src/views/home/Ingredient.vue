@@ -43,15 +43,18 @@ export default {
     return {
       imgs: [
         {
-          src: './images/ingredient/稻鴨米.jpg',
-          title: '米／有機稻鴨米（宜蘭三星）'
-        }, {
-          src: './images/ingredient/有機蔬果.jpg',
-          title: '蔬果／能高有機農場、鄉田有機農場和其他有機農場及小農生產'
-        }, {
           src: './images/ingredient/臭豆腐.jpg',
           title: '臭豆腐／非基改有機臭豆腐製作（主婦聯盟同廠出品）'
-        }, {
+        },
+        {
+          src: './images/ingredient/稻鴨米.jpg',
+          title: '米／有機稻鴨米（宜蘭三星）'
+        },
+        {
+          src: './images/ingredient/有機蔬果.jpg',
+          title: '蔬果／能高有機農場、鄉田有機農場和其他有機農場及小農生產'
+        },
+        {
           src: './images/ingredient/滷豆干.jpg',
           title: '豆製品／豆之味工廠（有機認證）'
         },
@@ -60,28 +63,32 @@ export default {
           title: '雞蛋／亞植有機農場驗證雞蛋（有機黃豆和玉米飼養）'
         },
         {
+          src: './images/ingredient/香菇.jpg',
+          title: '香菇／竹山小農（有機認證）'
+        },
+        {
           src: './images/ingredient/水.jpg',
           title: '水／三道過濾（可生飲）'
+        },
+        {
+          src: './images/ingredient/醬油.jpg',
+          title: '醬油／西螺瑞春（非基改黑豆釀製而成）'
         },
         {
           src: './images/ingredient/豆瓣辣醬.jpg',
           title: '豆瓣醬、辣醬／豆油伯（非基改）'
         },
         {
-          src: './images/ingredient/香菇.jpg',
-          title: '香菇／竹山小農（有機認證）'
+          src: './images/ingredient/提味粉.jpg',
+          title: '提味粉／香菇與甜菜健康蔬果粉（德國進口綠太陽生物科技）'
         },
         {
-          src: './images/ingredient/提味粉.jpg',
-          title: '提味粉／香菇與甜菜煎康蔬果粉（德國進口綠太陽生物科技）'
+          src: './images/ingredient/果膠粉.jpg',
+          title: '果膠粉／天然海藻製成（台大化學博士楊海明研發）'
         },
         {
           src: './images/ingredient/椰子粉.jpg',
           title: '椰子粉／含中鏈脂肪酸（50%月桂酸，較短鍊，易吸收）'
-        },
-        {
-          src: './images/ingredient/醬油.jpg',
-          title: '醬油／西螺瑞春（非基改黑豆釀製而成）'
         }
       ]
     }

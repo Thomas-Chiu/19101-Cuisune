@@ -1,7 +1,7 @@
-#signin {
+#signup {
   width: 100%;
   text-shadow: 1.5px 1.5px 2px #333;
-  background: $info;
+  background: $success-50;
   h2 {
     text-align: left;
     letter-spacing: 0px;
@@ -13,9 +13,17 @@
     width: 75%;
     margin: auto;
   }
+
   .md-field label {
     color: #666 !important;
     text-shadow: none;
+  }
+
+  .alert {
+    background-color: $danger-50;
+    box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px $danger-50;
+    position: absolute;
+    top: -30%;
   }
 
   .card-title {
@@ -37,7 +45,7 @@
     display: flex;
     justify-content: space-between;
     button {
-      background: $success !important;
+      background: $info !important;
     }
     // 按鈕
     .md-button:not(.md-just-icon):not(.md-btn-fab):not(.md-icon-button):not(.md-toolbar-toggle)

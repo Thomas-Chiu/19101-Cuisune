@@ -13,23 +13,25 @@
         hr
         router-link(to="/signin")
           b-btn(block)
-            b-icon(icon="person-fill" scale="1.25")
-            span 登入/註冊
+            md-icon account_circle
+            span 登入
+        router-link(to="/signup")
+          b-btn(block)
+            md-icon assignment
+            span 註冊
         b-btn(block @click="signout")
-          b-icon(icon="power" scale="1.25")
-          span 會員登出
+          md-icon power_settings_new
+          span 登出
 </template>
 
 <script>
-import { BIcon, BIconList, BIconPersonFill, BIconPower } from 'bootstrap-vue'
+import { BIcon, BIconList } from 'bootstrap-vue'
 
 export default {
   name: 'Navbar',
   components: {
     BIcon,
-    BIconList,
-    BIconPersonFill,
-    BIconPower
+    BIconList
   },
   methods: {
     signout () {

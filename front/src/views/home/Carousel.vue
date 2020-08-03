@@ -17,19 +17,12 @@
             )
       .logo
         img(:src="logoSrc")
-      p.icon
-        b-icon(icon="arrow-down" scale="2" animation="cylon-vertical")
 </template>
 
 <script>
-import { BIcon, BIconArrowDown } from 'bootstrap-vue'
 
 export default {
   name: 'Carousel',
-  components: {
-    BIcon,
-    BIconArrowDown
-  },
   data () {
     return {
       logoSrc: './images/logo/logo_mushroom_dark_animated.svg',

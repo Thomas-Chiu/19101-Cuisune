@@ -1,12 +1,13 @@
 <template lang="pug">
-  #signin
+  #signup
     .wrapper
       .section.page-header.header-filter
         b-form.container(@submit="submit")
           .md-layout
             .md-layout-item.md-size-33.md-small-size-66.md-xsmall-size-100.md-medium-size-40.mx-auto
-              h4.card-title(slot='title') 會員登入
-                small.card-sub-title Sign in
+              b-alert(show) 帳號、密碼最少 4 個字，最多 20 個 / 信箱格式要正確
+              h4.card-title(slot='title') 會員註冊
+                small.card-sub-title Sign up
               p.description(slot='description')
                 md-field.md-form-group(slot='inputs')
                   md-icon account_circle
@@ -24,24 +25,41 @@
                     type='password'
                     required
                     )
+                md-field.md-form-group(slot='inputs')
+                  md-icon face
+                  label 姓名
+                  md-input(
+                    v-model='name'
+                    type='text'
+                    required
+                    )
+                md-field.md-form-group(slot='inputs')
+                  md-icon mail_outline
+                  label Email
+                  md-input(
+                    v-model='email'
+                    type='email'
+                    required
+                    )
                 footer.md-simple.md-lg(slot='footer')
-                  router-link(to="/signup")
-                    md-button 註冊
-                  md-button(type="submit") 登入
+                  md-button(type="reset") 取消
+                  md-button(type="submit") 送出
 </template>
 
 <script>
 import { LoginCard } from '../components/LoginCard.vue'
 
 export default {
-  name: 'Signin',
+  name: 'Signup',
   components: {
     LoginCard
   },
   data () {
     return {
       account: '',
-      password: ''
+      password: '',
+      name: '',
+      email: ''
     }
   },
   methods: {
@@ -70,45 +88,45 @@ export default {
         })
         return
       }
-      this.axios.post(process.env.VUE_APP_APIURL + '/signin', {
+      this.axios.post(process.env.VUE_APP_APIURL + '/signup', {
         account: this.account,
-        password: this.password
+        password: this.password,
+        name: this.name,
+        email: this.email,
+        admin: false
       })
         .then(res => {
+          console.log(res)
           const data = res.data
-          if (data.result[0].admin) { // admin 欄位為true 才可登入後台
+          if (data.success) {
             this.$swal({
               toast: true,
               showConfirmButton: false,
               icon: 'success',
-              title: '登入成功',
+              title: '註冊成功',
               position: 'top-end',
               timer: 3000,
               timerProgressBar: true
             })
-            this.$store.commit('adminSignin', this.account) // 存進vuex
-            this.$router.push('/adminboard')
-          } else { // user 登入後到菜單頁面
+            setTimeout(() => {
+              this.$router.push('/signin')
+            }, 3000)
+          } else {
             this.$swal({
               toast: true,
               showConfirmButton: false,
-              icon: 'success',
-              title: '登入成功',
+              icon: 'error',
+              title: '註冊失敗',
               position: 'top-end',
               timer: 3000,
               timerProgressBar: true
             })
-            this.$store.commit('signin', this.account) // 存進vuex
-            this.$router.push('/menu')
+            console.log(data)
           }
         })
         .catch(err => { // 登入失敗
-          this.$swal({
-            icon: 'error',
-            title: err.response.data.message,
-            timer: 3000,
-            timerProgressBar: true
-          })
+          console.log(err)
+          alert('帳號已有人使用')
         })
     }
   }

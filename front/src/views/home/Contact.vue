@@ -15,7 +15,7 @@
             p 03－427 3085
           .icon
             b-icon(icon="chat" flip-h)
-            p MESSAGE US
+            p 聯絡我們
           .msg-form
             b-form-group#input-group-1
               b-form-input#input-1(v-model='form.name' type="text" placeholder='Name')
@@ -71,7 +71,8 @@ export default {
         buttonText1: 'Gmail',
         buttonText2: 'Outlook',
         buttonText3: 'Yahoo',
-        buttonText4: 'Windows 郵件'
+        buttonText4: 'Windows 郵件',
+        disableOnMobile: false
       }
     )
   }
