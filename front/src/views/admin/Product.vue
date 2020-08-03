@@ -5,15 +5,21 @@
       p-button.btn-confirm(v-if="toggleAdd" type="success" style='margin-left: 10px;' @click.native="handleConfirm") 確認
       p-button.btn-add-cancel(v-if="toggleAdd" type="danger" style='margin-left: 10px;' @click.native="handleAddCancel") 取消
       p-button.btn-add(v-else type="warning" @click.native="handleAdd") 新增商品
-        //- template(v-if="toggleAdd")
-        //-   b-alert(variant="warning" show ) 帳號不可重複 / 帳密最少 4 個字，最多 20 個 / 信箱格式要正確
-        //-   b-row
-        //-     fg-input.col(v-model="addModel.name" placeholder="姓名")
-        //-     fg-input.col(v-model="addModel.account" placeholder="帳號")
-        //-     fg-input.col(v-model="addModel.password" placeholder="密碼")
-        //-     fg-input.col(v-model="addModel.email" placeholder="信箱")
-        //-     b-form-radio-group(:options="options" v-model="addModel.admin")
-
+      b-row(v-if="toggleAdd")
+        b-col(cols="12")
+          b-alert(variant="warning" show) 圖檔限制 5 MB 以下 / 可不上傳圖檔 / 金額不能為 0 / 商品說明最多 200 字
+        b-col(md="4")
+          b-file(
+            v-model="addModel.img"
+            placeholder="選擇檔案或拖曳至此"
+            drop-placeholder="將檔案拖曳至此"
+            browse-text="瀏覽"
+            accept="image/*"
+          )
+        b-col(md="8")
+          fg-input(v-model="addModel.name" placeholder="商品名稱")
+          fg-input(v-model="addModel.price" placeholder="商品金額")
+          b-textarea(v-model="addModel.description" placeholder="商品說明")
     //- 猴頭菇套餐
     card(:title="cardTitles[0]")
       b-card(no-body v-for="(item, index) in setMeals" :key="index")
@@ -145,6 +151,13 @@ export default {
         {
           name: '',
           price: '',
+          description: ''
+        }
+      ],
+      addModel: [
+        {
+          name: '',
+          price: '',
           description: '',
           img: ''
         }
@@ -154,48 +167,82 @@ export default {
   },
   methods: {
     handleAdd () { // 新增
+      this.addModel.name = ''
+      this.addModel.price = ''
+      this.addModel.description = ''
+      this.addModel.img = null
       this.toggleAdd = true
     },
     handleAddCancel () { // 取消新增
-      // this.addModel.name = ''
-      // this.addModel.account = ''
-      // this.addModel.password = ''
-      // this.addModel.email = ''
-      // this.addModel.admin = false
+      console.log(this.addModel)
       this.toggleAdd = false
     },
     handleConfirm () { // 確認
-      this.toggleAdd = false
-      this.axios.post(process.env.VUE_APP_APIURL + '/signup', {
-        name: this.addModel.name,
-        account: this.addModel.account,
-        password: this.addModel.password,
-        email: this.addModel.email,
-        admin: this.addModel.admin
-      })
-        .then(res => {
-          const data = res.data
-          if (data.success) {
-            this.$swal({
-              toast: true,
-              showConfirmButton: false,
-              icon: 'success',
-              title: '新增成功',
-              position: 'top-end',
-              timer: 2000,
-              timerProgressBar: true
+      event.preventDefault()
+      if (this.addModel.img !== null) { // 有圖商品
+        if (this.addModel.price <= 0 ||
+          this.addModel.img.size >= 1024 * 1024 * 5 ||
+          !this.addModel.img.type.includes('image')) alert('檔案格式不符')
+        else {
+          const fd = new FormData()
+          fd.append('img', this.addModel.img)
+          fd.append('name', this.addModel.name)
+          fd.append('price', this.addModel.price)
+          fd.append('description', this.addModel.description)
+          this.axios.post(process.env.VUE_APP_APIURL + '/imgproduct', fd, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+            .then(res => {
+              this.$swal({
+                toast: true,
+                showConfirmButton: false,
+                icon: 'success',
+                title: '新增成功',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true
+              })
+              setTimeout(() => {
+                location.reload()
+              }, 2000)
             })
-            setTimeout(() => {
-              location.reload()
-            }, 2000)
-          } else {
-            alert('請檢查資料格式')
-          }
-        })
-        .catch(err => {
-          alert(err.message)
-          console.log(err)
-        })
+            .catch(err => {
+              alert(err.message)
+              console.log(err)
+            })
+        }
+      } else { // 無圖商品
+        if (this.addModel.price <= 0) alert('檔案格式不符')
+        else {
+          this.axios.post(process.env.VUE_APP_APIURL + '/product', {
+            name: this.addModel.name,
+            price: this.addModel.price,
+            description: this.addModel.description,
+            img: 'https://lh3.googleusercontent.com/proxy/Kev8TS13MuhV6ELlXTCKoF8un0PZ3zgh9UadrEByS7ikdUi5KJ0q7V49aZlRI5BD9rcO4aGGKRF9mxd5BegZUWYaiAfSjm3tJiAXYIxydAyZ21al8W_60Ij9dQ' // 目前尚無圖片的網址
+          })
+            .then(res => {
+              this.$swal({
+                toast: true,
+                showConfirmButton: false,
+                icon: 'success',
+                title: '新增成功',
+                position: 'top-end',
+                timer: 2000,
+                timerProgressBar: true
+              })
+              setTimeout(() => {
+                location.reload()
+              }, 2000)
+            })
+            .catch(err => {
+              alert(err.message)
+              console.log(err)
+            })
+        }
+      }
+      this.toggleAdd = false
     },
     handleEdit (item) { // 編輯
       this.model.name = item.name
@@ -289,7 +336,6 @@ export default {
           }
         })
         console.log(result)
-        console.log(this.setMeals)
       }).catch(err => {
         alert(err.message + ' 伺服器錯誤')
       })

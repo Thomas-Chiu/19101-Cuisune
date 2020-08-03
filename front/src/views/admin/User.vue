@@ -6,7 +6,7 @@
         p-button.btn-add-cancel(v-if="toggleAdd" type="danger" style='margin-left: 10px;' @click.native="handleAddCancel") 取消
         p-button.btn-add(v-else type="warning" @click.native="handleAdd") 新增帳號
         template(v-if="toggleAdd")
-          b-alert(variant="warning" show ) 帳號不可重複 / 帳密最少 4 個字，最多 20 個 / 信箱格式要正確
+          b-alert(variant="warning" show) 帳號不可重複 / 帳密最少 4 個字，最多 20 個 / 信箱格式要正確
           b-row
             fg-input.col(v-model="addModel.name" placeholder="姓名")
             fg-input.col(v-model="addModel.account" placeholder="帳號")
@@ -88,7 +88,6 @@ export default {
       this.toggleAdd = false
     },
     handleConfirm () { // 確認
-      this.toggleAdd = false
       this.axios.post(process.env.VUE_APP_APIURL + '/signup', {
         name: this.addModel.name,
         account: this.addModel.account,
@@ -119,6 +118,7 @@ export default {
           alert(err.message)
           console.log(err)
         })
+      this.toggleAdd = false
     },
     handleEdit (row) { // 編輯
       this.model.name = row.name
