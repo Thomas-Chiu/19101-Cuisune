@@ -74,9 +74,9 @@ export default {
       row.edit = true
     },
     handleDelete (row) { // 刪除
+      event.preventDefault()
       const warning = confirm('確定要刪除？')
       if (!warning) return
-      event.preventDefault()
       this.axios.delete(process.env.VUE_APP_APIURL + '/booking/' + row.id)
         .then(res => {
           this.$swal({

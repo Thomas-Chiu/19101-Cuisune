@@ -374,8 +374,12 @@ section ~ section {
       border-bottom: 1px solid $secondary;
       background: transparent;
     }
-    .form-control:focus {
-      box-shadow: 0 0 0 1px $text;
+    .form-control {
+      text-align: left;
+      border: none !important;
+      &:focus {
+        box-shadow: 0 0 0 1px $text;
+      }
     }
     .btn-link {
       color: $secondary;

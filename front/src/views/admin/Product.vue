@@ -251,9 +251,9 @@ export default {
       item.edit = true
     },
     handleDelete (item) { // 刪除
+      event.preventDefault()
       const warning = confirm('確定要刪除？')
       if (!warning) return
-      event.preventDefault()
       this.axios.delete(process.env.VUE_APP_APIURL + '/product/' + item.id)
         .then(res => {
           this.$swal({

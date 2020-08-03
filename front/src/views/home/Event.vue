@@ -61,8 +61,6 @@
                 b-form-select(v-model="booking.time" :options="time" required)
               b-button(type="reset" @click="cancel") 取消
               b-button(type="submit") 送出
-              pre {{this.booking}}
-
 </template>
 
 <script>
@@ -129,6 +127,16 @@ export default {
   methods: {
     submit (event) {
       event.preventDefault()
+      const warning = confirm(`
+      請確認訂位資訊
+        姓名：${this.booking.name}
+        性別：${this.booking.gender}
+        電話：${this.booking.mobile}
+        人數：${this.booking.people}
+        日期：${this.booking.date}
+        時間：${this.booking.time}
+      `)
+      if (!warning) return
       this.axios.post(process.env.VUE_APP_APIURL + '/booking', {
         name: this.booking.name,
         gender: this.booking.gender,
