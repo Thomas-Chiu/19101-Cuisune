@@ -33,8 +33,6 @@ export default new Vuex.Store({
       state.admin = ''
     },
     addCartItems (state, data) {
-      // state.cartItems.push(data)
-      console.log(data)
       state.cartItems = data
     }
   },

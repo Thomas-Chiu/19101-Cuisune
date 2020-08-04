@@ -1,27 +1,26 @@
 <template lang="pug">
   #cart
-    b-btn.icon-cart(variant="link" v-b-toggle.list)
+    b-btn.icon-cart(variant="link" v-b-toggle.list @click="sum" )
       b-icon(icon="cart4")
     b-sidebar#list(
       right
       width="500px"
       )
       b-card.mt-3(
-        title="Your Order"
+        title="您的訂單"
         bg-variant="transparent"
       )
-        h6.text-right Items: {{ 0 }}
+        h6.text-right 餐點數量：{{ totalCount }}
         hr
         b-table(
           striped
           hover
           fixed
           borderless
-          :fields="fields"
-          :items="items"
+          :items="order.items"
         )
-        p.text-center Total: {{ 0 }}
-        b-btn(pill block v-b-modal.order) Check Out
+        p.text-center 總計：{{ totalPrice }}
+        b-btn(pill block v-b-modal.order) 確認餐點
         //- Modal
         b-modal#order(
           centered
@@ -43,7 +42,7 @@
                 placeholder='取餐日期'
                 )
                 b-form-select(v-model="order.pickupTime" :options="pickupTime" required)
-                b-form-select(v-model="order.here" :options="here" required)
+                b-form-select(v-model="order.togo" :options="togo" required)
               b-input-group.name
                 b-form-input(v-model="order.name" placeholder='姓名' required)
                 b-input-group-prepend(is-text)
@@ -53,7 +52,7 @@
                 b-input-group-prepend(is-text)
                   b-icon(icon="phone")
               b-input-group.memo
-                b-form-textarea(v-model="order.memo" placeholder='餐點備註' rows="5")
+                b-form-textarea(v-model="order.memo" placeholder='備註（50字內）' rows="5" :state="order.memo.length <= 50")
               .btn-group
                 b-btn(@click="cancel") 取消
                 b-btn(@click="submit") 送出
@@ -75,13 +74,10 @@ export default {
         name: '',
         gender: '',
         mobile: '',
-        here: null,
+        togo: null,
         orderDate: '',
         pickupTime: null,
-        items: {
-          itemName: '',
-          count: null
-        },
+        items: this.$store.getters.cartItems,
         memo: ''
       },
       fields: [
@@ -90,21 +86,17 @@ export default {
         { key: '價錢', sortable: true },
         { key: '更改' }
       ],
-      items: [
-        { 品項: '猴頭菇', 數量: '3', 價錢: '390', 更改: 'icon' },
-        { 品項: '猴頭菇', 數量: '3', 價錢: '350', 更改: 'icon' },
-        { 品項: '猴頭菇', 數量: '3', 價錢: '390', 更改: 'icon' },
-        { 品項: '猴頭菇', 數量: '1', 價錢: '390', 更改: 'icon' }
-      ],
+      totalPrice: '',
+      totalCount: '',
       gender: [
         { text: '先生', value: '先生' },
         { text: '小姐', value: '小姐' }
       ],
       selected: [null], // b-form-select default value
-      here: [
+      togo: [
         { text: '取餐方式', value: null },
-        { text: '內用 ', value: '內用' },
-        { text: '外帶', value: '外帶' }
+        { text: '內用 ', value: true },
+        { text: '外帶', value: false }
       ],
       pickupTime: [
         { text: '取餐時間', value: null },
@@ -130,24 +122,59 @@ export default {
   },
   computed: {
     get () {
-      console.log(this.$store.getters.cartItems)
       return this.$store.getters.cartItems
     }
   },
   methods: {
     submit () {
       event.preventDefault()
-      console.log(this.order)
+      this.axios.post(process.env.VUE_APP_APIURL + '/order', {
+        name: this.order.name,
+        gender: this.order.gender,
+        mobile: this.order.mobile,
+        togo: this.order.togo,
+        orderDate: this.order.orderDate,
+        pickupTime: this.order.pickupTime,
+        items: this.order.items,
+        memo: this.order.memo
+      })
+        .then(res => {
+          this.$swal({
+            icon: 'success',
+            title: '點餐成功'
+          })
+          setTimeout(() => {
+            location.reload()
+          }, 2000)
+        })
+        .catch(err => {
+          this.$swal({
+            icon: 'error',
+            title: '點餐失敗'
+          })
+          console.log(err.message)
+        })
     },
     cancel () {
       event.preventDefault()
       this.order.name = ''
       this.order.gender = ''
       this.order.mobile = ''
-      this.order.here = null
+      this.order.togo = null
       this.order.orderDate = ''
       this.order.pickupTime = null
       this.order.memo = ''
+    },
+    sum () {
+      let totalPrice = 0
+      let totalCount = 0
+      for (const item of this.order.items) {
+        totalPrice += item.price
+        totalCount += item.count
+      }
+      this.totalPrice = totalPrice
+      this.totalCount = totalCount
+      console.log(this.order)
     }
   }
 }

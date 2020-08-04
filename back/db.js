@@ -95,7 +95,7 @@ const orderSchema = new Schema(
       type: String,
       required: [true, '請輸入電話號碼']
     },
-    here: {
+    togo: {
       type: Boolean,
       required: [true, '請選擇內用或外帶']
     },
@@ -114,7 +114,8 @@ const orderSchema = new Schema(
       max: 100
     },
     memo: {
-      type: String
+      type: String,
+      maxlength: [50, '備註 50 字以下']
     }
   }, {
     versionKey: false

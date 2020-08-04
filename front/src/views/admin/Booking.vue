@@ -49,7 +49,7 @@ export default {
   components: { PaperTable },
   data () {
     return {
-      tableColumns: ['ID', '姓名', '性別', '電話', '人數', '日期', '時間', '編輯 / 刪除'],
+      tableColumns: ['ID', '姓名', '性別', '電話', '人數', '訂位日期', '訂位時間', '編輯 / 刪除'],
       tableData: [], // slot-scope='{row}'
       model: [
         {

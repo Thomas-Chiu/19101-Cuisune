@@ -7,28 +7,12 @@
       b-navbar-toggle(target="collapse")
       b-collapse#collapse(is-nav)
         b-navbar-nav.m-auto
-          b-nav-item-dropdown(text="猴頭菇套餐")
-            b-dropdown-item(href="#") 390 套餐
-            b-dropdown-item(href="#") 450 套餐
-            b-dropdown-item(href="#") 680 套餐
-          b-nav-item-dropdown(text="火鍋套餐")
-            b-dropdown-item(href="#") 臭豆腐泡菜鍋
-            b-dropdown-item(href="#") 有機豆漿鍋
-            b-dropdown-item(href="#") 麻油藥膳鍋
-            b-dropdown-item(href="#") 猴頭菇泡菜白豆腐鍋
-            b-dropdown-item(href="#") 泰式酸辣鍋
-          b-nav-item-dropdown(text="飯類套餐")
-            b-dropdown-item(href="#") 石鍋拌飯
-            b-dropdown-item(href="#") 猴頭菇丼飯
-          b-nav-item-dropdown(text="義大利麵套餐")
-            b-dropdown-item(href="#") 清炒義大利麵
-            b-dropdown-item(href="#") 粉紅醬義大利麵
-          b-nav-item-dropdown(text="單點系列")
-            b-dropdown-item(href="#") 乾麵
-            b-dropdown-item(href="#") 湯麵
-            b-dropdown-item(href="#") 小菜
-            b-dropdown-item(href="#") 飲料
-            b-dropdown-item(href="#") 包與饅頭
+          b-nav-item(href="#setMeals") 猴頭菇套餐
+          b-nav-item(href="#hotPots") 火鍋套餐
+          b-nav-item(href="#rices") 飯類套餐
+          b-nav-item(href="#noodles") 麵類套餐
+          b-nav-item(href="#aLaCartes") 單點系列
+          b-nav-item(href="#preOrders") 預購系列
     //- 商品 card
     //- 猴頭菇套餐
     b-row#setMeals
@@ -51,9 +35,89 @@
                   p-button(@click.native="add(item)")
                     i.ti-plus
     //- 火鍋套餐
-    b-row#setMeals
+    b-row#hotPots
       h3.col-12 {{cardTitles[1]}}
       b-col(lg="6" xl="4" v-for="(item,index) in hotPots" :key="index")
+        b-card
+          b-row
+            b-col.item-body(cols="12" md="6")
+              Photoswipe
+                b-img(fluid :src="item.img" v-pswp="item.img")
+            b-col.item-body(cols="12" md="6")
+              b-card-body
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(@click.native="deduct(item)")
+                    i.ti-minus
+                  p-button.btn-count(disabled) {{item.count}}
+                  p-button(@click.native="add(item)")
+                    i.ti-plus
+    //- 飯類套餐
+    b-row#rices
+      h3.col-12 {{cardTitles[2]}}
+      b-col(lg="6" xl="4" v-for="(item,index) in rices" :key="index")
+        b-card
+          b-row
+            b-col.item-body(cols="12" md="6")
+              Photoswipe
+                b-img(fluid :src="item.img" v-pswp="item.img")
+            b-col.item-body(cols="12" md="6")
+              b-card-body
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(@click.native="deduct(item)")
+                    i.ti-minus
+                  p-button.btn-count(disabled) {{item.count}}
+                  p-button(@click.native="add(item)")
+                    i.ti-plus
+    //- 麵類套餐
+    b-row#noodles
+      h3.col-12 {{cardTitles[3]}}
+      b-col(lg="6" xl="4" v-for="(item,index) in noodles" :key="index")
+        b-card
+          b-row
+            b-col.item-body(cols="12" md="6")
+              Photoswipe
+                b-img(fluid :src="item.img" v-pswp="item.img")
+            b-col.item-body(cols="12" md="6")
+              b-card-body
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(@click.native="deduct(item)")
+                    i.ti-minus
+                  p-button.btn-count(disabled) {{item.count}}
+                  p-button(@click.native="add(item)")
+                    i.ti-plus
+    //- 單點系列
+    b-row#aLaCartes
+      h3.col-12 {{cardTitles[4]}}
+      b-col(lg="6" xl="4" v-for="(item,index) in aLaCartes" :key="index")
+        b-card
+          b-row
+            b-col.item-body(cols="12" md="6")
+              Photoswipe
+                b-img(fluid :src="item.img" v-pswp="item.img")
+            b-col.item-body(cols="12" md="6")
+              b-card-body
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(@click.native="deduct(item)")
+                    i.ti-minus
+                  p-button.btn-count(disabled) {{item.count}}
+                  p-button(@click.native="add(item)")
+                    i.ti-plus
+    //- 預購系列
+    b-row#preOrders
+      h3.col-12 {{cardTitles[5]}}
+      b-col(lg="6" xl="4" v-for="(item,index) in preOrders" :key="index")
         b-card
           b-row
             b-col.item-body(cols="12" md="6")
@@ -78,7 +142,7 @@ export default {
   data () {
     return {
       logoImg: './images/logo/logo_mushroom.png',
-      cardTitles: ['猴頭菇套餐', '火鍋類', '飯類', '麵類', '單點類', '預購類'],
+      cardTitles: ['猴頭菇套餐', '火鍋套餐', '飯類套餐', '麵類套餐', '單點系列', '預購系列'],
       setMeals: [],
       hotPots: [],
       rices: [],
@@ -88,8 +152,6 @@ export default {
       toCartItems: []
     }
   },
-  computed: {
-  },
   methods: {
     add (item) { // +1
       item.count++
@@ -97,18 +159,15 @@ export default {
         if (toCartItem.name.includes(item.name)) {
           toCartItem.count++
           toCartItem.price += item.price
-          console.log(this.toCartItems)
           return
         }
       }
       this.toCartItems.push({ // 購物車無該商品
         name: item.name,
         count: item.count,
-        price: item.price,
-        edit: false
+        price: item.price
       })
       this.$store.commit('addCartItems', this.toCartItems)
-      console.log(this.toCartItems)
     },
     deduct (item) { // -1
       if (item.count <= 0) item.count = 0
@@ -161,12 +220,6 @@ export default {
       }).catch(err => {
         alert(err.message + ' 伺服器錯誤')
       })
-    // console.log(this.setMeals)
-    // console.log(this.hotPots)
-    // console.log(this.rices)
-    // console.log(this.noodles)
-    // console.log(this.preOrders)
-    // console.log(this.aLaCartes)
   }
 }
 </script>

@@ -159,7 +159,7 @@ app.post('/order', async (req, res) => { // 新增點餐
     req.body.name === undefined ||
     req.body.gender === undefined ||
     req.body.mobile === undefined ||
-    req.body.here === undefined ||
+    req.body.togo === undefined ||
     req.body.orderDate === undefined ||
     req.body.pickupTime === undefined ||
     req.body.items === undefined ||
@@ -183,7 +183,7 @@ app.post('/order', async (req, res) => { // 新增點餐
         name: req.body.name,
         gender: req.body.gender,
         mobile: req.body.mobile,
-        here: req.body.here,
+        togo: req.body.togo,
         orderDate: req.body.orderDate,
         pickupTime: req.body.pickupTime,
         items: req.body.items,
@@ -252,7 +252,6 @@ app.post('/imgproduct', async (req, res) => { // 新增圖片商品 (form-data)
           const key = Object.keys(err.errors)[0]
           const message = err.errors[key].message
           res.status(400).send({ success: false, message })
-          console.log('YA')
         } else { // 伺服器錯誤
           console.log(err)
           res.status(500).send({ success: false, message: '伺服器錯誤' })
@@ -437,7 +436,6 @@ app.get('/user', async (req, res) => { // 查詢帳戶
     res.status(403).send({ success: false, msg: '請登入' })
     return
   }
-  console.log(req.session.user)
   try {
     let result = await db.users.find() // 預設查詢所有資料
     if (req.query.id) { // id 查詢

@@ -157,13 +157,14 @@ export default {
           })
           setTimeout(() => {
             location.reload()
-          }, 3000)
+          }, 2000)
         })
         .catch(err => {
           this.$swal({
             icon: 'error',
-            title: err.message
+            title: '點餐失敗'
           })
+          console.log(err.message)
         })
     },
     cancel (event) {
