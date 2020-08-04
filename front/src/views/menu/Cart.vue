@@ -52,7 +52,7 @@
                 b-input-group-prepend(is-text)
                   b-icon(icon="phone")
               b-input-group.memo
-                b-form-textarea(v-model="order.memo" placeholder='備註（50字內）' rows="5" :state="order.memo.length <= 50")
+                b-form-textarea(v-model="order.memo" placeholder='備註（30字內）' rows="5" :state="order.memo.length <= 30")
               .btn-group
                 b-btn(@click="cancel") 取消
                 b-btn(@click="submit") 送出
@@ -80,12 +80,12 @@ export default {
         items: this.$store.getters.cartItems,
         memo: ''
       },
-      fields: [
-        { key: '品項' },
-        { key: '數量', sortable: true },
-        { key: '價錢', sortable: true },
-        { key: '更改' }
-      ],
+      // fields: [
+      //   { key: '品項' },
+      //   { key: '數量', sortable: true },
+      //   { key: '價錢', sortable: true },
+      //   { key: '更改' }
+      // ],
       totalPrice: '',
       totalCount: '',
       gender: [
@@ -95,8 +95,8 @@ export default {
       selected: [null], // b-form-select default value
       togo: [
         { text: '取餐方式', value: null },
-        { text: '內用 ', value: true },
-        { text: '外帶', value: false }
+        { text: '外帶', value: '外帶' },
+        { text: '內用 ', value: '內用' }
       ],
       pickupTime: [
         { text: '取餐時間', value: null },
@@ -128,6 +128,17 @@ export default {
   methods: {
     submit () {
       event.preventDefault()
+      const warning = confirm(`
+      請確認點餐資訊
+      
+        姓名：${this.order.name} ${this.order.gender}
+        電話：${this.order.mobile}
+        取餐方式：${this.order.togo}
+        取餐日期：${this.order.orderDate}
+        取餐時間：${this.order.pickupTime}
+        餐點備註：${this.order.memo}
+      `)
+      if (!warning) return
       this.axios.post(process.env.VUE_APP_APIURL + '/order', {
         name: this.order.name,
         gender: this.order.gender,

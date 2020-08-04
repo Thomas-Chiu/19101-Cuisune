@@ -2,9 +2,9 @@
   <div id="admin" class="wrapper">
     <side-bar>
       <template slot="links">
-        <sidebar-link to="/dashboard" name="首頁" icon="ti-home"/>
         <sidebar-link to="/user" name="會員管理" icon="ti-user"/>
         <sidebar-link to="/product" name="商品管理" icon="ti-marker-alt"/>
+        <sidebar-link to="/orderitem" name="點餐項目" icon="ti-shopping-cart"/>
         <sidebar-link to="/order" name="點餐管理" icon="ti-view-list-alt"/>
         <sidebar-link to="/booking" name="訂位管理" icon="ti-book"/>
       </template>

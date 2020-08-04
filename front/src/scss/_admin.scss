@@ -79,10 +79,6 @@
     padding: 5px !important;
   }
 
-  // User 會員管理 -----------------------------------------------------------
-  // #user {
-  // }
-
   // Product 商品管理 ------------------------------------------------------
   #product {
     position: relative;
@@ -101,8 +97,16 @@
       text-align: left;
     }
   }
+}
 
-  // Booling 訂位管理
-  // #booking {
-  // }
+// OrderItem 點餐項目 -------------------------------------
+#orderitem {
+  h4 {
+    margin: 0;
+    padding-bottom: 15px;
+    font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+    span {
+      margin-left: 7.5px;
+    }
+  }
 }

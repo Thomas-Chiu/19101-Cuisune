@@ -54,17 +54,8 @@ const routes = [
     path: '/adminboard',
     name: 'Adminboard',
     component: () => import(/* webpackChunkName: "Adminboard" */ '@/dashboard/DashboardLayout.vue'),
-    redirect: '/dashboard',
+    redirect: '/user',
     children: [
-      {
-        path: '/dashboard',
-        name: '首頁',
-        component: () => import(/* webpackChunkName: "Dashboard" */ '@/views/admin/Dashboard.vue'),
-        meta: {
-          title: '首頁',
-          signin: true
-        }
-      },
       {
         path: '/user',
         name: '會員管理',
@@ -89,6 +80,15 @@ const routes = [
         component: () => import(/* webpackChunkName: "Order" */ '@/views/admin/Order.vue'),
         meta: {
           title: '點餐管理',
+          signin: true
+        }
+      },
+      {
+        path: '/orderitem',
+        name: '點餐項目',
+        component: () => import(/* webpackChunkName: "OrderItem" */ '@/views/admin/OrderItem.vue'),
+        meta: {
+          title: '點餐項目',
           signin: true
         }
       },
