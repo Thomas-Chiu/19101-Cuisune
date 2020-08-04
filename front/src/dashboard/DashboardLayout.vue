@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div id="admin" class="wrapper">
     <side-bar>
       <template slot="links">
         <sidebar-link to="/dashboard" name="首頁" icon="ti-home"/>

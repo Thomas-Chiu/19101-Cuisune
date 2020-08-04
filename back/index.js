@@ -46,6 +46,8 @@ app.use(session({ // express-session 設定
   }),
   cookie: { // session 有效期間
     maxAge: 1000 * 60 * 30 // 1000ms * 60s * 30m = 30分鐘
+    // sameSite: 'none',
+    // secure: true
   },
   saveUninitialized: false, // 保存未修改的session
   rolling: true, // 重設過期時間
@@ -155,11 +157,10 @@ app.post('/signup', async (req, res) => { // 新增帳戶
 app.post('/order', async (req, res) => { // 新增點餐
   if (
     req.body.name === undefined ||
-    req.body.male === undefined ||
+    req.body.gender === undefined ||
     req.body.mobile === undefined ||
-    // req.body.amount < 1 ||
-    // req.body.amount > 100 ||
     req.body.here === undefined ||
+    req.body.orderDate === undefined ||
     req.body.pickupTime === undefined ||
     req.body.items === undefined ||
     req.body.memo === undefined
@@ -169,10 +170,10 @@ app.post('/order', async (req, res) => { // 新增點餐
   }
   for (const i in req.body.items) { // 點餐數量 1~100
     if (
-      req.body.items[i].amount < 1 ||
-      req.body.items[i].amount > 100
+      req.body.items[i].count < 1 ||
+      req.body.items[i].count > 100
     ) {
-      res.status(400).send({ success: false, amount: '點餐數量最少 1，最多 100' })
+      res.status(400).send({ success: false, count: '點餐數量最少 1，最多 100' })
       return
     }
   }
@@ -180,10 +181,10 @@ app.post('/order', async (req, res) => { // 新增點餐
     const result = await db.orders.create(
       {
         name: req.body.name,
-        male: req.body.male,
+        gender: req.body.gender,
         mobile: req.body.mobile,
-        // amount: req.body.amount,
         here: req.body.here,
+        orderDate: req.body.orderDate,
         pickupTime: req.body.pickupTime,
         items: req.body.items,
         memo: req.body.memo
@@ -303,17 +304,13 @@ app.patch('/user', async (req, res) => { // 修改帳戶
   }
 })
 
-app.patch('/order', async (req, res) => { // (id)修改點餐
+app.patch('/order/:id', async (req, res) => { // (id)修改點餐
   if (!req.session.user) { // 若無登入
     res.status(403).send({ success: false, msg: '請登入' })
     return
   }
-  if (!req.body.id) { // 沒輸入條件
-    res.status(400).send({ success: false, message: '請輸入id' })
-    return
-  }
   try {
-    const result = await db.orders.findByIdAndUpdate(req.body.id, req.body, { new: true })
+    const result = await db.orders.findByIdAndUpdate(req.params.id, req.body, { new: true })
     if (result === null) res.status(404).send({ success: false, message: '找不到資料修改' })
     else res.status(200).send({ success: true, result })
   } catch (err) {
@@ -484,11 +481,7 @@ app.get('/order', async (req, res) => { // 查詢點餐
   }
 })
 
-app.get('/product', async (req, res) => { // 查詢商品(前台購物車需要用，先把登入驗證拿掉)
-  // if (!req.session.user) { // 若無登入
-  //   res.status(403).send({ success: false, msg: '請登入' })
-  //   return
-  // }
+app.get('/product', async (req, res) => { // 查詢商品(前台點餐要用，把登入驗證拿掉)
   try {
     let result = await db.products.find() // 預設查詢所有資料
     if (req.query.id) { // id 查詢

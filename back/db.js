@@ -95,18 +95,17 @@ const orderSchema = new Schema(
       type: String,
       required: [true, '請輸入電話號碼']
     },
-    // amount: {
-    //   type: Array,
-    //   required: [true, '請輸入餐點數量'],
-    //   min: 1,
-    //   max: 100
-    // },
     here: {
       type: Boolean,
       required: [true, '請選擇內用或外帶']
     },
+    orderDate: {
+      type: Date,
+      required: [true, '請選擇取餐日期']
+    },
     pickupTime: {
-      type: String
+      type: String,
+      required: [true, '請選擇取餐時間']
     },
     items: {
       type: Array,

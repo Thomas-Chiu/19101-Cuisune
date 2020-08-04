@@ -8,30 +8,7 @@ export default new Vuex.Store({
   state: {
     user: '',
     admin: '',
-    products: [
-      {
-        id: 1,
-        name: '猴頭菇套餐',
-        src: 'https://picsum.photos/200/200/?random=1',
-        price: 340,
-        description: '好吃的套餐'
-      },
-      {
-        id: 2,
-        name: '猴頭菇套餐2',
-        src: 'https://picsum.photos/200/200/?random=2',
-        price: 3400,
-        description: '好吃的套餐'
-      },
-      {
-        id: 3,
-        name: '猴頭菇套餐3',
-        src: 'https://picsum.photos/200/200/?random=3',
-        price: 34000,
-        description: '好吃的套餐'
-      }
-    ],
-    StoreCart: []
+    cartItems: []
   },
   getters: {
     user (state) {
@@ -40,8 +17,8 @@ export default new Vuex.Store({
     admin (state) {
       return state.admin
     },
-    products (state) {
-      return state.products
+    cartItems (state) {
+      return state.cartItems
     }
   },
   mutations: {
@@ -51,9 +28,14 @@ export default new Vuex.Store({
     adminSignin (state, data) {
       state.admin = data
     },
-    signout (state, data) {
+    signout (state) {
       state.user = ''
       state.admin = ''
+    },
+    addCartItems (state, data) {
+      // state.cartItems.push(data)
+      console.log(data)
+      state.cartItems = data
     }
   },
   actions: {

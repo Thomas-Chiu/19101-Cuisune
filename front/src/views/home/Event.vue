@@ -21,13 +21,13 @@
                 | 這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案
         b-row.btn-function(no-gutters)
           b-col(md="6")
-            b-button(
+            b-btn(
               block
               v-b-modal.booking
             ) BOOK A TABLE
           b-col(md="6")
             router-link(to="/menu")
-              b-button(block) ORDER A DISH
+              b-btn(block) ORDER A DISH
           //- Modal
           b-modal#booking(
             centered
@@ -64,8 +64,8 @@
                   b-icon(icon="watch")
                 b-form-select(v-model="booking.time" :options="time" required)
               .btn-group
-                b-button(type="reset" @click="cancel") 取消
-                b-button(type="submit") 送出
+                b-btn(type="reset" @click="cancel") 取消
+                b-btn(type="submit") 送出
 </template>
 
 <script>
@@ -90,8 +90,8 @@ export default {
         time: null
       },
       gender: [
-        { text: '先生', value: 'male' },
-        { text: '小姐', value: 'female' }
+        { text: '先生', value: '先生' },
+        { text: '小姐', value: '小姐' }
       ],
       selected: [null], // b-form-select default value
       people: [
@@ -134,8 +134,8 @@ export default {
       event.preventDefault()
       const warning = confirm(`
       請確認訂位資訊
-        姓名：${this.booking.name}
-        性別：${this.booking.gender}
+      
+        姓名：${this.booking.name} ${this.booking.gender}
         電話：${this.booking.mobile}
         人數：${this.booking.people}
         日期：${this.booking.date}

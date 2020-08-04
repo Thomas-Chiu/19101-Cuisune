@@ -1,106 +1,108 @@
-// Admin Global ---------------------------------------------------
-.row {
-  margin: 0 !important;
-}
-
-.content {
-  padding: 0 !important;
-}
-
-.card {
-  margin: 1.5rem;
-  padding: 1.5rem;
-}
-
-.card-header {
-  padding: 10px 0 !important;
-  text-align: center;
-  background: $warning !important;
-}
-
-.card-title {
-  font-family: "微軟正黑體";
-  font-weight: bold !important;
-}
-
-table {
-  text-align: center;
-}
-
-th {
-  font-weight: bold !important;
-  background: rgba(0, 0, 0, 0.2);
-}
-
-tr:nth-child(even) {
-  background: $primary-50;
-}
-
-td:last-child {
-  padding: 0 !important;
-}
-
-.form-control {
-  padding: 7px 18px;
-  text-align: center;
-  border: 1px solid #ccc !important;
-}
-
-.btn,
-.btn-outline-default {
-  padding: 5px !important;
-}
-
-.btn-add {
-  color: #000 !important;
-  position: absolute;
-  left: 50%;
-  top: 2.5px;
-  transform: translateX(-50%);
-}
-
-.btn-add-cancel {
-  position: absolute;
-  right: 50%;
-  top: 2.5px;
-}
-
-.btn-confirm {
-  position: absolute;
-  left: 50%;
-  top: 2.5px;
-}
-
-.btn-just-icon {
-  height: 30px !important;
-  width: 30px !important;
-  min-width: 30px !important;
-  padding: 5px !important;
-}
-
-// User 會員管理 -----------------------------------------------------------
-// #user {
-// }
-
-// Product 商品管理 ------------------------------------------------------
-#product {
-  position: relative;
-  .card-body .card-title {
-    margin-bottom: 1rem;
+#admin {
+  // Admin Global ---------------------------------------------------
+  .row {
+    margin: 0 !important;
   }
 
-  .card-body {
-    h4 {
-      margin: 0rem;
-      padding-bottom: 1rem;
-    }
+  .content {
+    padding: 0 !important;
+  }
+
+  .card {
+    margin: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .card-header {
+    padding: 10px 0 !important;
+    text-align: center;
+    background: $warning !important;
+  }
+
+  .card-title {
+    font-family: "微軟正黑體";
+    font-weight: bold !important;
+  }
+
+  table {
+    text-align: center;
+  }
+
+  th {
+    font-weight: bold !important;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  tr:nth-child(even) {
+    background: $primary-50;
+  }
+
+  td:last-child {
+    padding: 0 !important;
   }
 
   .form-control {
-    text-align: left;
+    padding: 7px 18px;
+    text-align: center;
+    border: 1px solid #ccc !important;
   }
-}
 
-// Booling 訂位管理
-// #booking {
-// }
+  .btn,
+  .btn-outline-default {
+    padding: 5px !important;
+  }
+
+  .btn-add {
+    color: #000 !important;
+    position: absolute;
+    left: 50%;
+    top: 2.5px;
+    transform: translateX(-50%);
+  }
+
+  .btn-add-cancel {
+    position: absolute;
+    right: 50%;
+    top: 2.5px;
+  }
+
+  .btn-confirm {
+    position: absolute;
+    left: 50%;
+    top: 2.5px;
+  }
+
+  .btn-just-icon {
+    height: 30px !important;
+    width: 30px !important;
+    min-width: 30px !important;
+    padding: 5px !important;
+  }
+
+  // User 會員管理 -----------------------------------------------------------
+  // #user {
+  // }
+
+  // Product 商品管理 ------------------------------------------------------
+  #product {
+    position: relative;
+    .card-body .card-title {
+      margin-bottom: 1rem;
+    }
+
+    .card-body {
+      h4 {
+        margin: 0rem;
+        padding-bottom: 1rem;
+      }
+    }
+
+    .form-control {
+      text-align: left;
+    }
+  }
+
+  // Booling 訂位管理
+  // #booking {
+  // }
+}

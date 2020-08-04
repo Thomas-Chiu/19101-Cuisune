@@ -360,8 +360,6 @@ export default {
             this.aLaCartes.push(push)
           }
         })
-        console.log(this.preOrders)
-        console.log(this.aLaCartes)
       }).catch(err => {
         alert(err.message + ' 伺服器錯誤')
       })
