@@ -328,6 +328,11 @@ section ~ section {
       }
     }
   }
+  .menu-file {
+    color: $secondary;
+    font-size: 1rem;
+    letter-spacing: 5px;
+  }
 }
 
 // Ingredient ------------------------------------------------------------------------

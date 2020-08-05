@@ -23,8 +23,8 @@
         )
         p.text-center 總計：{{ totalPrice }}
         p.text-center
-          b-btn(pill variant="danger" @click="cancelOrder" ) 取消餐點
-          b-btn(pill variant="info" v-b-modal.order) 確認餐點
+          b-btn(pill variant="danger" @click="cancelOrder" ) 取消
+          b-btn(pill variant="info" v-b-modal.order style="margin-left: 5px;") 確認
         //- Modal
         b-modal#order(
           centered

@@ -1,6 +1,9 @@
 <template lang="pug">
   .container-fluid
     h2 線上預約
+      a.menu-file(:href="menuFile" target="blank")
+        b-icon(icon="file-earmark-text" animation="fade" style="margin-right: 5px;")
+        span 看菜單
     .container
       b-card(:img-src="imgSrc")
         b-row.btn-function(no-gutters)
@@ -54,7 +57,7 @@
 </template>
 
 <script>
-import { BIcon, BIconWatch, BIconPhone, BIconPeople } from 'bootstrap-vue'
+import { BIcon, BIconWatch, BIconPhone, BIconPeople, BIconFileEarmarkText } from 'bootstrap-vue'
 
 export default {
   name: 'Event',
@@ -62,7 +65,8 @@ export default {
     BIcon,
     BIconWatch,
     BIconPhone,
-    BIconPeople
+    BIconPeople,
+    BIconFileEarmarkText
   },
   data () {
     return {
@@ -112,7 +116,8 @@ export default {
         { text: '19:30', value: '19:30' },
         { text: '20:00', value: '20:00' }
       ],
-      imgSrc: './images/logo/brand_horizontal.png'
+      imgSrc: './images/logo/brand_horizontal.png',
+      menuFile: './19101 menu.pdf'
     }
   },
   methods: {

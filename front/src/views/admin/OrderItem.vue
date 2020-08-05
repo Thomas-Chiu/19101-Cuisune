@@ -1,8 +1,8 @@
 <template lang="pug">
   #orderitem
     card(v-for="(item, index) in orderItems" :key="index")
-      h4 {{ item.name }}
-        span {{ item.gender }}的訂單
+      h4 顧客：{{ item.name }}
+        span {{ item.gender }}
       b-table(:items="item.items" hover )
       h4.text-center 數量：{{ item.totalCount }}
         span(style="margin-left: 30px;") 總計：{{ item.totalPrice }}

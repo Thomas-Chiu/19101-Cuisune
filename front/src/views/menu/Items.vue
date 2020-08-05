@@ -3,7 +3,7 @@
     b-navbar(toggleable="md" type="dark" variant="dark" fixed="top")
       b-navbar-brand
         router-link(to="/")
-          img(:src="logoImg" width="32" height="32")
+          img(:src="logoImg" width="28" height="28" style="margin-left: 10px")
       b-navbar-toggle(target="collapse")
       b-collapse#collapse(is-nav)
         b-navbar-nav.m-auto
@@ -17,13 +17,13 @@
     //- 猴頭菇套餐
     b-row#setMeals
       h3.col-12 {{cardTitles[0]}}
-      b-col(lg="6" xl="4" v-for="(item,index) in setMeals" :key="index")
+      b-col(md="6" lg="4" v-for="(item,index) in setMeals" :key="index")
         b-card
-          b-row
-            b-col.item-body(cols="12" md="6")
+          b-row.item-body-row
+            b-col.item-body
               Photoswipe
                 b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body(cols="12" md="6")
+            b-col.item-body
               b-card-body
                 h4 {{ item.name }}
                 p NT {{ item.price }}
@@ -37,13 +37,13 @@
     //- 火鍋套餐
     b-row#hotPots
       h3.col-12 {{cardTitles[1]}}
-      b-col(lg="6" xl="4" v-for="(item,index) in hotPots" :key="index")
+      b-col(md="6" lg="4" v-for="(item,index) in hotPots" :key="index")
         b-card
-          b-row
-            b-col.item-body(cols="12" md="6")
+          b-row.item-body-row
+            b-col.item-body
               Photoswipe
                 b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body(cols="12" md="6")
+            b-col.item-body
               b-card-body
                 h4 {{ item.name }}
                 p NT {{ item.price }}
@@ -57,13 +57,13 @@
     //- 飯類套餐
     b-row#rices
       h3.col-12 {{cardTitles[2]}}
-      b-col(lg="6" xl="4" v-for="(item,index) in rices" :key="index")
+      b-col(md="6" lg="4" v-for="(item,index) in rices" :key="index")
         b-card
-          b-row
-            b-col.item-body(cols="12" md="6")
+          b-row.item-body-row
+            b-col
               Photoswipe
                 b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body(cols="12" md="6")
+            b-col
               b-card-body
                 h4 {{ item.name }}
                 p NT {{ item.price }}
@@ -77,13 +77,13 @@
     //- 麵類套餐
     b-row#noodles
       h3.col-12 {{cardTitles[3]}}
-      b-col(lg="6" xl="4" v-for="(item,index) in noodles" :key="index")
+      b-col(md="6" lg="4" v-for="(item,index) in noodles" :key="index")
         b-card
-          b-row
-            b-col.item-body(cols="12" md="6")
+          b-row.item-body-row
+            b-col
               Photoswipe
                 b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body(cols="12" md="6")
+            b-col
               b-card-body
                 h4 {{ item.name }}
                 p NT {{ item.price }}
@@ -97,13 +97,13 @@
     //- 單點系列
     b-row#aLaCartes
       h3.col-12 {{cardTitles[4]}}
-      b-col(lg="6" xl="4" v-for="(item,index) in aLaCartes" :key="index")
+      b-col(md="6" lg="4" v-for="(item,index) in aLaCartes" :key="index")
         b-card
-          b-row
-            b-col.item-body(cols="12" md="6")
+          b-row.item-body-row
+            b-col
               Photoswipe
                 b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body(cols="12" md="6")
+            b-col
               b-card-body
                 h4 {{ item.name }}
                 p NT {{ item.price }}
@@ -117,13 +117,13 @@
     //- 預購系列
     b-row#preOrders
       h3.col-12 {{cardTitles[5]}}
-      b-col(lg="6" xl="4" v-for="(item,index) in preOrders" :key="index")
+      b-col(md="6" lg="4" v-for="(item,index) in preOrders" :key="index")
         b-card
-          b-row
-            b-col.item-body(cols="12" md="6")
+          b-row.item-body-row
+            b-col.item-body
               Photoswipe
                 b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body(cols="12" md="6")
+            b-col.item-body
               b-card-body
                 h4 {{ item.name }}
                 p NT {{ item.price }}

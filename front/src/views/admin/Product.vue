@@ -24,7 +24,7 @@
     //- 猴頭菇套餐
     card(:title="cardTitles[0]")
       b-row
-        b-card.col-12.col-md-4.col-lg-3(v-for="(item, index) in setMeals" :key="index" :img-src="item.img")
+        b-card.col-12.col-md-4.col-lg-3(v-for="(item, index) in setMeals" :key="index" :img-src="item.img" v-pswp="item.img")
           b-row
             b-col.text-center
               b-card-body(v-if="!item.edit")
@@ -240,7 +240,7 @@ export default {
             name: this.addModel.name,
             price: this.addModel.price,
             description: this.addModel.description,
-            img: 'http://220.128.133.15/s1090105/19101-cuisine/1596459193608.png' // 尚無照片網址
+            img: 'http://220.128.133.15/s1090105/19101-cuisine/noimg.png' // 尚無照片網址
           })
             .then(res => {
               this.$swal({
