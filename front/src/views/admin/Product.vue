@@ -5,8 +5,8 @@
       p-button.btn-confirm(v-if="toggleAdd" type="success" style='margin-left: 10px;' @click.native="handleConfirm") 確認
       p-button.btn-add-cancel(v-if="toggleAdd" type="danger" style='margin-left: 10px;' @click.native="handleAddCancel") 取消
       p-button.btn-add(v-else type="warning" @click.native="handleAdd") 新增商品
-      b-row(v-if="toggleAdd")
-        b-col(cols="12")
+      b-row(v-if="toggleAdd" )
+        b-col(cols="12" style="margin-top: 15px;")
           b-alert(variant="warning" show) 圖檔限制 5 MB 以下 / 可不上傳圖檔 / 金額不能為 0 / 商品說明最多 200 字
         b-col(md="4")
           b-file(
@@ -20,144 +20,140 @@
           fg-input(v-model="addModel.name" placeholder="商品名稱")
           fg-input(v-model="addModel.price" placeholder="商品金額")
           b-textarea(v-model="addModel.description" placeholder="商品說明")
+
     //- 猴頭菇套餐
     card(:title="cardTitles[0]")
-      b-card(no-body v-for="(item, index) in setMeals" :key="index")
-        b-row(no-gutters)
-          b-col(md="4")
-            b-card-img(fluid :src="item.img")
-          b-col(md="8")
-            b-card-body(v-if="!item.edit")
-              h4 {{ item.name }}
-              p NT {{ item.price }}
-              p {{item.description}}
-              .btn-default
-                p-button(type='info' icon @click.native="handleEdit(item)")
-                  i.ti-pencil-alt
-                p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
-                  i.ti-close
-            b-card-body(v-else)
-              fg-input(v-model="model.name")
-              fg-input(v-model="model.price")
-              b-textarea(v-model="model.description" rows="5")
-              .btn-edit
-                p-button(@click.native="handleUpdate(item)" outline) update
-                p-button(@click.native="handleCancel(item)" outline) cancel
+      b-row
+        b-card.col-12.col-md-4.col-lg-3(v-for="(item, index) in setMeals" :key="index" :img-src="item.img")
+          b-row
+            b-col.text-center
+              b-card-body(v-if="!item.edit")
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(type='info' icon @click.native="handleEdit(item)")
+                    i.ti-pencil-alt
+                  p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
+                    i.ti-close
+              b-card-body(v-else)
+                fg-input(v-model="model.name")
+                fg-input(v-model="model.price")
+                b-textarea(v-model="model.description" rows="5")
+                .btn-edit
+                  p-button(@click.native="handleUpdate(item)" outline) update
+                  p-button(@click.native="handleCancel(item)" outline) cancel
+
     //- 火鍋類
     card(:title="cardTitles[1]")
-      b-card(no-body v-for="(item, index) in hotPots" :key="index")
-        b-row(no-gutters)
-          b-col(md="4")
-            b-card-img(fluid :src="item.img")
-          b-col(md="8")
-            b-card-body(v-if="!item.edit")
-              h4 {{ item.name }}
-              p NT {{ item.price }}
-              p {{item.description}}
-              .btn-default
-                p-button(type='info' icon @click.native="handleEdit(item)")
-                  i.ti-pencil-alt
-                p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
-                  i.ti-close
-            b-card-body(v-else)
-              fg-input(v-model="model.name")
-              fg-input(v-model="model.price")
-              b-textarea(v-model="model.description" rows="5")
-              .btn-edit
-                p-button(@click.native="handleUpdate(item)" outline) update
-                p-button(@click.native="handleCancel(item)" outline) cancel
+      b-row
+        b-card.col-12.col-md-4.col-lg-3(v-for="(item, index) in hotPots" :key="index" :img-src="item.img")
+          b-row
+            b-col.text-center
+              b-card-body(v-if="!item.edit")
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(type='info' icon @click.native="handleEdit(item)")
+                    i.ti-pencil-alt
+                  p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
+                    i.ti-close
+              b-card-body(v-else)
+                fg-input(v-model="model.name")
+                fg-input(v-model="model.price")
+                b-textarea(v-model="model.description" rows="5")
+                .btn-edit
+                  p-button(@click.native="handleUpdate(item)" outline) update
+                  p-button(@click.native="handleCancel(item)" outline) cancel
     //- 飯類
     card(:title="cardTitles[2]")
-      b-card(no-body v-for="(item, index) in rices" :key="index")
-        b-row(no-gutters)
-          b-col(md="4")
-            b-card-img(fluid :src="item.img")
-          b-col(md="8")
-            b-card-body(v-if="!item.edit")
-              h4 {{ item.name }}
-              p NT {{ item.price }}
-              p {{item.description}}
-              .btn-default
-                p-button(type='info' icon @click.native="handleEdit(item)")
-                  i.ti-pencil-alt
-                p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
-                  i.ti-close
-            b-card-body(v-else)
-              fg-input(v-model="model.name")
-              fg-input(v-model="model.price")
-              b-textarea(v-model="model.description" rows="5")
-              .btn-edit
-                p-button(@click.native="handleUpdate(item)" outline) update
-                p-button(@click.native="handleCancel(item)" outline) cancel
+      b-row
+        b-card.col-12.col-md-4.col-lg-3(v-for="(item, index) in rices" :key="index" :img-src="item.img")
+          b-row
+            b-col.text-center
+              b-card-body(v-if="!item.edit")
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(type='info' icon @click.native="handleEdit(item)")
+                    i.ti-pencil-alt
+                  p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
+                    i.ti-close
+              b-card-body(v-else)
+                fg-input(v-model="model.name")
+                fg-input(v-model="model.price")
+                b-textarea(v-model="model.description" rows="5")
+                .btn-edit
+                  p-button(@click.native="handleUpdate(item)" outline) update
+                  p-button(@click.native="handleCancel(item)" outline) cancel
     //- 麵類
     card(:title="cardTitles[3]")
-      b-card(no-body v-for="(item, index) in noodles" :key="index")
-        b-row(no-gutters)
-          b-col(md="4")
-            b-card-img(fluid :src="item.img")
-          b-col(md="8")
-            b-card-body(v-if="!item.edit")
-              h4 {{ item.name }}
-              p NT {{ item.price }}
-              p {{item.description}}
-              .btn-default
-                p-button(type='info' icon @click.native="handleEdit(item)")
-                  i.ti-pencil-alt
-                p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
-                  i.ti-close
-            b-card-body(v-else)
-              fg-input(v-model="model.name")
-              fg-input(v-model="model.price")
-              b-textarea(v-model="model.description" rows="5")
-              .btn-edit
-                p-button(@click.native="handleUpdate(item)" outline) update
-                p-button(@click.native="handleCancel(item)" outline) cancel
+      b-row
+        b-card.col-12.col-md-4.col-lg-3(v-for="(item, index) in noodles" :key="index" :img-src="item.img")
+          b-row
+            b-col.text-center
+              b-card-body(v-if="!item.edit")
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(type='info' icon @click.native="handleEdit(item)")
+                    i.ti-pencil-alt
+                  p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
+                    i.ti-close
+              b-card-body(v-else)
+                fg-input(v-model="model.name")
+                fg-input(v-model="model.price")
+                b-textarea(v-model="model.description" rows="5")
+                .btn-edit
+                  p-button(@click.native="handleUpdate(item)" outline) update
+                  p-button(@click.native="handleCancel(item)" outline) cancel
     //- 單點類
     card(:title="cardTitles[4]")
-      b-card(no-body v-for="(item, index) in aLaCartes" :key="index")
-        b-row(no-gutters)
-          b-col(md="4")
-            b-card-img(fluid :src="item.img")
-          b-col(md="8")
-            b-card-body(v-if="!item.edit")
-              h4 {{ item.name }}
-              p NT {{ item.price }}
-              p {{item.description}}
-              .btn-default
-                p-button(type='info' icon @click.native="handleEdit(item)")
-                  i.ti-pencil-alt
-                p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
-                  i.ti-close
-            b-card-body(v-else)
-              fg-input(v-model="model.name")
-              fg-input(v-model="model.price")
-              b-textarea(v-model="model.description" rows="5")
-              .btn-edit
-                p-button(@click.native="handleUpdate(item)" outline) update
-                p-button(@click.native="handleCancel(item)" outline) cancel
+      b-row
+        b-card.col-12.col-md-4.col-lg-3(v-for="(item, index) in aLaCartes" :key="index" :img-src="item.img")
+          b-row
+            b-col.text-center
+              b-card-body(v-if="!item.edit")
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(type='info' icon @click.native="handleEdit(item)")
+                    i.ti-pencil-alt
+                  p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
+                    i.ti-close
+              b-card-body(v-else)
+                fg-input(v-model="model.name")
+                fg-input(v-model="model.price")
+                b-textarea(v-model="model.description" rows="5")
+                .btn-edit
+                  p-button(@click.native="handleUpdate(item)" outline) update
+                  p-button(@click.native="handleCancel(item)" outline) cancel
     //- 預購類
     card(:title="cardTitles[5]")
-      b-card(no-body v-for="(item, index) in preOrders" :key="index")
-        b-row(no-gutters)
-          b-col(md="4")
-            b-card-img(fluid :src="item.img")
-          b-col(md="8")
-            b-card-body(v-if="!item.edit")
-              h4 {{ item.name }}
-              p NT {{ item.price }}
-              p {{item.description}}
-              .btn-default
-                p-button(type='info' icon @click.native="handleEdit(item)")
-                  i.ti-pencil-alt
-                p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
-                  i.ti-close
-            b-card-body(v-else)
-              fg-input(v-model="model.name")
-              fg-input(v-model="model.price")
-              b-textarea(v-model="model.description" rows="5")
-              .btn-edit
-                p-button(@click.native="handleUpdate(item)" outline) update
-                p-button(@click.native="handleCancel(item)" outline) cancel
+      b-row
+        b-card.col-12.col-md-4.col-lg-3(v-for="(item, index) in preOrders" :key="index" :img-src="item.img")
+          b-row
+            b-col.text-center
+              b-card-body(v-if="!item.edit")
+                h4 {{ item.name }}
+                p NT {{ item.price }}
+                p {{item.description}}
+                .btn-default
+                  p-button(type='info' icon @click.native="handleEdit(item)")
+                    i.ti-pencil-alt
+                  p-button(style='margin-left: 10px;' type='danger' icon @click.native="handleDelete(item)")
+                    i.ti-close
+              b-card-body(v-else)
+                fg-input(v-model="model.name")
+                fg-input(v-model="model.price")
+                b-textarea(v-model="model.description" rows="5")
+                .btn-edit
+                  p-button(@click.native="handleUpdate(item)" outline) update
+                  p-button(@click.native="handleCancel(item)" outline) cancel
 </template>
 <script>
 export default {

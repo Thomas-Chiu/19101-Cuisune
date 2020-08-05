@@ -82,6 +82,10 @@
   // Product 商品管理 ------------------------------------------------------
   #product {
     position: relative;
+    .card {
+      margin: 0;
+    }
+
     .card-body .card-title {
       margin-bottom: 1rem;
     }
@@ -93,8 +97,16 @@
       }
     }
 
+    .card-img {
+      max-width: 90% !important;
+    }
+
     .form-control {
       text-align: left;
+    }
+
+    .btn {
+      margin: 1rem 0;
     }
   }
 }
