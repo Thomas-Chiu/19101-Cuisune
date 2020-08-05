@@ -2,32 +2,20 @@
   .container-fluid
     h2 EVENTS
     .container
-      b-card(no-body)
+      b-card(no-body img-src="https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/p720x720/90231215_670908086987890_3646898701454016512_o.jpg?_nc_cat=104&_nc_sid=8024bb&_nc_ohc=f9wmxrusoMYAX-RIhOp&_nc_ht=scontent.ftpe8-4.fna&_nc_tp=6&oh=9f6d9252b99c7297b89e1c51a899d35e&oe=5F50122D")
+      b-row.btn-function(no-gutters)
+        b-col(md="6")
+          b-btn(
+            block
+            v-b-modal.booking
+          ) 我要訂位
+        b-col(md="6")
+          router-link(to="/menu")
+            b-btn(block) 我要點餐
         b-row(no-gutters)
-          b-col(md="4")
-            b-card-body(title="News")
-              b-tabs(pills vertical)
-                b-tab(title="活動一" active)
-                  b-card-text 內容一
-                b-tab(title="活動二")
-                  b-card-text 內容二
-                b-tab(title="活動三")
-                  b-card-text 內容三
-          b-col(md="4")
-            b-card-img(src="https://picsum.photos/400/400/?random=1" alt='活動照片')
-          b-col(md="4")
-            b-card-body(title="Details")
-              b-card-text
-                | 這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案這邊放活動內容的文案
-        b-row.btn-function(no-gutters)
-          b-col(md="6")
-            b-btn(
-              block
-              v-b-modal.booking
-            ) BOOK A TABLE
-          b-col(md="6")
-            router-link(to="/menu")
-              b-btn(block) ORDER A DISH
+          b-col(cols="12")
+          //- b-img( src="https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/p720x720/90231215_670908086987890_3646898701454016512_o.jpg?_nc_cat=104&_nc_sid=8024bb&_nc_ohc=f9wmxrusoMYAX-RIhOp&_nc_ht=scontent.ftpe8-4.fna&_nc_tp=6&oh=9f6d9252b99c7297b89e1c51a899d35e&oe=5F50122D")
+
           //- Modal
           b-modal#booking(
             centered

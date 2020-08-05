@@ -1,14 +1,16 @@
 <template lang="pug">
   #cart
-    b-btn.icon-cart(variant="link" v-b-toggle.list @click="sum" )
-      b-icon(icon="cart4")
+    b-btn.icon-cart(variant="link" v-b-toggle.list )
+      b-icon(icon="cart4" @click="sum")
     b-sidebar#list(
       right
+      backdrop
       width="500px"
       )
       b-card.mt-3(
         title="您的訂單"
         bg-variant="transparent"
+        @mouseover="sum"
       )
         h6.text-right 餐點數量：{{ totalCount }}
         hr
@@ -17,10 +19,12 @@
           hover
           fixed
           borderless
-          :items="order.items"
+          :items="get"
         )
         p.text-center 總計：{{ totalPrice }}
-        b-btn(pill block v-b-modal.order) 確認餐點
+        p.text-center
+          b-btn(pill variant="danger" @click="cancelOrder" ) 取消餐點
+          b-btn(pill variant="info" v-b-modal.order) 確認餐點
         //- Modal
         b-modal#order(
           centered
@@ -86,8 +90,8 @@ export default {
       //   { key: '價錢', sortable: true },
       //   { key: '更改' }
       // ],
-      totalPrice: '',
-      totalCount: '',
+      totalPrice: null,
+      totalCount: null,
       gender: [
         { text: '先生', value: '先生' },
         { text: '小姐', value: '小姐' }
@@ -121,7 +125,7 @@ export default {
     }
   },
   computed: {
-    get () {
+    get (data) {
       return this.$store.getters.cartItems
     }
   },
@@ -146,8 +150,10 @@ export default {
         togo: this.order.togo,
         orderDate: this.order.orderDate,
         pickupTime: this.order.pickupTime,
-        items: this.order.items,
-        memo: this.order.memo
+        items: this.$store.getters.cartItems,
+        memo: this.order.memo,
+        totalCount: this.totalCount,
+        totalPrice: this.totalPrice
       })
         .then(res => {
           this.$swal({
@@ -165,6 +171,15 @@ export default {
           })
           console.log(err.message)
         })
+      this.order.items = []
+      this.$store.commit('addCartItems', this.order.items)
+    },
+    cancelOrder () {
+      this.order.items = []
+      this.$store.commit('addCartItems', this.order.items)
+      this.totalCount = 0
+      this.totalPrice = 0
+      location.reload()
     },
     cancel () {
       event.preventDefault()
@@ -179,13 +194,12 @@ export default {
     sum () {
       let totalPrice = 0
       let totalCount = 0
-      for (const item of this.order.items) {
+      for (const item of this.$store.getters.cartItems) {
         totalPrice += item.price
         totalCount += item.count
       }
       this.totalPrice = totalPrice
       this.totalCount = totalCount
-      console.log(this.order)
     }
   }
 }

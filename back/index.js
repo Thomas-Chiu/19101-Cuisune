@@ -163,7 +163,9 @@ app.post('/order', async (req, res) => { // 新增點餐
     req.body.orderDate === undefined ||
     req.body.pickupTime === undefined ||
     req.body.items === undefined ||
-    req.body.memo === undefined
+    req.body.memo === undefined ||
+    req.body.totalCount === undefined ||
+    req.body.totalPrice === undefined
   ) {
     res.status(400).send({ success: false, message: '資料欄位不正確' })
     return
@@ -187,7 +189,9 @@ app.post('/order', async (req, res) => { // 新增點餐
         orderDate: req.body.orderDate,
         pickupTime: req.body.pickupTime,
         items: req.body.items,
-        memo: req.body.memo
+        memo: req.body.memo,
+        totalCount: req.body.totalCount,
+        totalPrice: req.body.totalPrice
       }
     )
     res.status(200).send({ success: true, result })

@@ -1,11 +1,11 @@
 <template lang="pug">
   #orderitem
     card(v-for="(item, index) in orderItems" :key="index")
-      h4(@click="sum") {{ item.name }}
+      h4 {{ item.name }}
         span {{ item.gender }}的訂單
       b-table(:items="item.items" hover )
-      h4.text-center 數量：{{ totalCount }}
-        span 總計：{{ totalPrice }}
+      h4.text-center 數量：{{ item.totalCount }}
+        span(style="margin-left: 30px;") 總計：{{ item.totalPrice }}
 </template>
 
 <script>
@@ -18,24 +18,10 @@ export default {
       totalCount: ''
     }
   },
-  methods: {
-    sum (item) { // 總數量和金額尚未解決
-      let totalPrice = 0
-      let totalCount = 0
-      for (const item of this.orderItems) {
-        totalPrice += item.price
-        totalCount += item.count
-      }
-      this.totalPrice = totalPrice
-      this.totalCount = totalCount
-      console.log(this.totalPrice)
-      console.log(this.totalCount)
-    }
-  },
   mounted () {
     this.axios.get(process.env.VUE_APP_APIURL + '/order')
       .then(res => {
-        console.log(res)
+        // console.log(res)
         let ID = 0
         this.orderItems = res.data.result.map(d => {
           ID++
@@ -48,15 +34,15 @@ export default {
             pickupTime: d.pickupTime,
             items: d.items,
             memo: d.memo,
+            totalCount: d.totalCount,
+            totalPrice: d.totalPrice,
             edit: false
           }
         })
-        console.log(this.orderItems)
       })
       .catch(err => {
         console.log(err)
       })
-    this.sum(this.item)
   }
 }
 </script>

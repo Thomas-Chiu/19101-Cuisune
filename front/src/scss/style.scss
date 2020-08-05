@@ -3,11 +3,16 @@
 @import "signup";
 @import "menu";
 @import "admin";
+@import url("https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap");
 
 // Global----------------------------------------------
+@font-face {
+  font-family: "GenYoMinTW";
+  src: url("../assets/fonts/GenYoMinTW-R.woff");
+}
+
 * {
-  font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
-  box-sizing: border-box;
+  font-family: "Noto Sans TC", "微軟正黑體", "GenYoMinTW";
 }
 
 html,
@@ -17,6 +22,7 @@ body {
   color: $text;
   background: $primary !important;
   overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 img {
@@ -29,7 +35,6 @@ h2 {
   text-align: center;
   letter-spacing: 10px;
   padding: 1rem 0;
-  text-shadow: 0px 2px 2px #fff;
 }
 
 hr {
@@ -47,7 +52,6 @@ section ~ section {
     background: $warning;
     h2 {
       color: #fff;
-      text-shadow: 0px 2px 2px $text;
     }
   }
 }
@@ -115,7 +119,6 @@ section ~ section {
 
     h2 {
       color: $warning;
-      text-shadow: none;
     }
 
     hr {
@@ -271,13 +274,10 @@ section ~ section {
 #event {
   margin-bottom: 2rem;
   .card {
+    height: 75vmin !important;
+    padding: 1rem;
     border: 2px solid $secondary;
     background: transparent;
-  }
-  .card-body,
-  img {
-    padding: 2rem;
-    border-radius: 50%;
   }
   .nav-item {
     a {
@@ -360,7 +360,8 @@ section ~ section {
 // Contact ---------------------------------------------------------
 #contact {
   .wrapper {
-    font-size: 1.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
     padding: 1rem;
     background: transparent;
     border-radius: 10px;
@@ -374,18 +375,18 @@ section ~ section {
     }
   }
   .msg-form {
-    padding: 0 3.5rem;
+    @media (min-width: 768px) {
+      padding: 0 3.5rem;
+    }
     input,
     textarea {
-      border: none;
-      border-bottom: 1px solid $secondary;
       background: transparent;
     }
     .form-control {
       text-align: left;
       border: none !important;
       &:focus {
-        box-shadow: 0 0 0 1px $text;
+        box-shadow: 0 0 0 1px $secondary;
       }
     }
     .btn-link {
@@ -400,26 +401,27 @@ section ~ section {
         background: $text;
       }
       &:focus {
-        box-shadow: 0 0 0 0.2rem $warning;
+        box-shadow: 0 0 0 0.2rem $secondary;
       }
     }
   }
   .icon {
-    width: 75%;
+    width: 100%;
     display: flex;
     align-items: flex-start;
     padding: 1rem;
-    color: $text;
-    p {
-      color: $text;
-      text-shadow: 1px 1px 2px #ccc;
-      margin-left: 1.5rem;
-      text-align: left;
+    color: $secondary;
+    text-align: left;
+    @media (min-width: 768px) {
+      p {
+        margin-left: 1.5rem;
+      }
     }
+
     svg {
-      width: 24px;
-      height: 24px;
-      font-size: 1.5rem;
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
     }
   }
   iframe {
@@ -457,16 +459,20 @@ section ~ section {
       url("../../public/images/bg_subbrand.jpg") no-repeat center/cover;
   }
   .jumbotron {
-    height: 100vh;
-    color: whitesmoke;
+    color: rgba(245, 245, 245, 0.9);
     background: rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    p {
+    padding: 3rem 0 !important;
+
+    p,
+    small {
+      padding: 0 7.5px !important;
       letter-spacing: 5px;
       margin-top: 1rem;
+      line-height: 1.25;
       &:nth-last-child(2) {
         letter-spacing: 2px;
       }

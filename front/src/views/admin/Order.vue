@@ -2,6 +2,9 @@
   #order
     card
       form
+        b-row
+          b-col(cols="12")
+            b-alert(variant="warning" show) 編輯格式提醒 / 外帶欄位：輸入內用或外帶 / 日期：yyyy-mm-dd / 時間：hr:min / 備註 50 字內
         paper-table(:data='tableData' :columns='tableColumns' type='hover')
           template(v-slot='columns')
             th(

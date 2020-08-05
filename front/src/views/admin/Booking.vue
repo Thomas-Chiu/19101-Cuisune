@@ -2,6 +2,9 @@
   #booking
     card
       form
+        b-row
+          b-col(cols="12")
+            b-alert(variant="warning" show) 編輯格式提醒 / 日期：yyyy-mm-dd / 時間：hr:min
         paper-table(:data='tableData' :columns='tableColumns' type='hover')
           template(v-slot='columns')
             th(

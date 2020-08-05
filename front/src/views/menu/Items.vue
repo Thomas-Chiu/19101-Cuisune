@@ -170,11 +170,11 @@ export default {
       this.$store.commit('addCartItems', this.toCartItems)
     },
     deduct (item) { // -1
-      if (item.count <= 0) item.count = 0
+      if (item.count === 0) this.toCartItems.splice(item, 1)
       else item.count--
 
       for (const toCartItem of this.toCartItems) {
-        if (toCartItem.count < 1) {
+        if (toCartItem.count === 0) {
           this.toCartItems.splice(item, 1)
           return
         } if (toCartItem.name.includes(item.name)) {
@@ -182,7 +182,6 @@ export default {
           toCartItem.price -= item.price
         }
       }
-      console.log(this.toCartItems)
     }
   },
   mounted () {

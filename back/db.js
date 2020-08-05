@@ -116,6 +116,14 @@ const orderSchema = new Schema(
     memo: {
       type: String,
       maxlength: [30, '備註 30 字以內']
+    },
+    totalCount: {
+      type: Number,
+      required: [true, '請輸入總數量']
+    },
+    totalPrice: {
+      type: Number,
+      required: [true, '請輸入總金額']
     }
   }, {
     versionKey: false
