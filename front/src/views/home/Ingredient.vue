@@ -2,7 +2,7 @@
   .container-fluid
     .container
       .wrapper
-        h2 FRIENDLINESS
+        h2 五大友善
         hr
         b-row
           b-col.friend(md="4")
@@ -20,12 +20,17 @@
           b-col.friend(md="4")
             h4 友善大地
             p 製作好吃又健康的蔬食，提供客人食用，並期望在食材的挑選和烹調的過程中，達到友善地球的目的。
-        h2 INGREDIENTS
-        hr
+
+        h2 食材履歷
+        hr(style="padding-bottom: 0;")
+        .icon-arrow
+          h6 CLICK
+          b-icon(icon="arrow-down" scale="2" animation="cylon-vertical")
+
         Photoswipe
           .box-bg
             b-row
-              b-col(
+              b-col.ingredient-col(
                 cols="6"
                 md="3"
                 v-for="(img,index) in imgs"
@@ -36,8 +41,14 @@
 </template>
 
 <script>
+import { BIcon, BIconArrowDown } from 'bootstrap-vue'
+
 export default {
   name: 'Ingredient',
+  components: {
+    BIcon,
+    BIconArrowDown
+  },
   data () {
     return {
       imgs: [

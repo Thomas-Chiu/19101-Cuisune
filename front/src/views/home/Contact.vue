@@ -1,6 +1,6 @@
 <template lang="pug">
   .container-fluid
-    h2 CONTACT
+    h2 啖飯位置
     b-row
       b-col(md="6")
         .wrapper

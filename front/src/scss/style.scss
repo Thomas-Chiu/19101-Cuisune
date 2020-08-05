@@ -35,6 +35,7 @@ h2 {
   text-align: center;
   letter-spacing: 10px;
   padding: 1rem 0;
+  font-weight: bold !important;
 }
 
 hr {
@@ -223,9 +224,10 @@ section ~ section {
     left: 50%;
     top: 0%;
     transform: translateX(-50%);
-    p {
+    h6 {
       letter-spacing: 5px;
       padding-top: 1rem;
+      line-height: 2;
     }
   }
   .icon {
@@ -278,6 +280,12 @@ section ~ section {
     padding: 1rem;
     border: 2px solid $secondary;
     background: transparent;
+    @media (min-width: 768px) {
+      img {
+        max-width: 75% !important;
+        margin: auto;
+      }
+    }
   }
   .nav-item {
     a {
@@ -298,18 +306,25 @@ section ~ section {
     color: $secondary;
   }
   .btn-function {
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
     .btn {
-      color: $warning;
-      font-size: 1.25rem;
-      text-shadow: 1.5px 1.5px 1.5px #333;
-      letter-spacing: 3px;
-      margin-top: 10px;
-      padding: 1rem !important;
+      background: $danger;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 5px;
       border: none;
-      &:hover,
-      &:focus {
-        background: $info;
-        color: #fff;
+      transition: all 0.5s ease;
+      &:hover {
+        background: #fff;
+        color: $secondary;
+      }
+    }
+    .btn-right {
+      background: $secondary;
+      &:hover {
+        color: $danger;
       }
     }
   }
@@ -333,13 +348,23 @@ section ~ section {
     background: $success-50;
     border-radius: 5px;
     padding-bottom: 1rem;
+    padding-right: 1rem;
     .row {
       margin: 0;
     }
     .box {
       margin-top: 1rem;
+      margin-left: 1rem;
       box-shadow: 1px 1px 5px $text;
     }
+  }
+
+  .icon-arrow {
+    color: $secondary;
+  }
+
+  .ingredient-col {
+    padding: 0;
   }
 
   // VueCardCarousel
@@ -411,16 +436,19 @@ section ~ section {
     align-items: flex-start;
     padding: 1rem;
     color: $secondary;
+    font-weight: bold;
     text-align: left;
     @media (min-width: 768px) {
       p {
-        margin-left: 1.5rem;
+        margin-left: 1rem;
+      }
+      svg {
+        margin-top: 7.5px;
       }
     }
-
     svg {
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
       margin-right: 10px;
     }
   }

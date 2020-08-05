@@ -2,7 +2,7 @@
   <div class="container-fluid overview">
     <div class="container">
       <div class="wrapper">
-        <h2>OVERVIEW</h2>
+        <h2>餐點系列</h2>
         <hr>
         <VueCardCarousel
           class="vcc"
@@ -22,9 +22,6 @@
             :src="img.src"
             >
           </template>
-          <!-- <template v-slot:footer="slotProps">
-            <strong>{{ slotProps.footerProp.footerDish }}</strong>
-          </template> -->
         </VueCardCarousel>
       </div>
     </div>

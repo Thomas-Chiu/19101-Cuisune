@@ -1,20 +1,17 @@
 <template lang="pug">
   .container-fluid
-    h2 EVENTS
+    h2 線上預約
     .container
-      b-card(no-body img-src="https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/p720x720/90231215_670908086987890_3646898701454016512_o.jpg?_nc_cat=104&_nc_sid=8024bb&_nc_ohc=f9wmxrusoMYAX-RIhOp&_nc_ht=scontent.ftpe8-4.fna&_nc_tp=6&oh=9f6d9252b99c7297b89e1c51a899d35e&oe=5F50122D")
-      b-row.btn-function(no-gutters)
-        b-col(md="6")
-          b-btn(
-            block
-            v-b-modal.booking
-          ) 我要訂位
-        b-col(md="6")
-          router-link(to="/menu")
-            b-btn(block) 我要點餐
-        b-row(no-gutters)
-          b-col(cols="12")
-          //- b-img( src="https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/p720x720/90231215_670908086987890_3646898701454016512_o.jpg?_nc_cat=104&_nc_sid=8024bb&_nc_ohc=f9wmxrusoMYAX-RIhOp&_nc_ht=scontent.ftpe8-4.fna&_nc_tp=6&oh=9f6d9252b99c7297b89e1c51a899d35e&oe=5F50122D")
+      b-card(:img-src="imgSrc")
+        b-row.btn-function(no-gutters)
+          b-col(md="6")
+            b-btn.btn-left(
+              block
+              v-b-modal.booking
+            ) 我要訂位
+          b-col(md="6")
+            router-link(to="/menu")
+              b-btn.btn-right(block) 我要點餐
 
           //- Modal
           b-modal#booking(
@@ -114,7 +111,8 @@ export default {
         { text: '19:00', value: '19:00' },
         { text: '19:30', value: '19:30' },
         { text: '20:00', value: '20:00' }
-      ]
+      ],
+      imgSrc: './images/logo/brand_horizontal.png'
     }
   },
   methods: {

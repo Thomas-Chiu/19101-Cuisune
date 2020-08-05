@@ -2,30 +2,28 @@
   .container-fluid
     .row
       .col-12
-        h2 ABOUT
+        h2 關於啖飯
       .col-12.carousel-text
-        b-carousel#carousel-fade(fade)
+        b-carousel#carousel-fade(no-hover-pause fade)
           b-carousel-slide(
-            :interval="3000"
+            :interval="5000"
             img-width="0"
             img-height="0"
-            caption="19101 cuisine"
             img-blank
             )
-            p 健康是一生的事情，<br>吃飯是天天的事情。
+            h6 健康是一生的事情，<br>吃飯是天天的事情。
           b-carousel-slide(
-            :interval="3000"
+            :interval="5000"
             img-width="0"
             img-height="0"
-            caption='關於啖飯'
             img-blank
             )
-            p 猴頭菇跟臭豆腐是招牌，然後<br>剛好有不少的食材是有機的。
+            h6 猴頭菇跟臭豆腐是招牌，然後<br>剛好有不少的食材是有機的。
         a.icon(href="https://www.facebook.com/19101cuisine/" target="blank")
           font-awesome-icon(:icon="['fab', 'facebook-square']")
         a.icon(href="https://www.instagram.com/19101_cuisine/" target="blank")
           font-awesome-icon(:icon="['fab', 'instagram']")
-        h2 VIDEO
+        h2 關於影片
           label.accordion-trigger(for="accordion")
             font-awesome-icon(:icon="['fab', 'youtube']")
         p.icon-arrow
