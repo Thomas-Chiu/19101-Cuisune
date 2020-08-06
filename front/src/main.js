@@ -23,7 +23,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'mutationobserver-shim'
 import 'vue-material/dist/vue-material.min.css'
 
-import { faYoutube, faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faYoutube, faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons' // axios 預設傳送認證資訊(req.session.user)
+
+import VConsole from 'vconsole'
 library.add(faYoutube, faFacebookSquare, faInstagram)
 
 Vue.use(style)
@@ -39,7 +41,12 @@ Vue.use(VuePageTransition)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
-axios.defaults.withCredentials = true // axios 預設傳送認證資訊(req.session.user)
+axios.defaults.withCredentials = true
+
+if (process.env.NODE_ENV !== 'production') {
+  /* eslint-disable no-new */
+  new VConsole()
+}
 
 new Vue({
   router,

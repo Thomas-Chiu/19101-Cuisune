@@ -12,7 +12,7 @@
         <li class="nav-item">
           <a class="nav-link">
             <i class="ti-settings"></i>
-            <p>登出</p>
+            <p @click="signout">sign out</p>
           </a>
         </li>
         <li class="divider"></li>
@@ -45,7 +45,35 @@ export default {
       if (this.$sidebar.showSidebar) {
         this.$sidebar.displaySidebar(false)
       }
+    },
+    signout () {
+      this.axios.delete(process.env.VUE_APP_APIURL + '/signout')
+        .then(res => {
+          const data = res.data
+          if (data.success) {
+            this.$swal({
+              toast: true,
+              showConfirmButton: false,
+              icon: 'success',
+              title: '登出成功',
+              position: 'top-end',
+              timer: 3000,
+              timerProgressBar: true
+            })
+            this.$store.commit('signout')
+            this.$router.push('/')
+            location.reload()
+          } else {
+            this.$swal({
+              title: data.message
+            })
+          }
+        })
+        .catch(err => {
+          alert(err.message)
+        })
     }
+
   }
 }
 </script>
@@ -54,4 +82,12 @@ export default {
 /* 把原本(main.js 引用)paperDashboard.js 引用的core css 改在這裡引用，才不影響到首頁的排版 */
 @import "../assets/scss/paper-dashboard.scss";
 @import "../assets/css/themify-icons.css";
+
+#admin {
+  .nav-item {
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}
 </style>

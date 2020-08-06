@@ -48,7 +48,7 @@ export default {
     },
     toggleSidebar () {
       this.$sidebar.displaySidebar(!this.$sidebar.showSidebar)
-      console.log(this.$sidebar)
+      console.log(this.$sidebar.showSidebar)
     },
     hideSidebar () {
       this.$sidebar.displaySidebar(false)
@@ -77,7 +77,7 @@ export default {
           }
         })
         .catch(err => {
-          alert(err.response.data.message)
+          alert(err.message)
         })
     }
   }

@@ -21,6 +21,7 @@
     "mailtoui": "^1.0.3",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
+    "vconsole": "^3.3.4",
     "vue": "^2.6.11",
     "vue-agile": "^1.1.3",
     "vue-axios": "^2.1.5",

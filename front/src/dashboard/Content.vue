@@ -13,7 +13,8 @@
 <script>
 export default {}
 </script>
-<style>
+
+<style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.1s;

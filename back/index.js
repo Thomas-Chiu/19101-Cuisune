@@ -155,6 +155,7 @@ app.post('/signup', async (req, res) => { // 新增帳戶
 })
 
 app.post('/order', async (req, res) => { // 新增點餐
+  console.log(req.body.items)
   if (
     req.body.name === undefined ||
     req.body.gender === undefined ||
@@ -170,15 +171,15 @@ app.post('/order', async (req, res) => { // 新增點餐
     res.status(400).send({ success: false, message: '資料欄位不正確' })
     return
   }
-  for (const i in req.body.items) { // 點餐數量 1~100
-    if (
-      req.body.items[i].count < 1 ||
-      req.body.items[i].count > 100
-    ) {
-      res.status(400).send({ success: false, count: '點餐數量最少 1，最多 100' })
-      return
-    }
-  }
+  // for (const i in req.body.items) { // 點餐數量 1~100
+  //   if (
+  //     req.body.items[i].count < 1 ||
+  //     req.body.items[i].count > 100
+  //   ) {
+  //     res.status(400).send({ success: false, count: '點餐數量最少 1，最多 100' })
+  //     return
+  //   }
+  // }
   try {
     const result = await db.orders.create(
       {
