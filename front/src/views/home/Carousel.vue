@@ -1,13 +1,12 @@
 <template lang="pug">
   b-container#carousel(fluid)
-    b-row(style="margin-right: 1.5px;")
+    b-row.carousel-row
       b-col(cols="12" md="6")
         agile.left(:options="options")
-          b-img.slide(
+          b-img.slide.slide-left(
             v-for="(img, index) in leftSrc"
             :key="index"
             :src='img'
-            style="margin-left: 1px;"
             )
       b-col(cols="12" md="6")
         agile.right(:options="options")
