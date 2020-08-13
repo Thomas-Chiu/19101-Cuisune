@@ -54,6 +54,8 @@ app.use(session({ // express-session 設定
   resave: true
 }))
 
+app.set('trust proxy', 1) // chrome 更新後的cookie 解法
+
 let storage // 宣告stroage 變數，根據.env 環境決定storage 存放的位置
 if (process.env.FTP === 'false') {
   storage = multer.diskStorage({ // 將上傳檔案放本機
