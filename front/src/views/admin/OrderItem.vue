@@ -4,6 +4,8 @@
       h4 顧客：{{ item.name }}
         span {{ item.gender }}
       b-table(:items="item.items" hover )
+        //- template(v-solt:cell(Id)="data") {{ data + "YA" }}
+
       h4.text-center 數量：{{ item.totalCount }}
         span(style="margin-left: 30px;") 總計：{{ item.totalPrice }}
 </template>
@@ -32,13 +34,20 @@ export default {
             gender: d.gender,
             orderDate: d.orderDate.substr(0, 10),
             pickupTime: d.pickupTime,
-            items: d.items,
+            items: d.items.map(i => {
+              return {
+                name: i.name,
+                count: i.count,
+                price: i.price
+              }
+            }),
             memo: d.memo,
             totalCount: d.totalCount,
             totalPrice: d.totalPrice,
             edit: false
           }
         })
+        console.log(this.orderItems)
       })
       .catch(err => {
         console.log(err)

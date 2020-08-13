@@ -1,8 +1,13 @@
-<template lang="pug">
-  #app
-    b-container(fluid)
-      vue-page-transition(name="fade-in-right")
-        router-view
+<template>
+  <div id="app">
+    <div :class="{'nav-open': $sidebar.showSidebar}">
+      <b-container fluid>
+        <vue-page-transition name="fade-in-right">
+          <router-view></router-view>
+        </vue-page-transition>
+      </b-container>
+    </div>
+  </div>
 </template>
 
 <script>

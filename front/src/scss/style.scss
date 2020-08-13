@@ -138,8 +138,20 @@ section ~ section {
         rgba(0, 0, 0, 0.25),
         rgba(0, 0, 0, 0.25)
       );
-      // url("../../public/images/logo/brand_horizontal.png") no-repeat center/cover;
     }
+
+    .carousel-row {
+      @media (min-width: 768px) {
+        margin-right: 2.5px;
+      }
+    }
+
+    .slide-left {
+      @media (min-width: 768px) {
+        margin-left: 0.5px;
+      }
+    }
+
     .logo {
       width: 150px;
       height: 150px;
@@ -150,6 +162,7 @@ section ~ section {
       opacity: 0.9;
       z-index: 1;
     }
+
     .slide {
       height: 47.5vh;
       @media (min-width: 768px) {

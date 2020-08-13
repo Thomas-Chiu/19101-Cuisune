@@ -143,6 +143,7 @@ export default {
         餐點備註：${this.order.memo}
       `)
       if (!warning) return
+      console.table(this.$store.getters.cartItems)
       this.axios.post(process.env.VUE_APP_APIURL + '/order', {
         name: this.order.name,
         gender: this.order.gender,

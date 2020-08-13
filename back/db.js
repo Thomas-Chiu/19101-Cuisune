@@ -80,6 +80,26 @@ const productSchema = new Schema(
   }
 )
 
+const itemSchema = new Schema({
+  name: {
+    type: String,
+    required: [true, '請輸入餐點名稱']
+  },
+  count: {
+    type: Number,
+    min: 0,
+    max: 100,
+    required: [true, '請輸入餐點數量']
+  },
+  price: {
+    type: Number,
+    min: 0,
+    required: [true, '請輸入餐點金額']
+  }
+}, {
+  versionKey: false
+})
+
 const orderSchema = new Schema(
   {
     name: {
@@ -108,10 +128,8 @@ const orderSchema = new Schema(
       required: [true, '請選擇取餐時間']
     },
     items: {
-      type: Array,
-      required: [true, '請選擇餐點和數量'],
-      min: 1,
-      max: 100
+      type: [itemSchema],
+      required: [true, '請選擇餐點和數量']
     },
     memo: {
       type: String,
