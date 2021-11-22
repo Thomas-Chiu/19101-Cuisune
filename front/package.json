@@ -19,7 +19,7 @@
     "core-js": "^3.6.5",
     "es6-promise": "^4.2.4",
     "mailtoui": "^1.0.3",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "pug-plain-loader": "^1.0.0",
     "vconsole": "^3.9.5",
     "vue": "^2.6.11",
