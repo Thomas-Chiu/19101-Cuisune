@@ -1,139 +1,139 @@
 <template lang="pug">
-  #items
-    b-navbar(toggleable="md" type="dark" variant="dark" fixed="top")
-      b-navbar-brand
-        router-link(to="/")
-          img(:src="logoImg" width="28" height="28" style="margin-left: 10px")
-      b-navbar-toggle(target="collapse")
-      b-collapse#collapse(is-nav)
-        b-navbar-nav.m-auto
-          b-nav-item(href="#setMeals") 猴頭菇套餐
-          b-nav-item(href="#hotPots") 火鍋套餐
-          b-nav-item(href="#rices") 飯類套餐
-          b-nav-item(href="#noodles") 麵類套餐
-          b-nav-item(href="#aLaCartes") 單點系列
-          b-nav-item(href="#preOrders") 預購系列
-    //- 商品 card
-    //- 猴頭菇套餐
-    b-row#setMeals
-      h3.col-12 {{cardTitles[0]}}
-      b-col(md="6" lg="4" v-for="(item,index) in setMeals" :key="index")
-        b-card
-          b-row.item-body-row
-            b-col.item-body
-              Photoswipe
-                b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body
-              b-card-body
-                h4 {{ item.name }}
-                p NT {{ item.price }}
-                p {{item.description}}
-                .btn-default
-                  p-button(@click.native="deduct(item)")
-                    i.ti-minus
-                  p-button.btn-count(disabled) {{item.count}}
-                  p-button(@click.native="add(item)")
-                    i.ti-plus
-    //- 火鍋套餐
-    b-row#hotPots
-      h3.col-12 {{cardTitles[1]}}
-      b-col(md="6" lg="4" v-for="(item,index) in hotPots" :key="index")
-        b-card
-          b-row.item-body-row
-            b-col.item-body
-              Photoswipe
-                b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body
-              b-card-body
-                h4 {{ item.name }}
-                p NT {{ item.price }}
-                p {{item.description}}
-                .btn-default
-                  p-button(@click.native="deduct(item)")
-                    i.ti-minus
-                  p-button.btn-count(disabled) {{item.count}}
-                  p-button(@click.native="add(item)")
-                    i.ti-plus
-    //- 飯類套餐
-    b-row#rices
-      h3.col-12 {{cardTitles[2]}}
-      b-col(md="6" lg="4" v-for="(item,index) in rices" :key="index")
-        b-card
-          b-row.item-body-row
-            b-col
-              Photoswipe
-                b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col
-              b-card-body
-                h4 {{ item.name }}
-                p NT {{ item.price }}
-                p {{item.description}}
-                .btn-default
-                  p-button(@click.native="deduct(item)")
-                    i.ti-minus
-                  p-button.btn-count(disabled) {{item.count}}
-                  p-button(@click.native="add(item)")
-                    i.ti-plus
-    //- 麵類套餐
-    b-row#noodles
-      h3.col-12 {{cardTitles[3]}}
-      b-col(md="6" lg="4" v-for="(item,index) in noodles" :key="index")
-        b-card
-          b-row.item-body-row
-            b-col
-              Photoswipe
-                b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col
-              b-card-body
-                h4 {{ item.name }}
-                p NT {{ item.price }}
-                p {{item.description}}
-                .btn-default
-                  p-button(@click.native="deduct(item)")
-                    i.ti-minus
-                  p-button.btn-count(disabled) {{item.count}}
-                  p-button(@click.native="add(item)")
-                    i.ti-plus
-    //- 單點系列
-    b-row#aLaCartes
-      h3.col-12 {{cardTitles[4]}}
-      b-col(md="6" lg="4" v-for="(item,index) in aLaCartes" :key="index")
-        b-card
-          b-row.item-body-row
-            b-col
-              Photoswipe
-                b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col
-              b-card-body
-                h4 {{ item.name }}
-                p NT {{ item.price }}
-                p {{item.description}}
-                .btn-default
-                  p-button(@click.native="deduct(item)")
-                    i.ti-minus
-                  p-button.btn-count(disabled) {{item.count}}
-                  p-button(@click.native="add(item)")
-                    i.ti-plus
-    //- 預購系列
-    b-row#preOrders
-      h3.col-12 {{cardTitles[5]}}
-      b-col(md="6" lg="4" v-for="(item,index) in preOrders" :key="index")
-        b-card
-          b-row.item-body-row
-            b-col.item-body
-              Photoswipe
-                b-img(fluid :src="item.img" v-pswp="item.img")
-            b-col.item-body
-              b-card-body
-                h4 {{ item.name }}
-                p NT {{ item.price }}
-                p {{item.description}}
-                .btn-default
-                  p-button(@click.native="deduct(item)")
-                    i.ti-minus
-                  p-button.btn-count(disabled) {{item.count}}
-                  p-button(@click.native="add(item)")
-                    i.ti-plus
+#items
+  b-navbar(toggleable="md" type="dark" variant="dark" fixed="top")
+    b-navbar-brand
+      router-link(to="/")
+        img(:src="logoImg" width="28" height="28" style="margin-left: 10px")
+    b-navbar-toggle(target="collapse")
+    b-collapse#collapse(is-nav)
+      b-navbar-nav.m-auto
+        b-nav-item(href="#setMeals") 猴頭菇套餐
+        b-nav-item(href="#hotPots") 火鍋套餐
+        b-nav-item(href="#rices") 飯類套餐
+        b-nav-item(href="#noodles") 麵類套餐
+        b-nav-item(href="#aLaCartes") 單點系列
+        b-nav-item(href="#preOrders") 預購系列
+  //- 商品 card
+  //- 猴頭菇套餐
+  b-row#setMeals
+    h3.col-12 {{cardTitles[0]}}
+    b-col(md="6" lg="4" v-for="(item,index) in setMeals" :key="index")
+      b-card
+        b-row.item-body-row
+          b-col.item-body
+            Photoswipe
+              b-img(fluid :src="item.img" v-pswp="item.img")
+          b-col.item-body
+            b-card-body
+              h4 {{ item.name }}
+              p NT {{ item.price }}
+              p {{item.description}}
+              .btn-default
+                p-button(@click.native="deduct(item)")
+                  i.ti-minus
+                p-button.btn-count(disabled) {{item.count}}
+                p-button(@click.native="add(item)")
+                  i.ti-plus
+  //- 火鍋套餐
+  b-row#hotPots
+    h3.col-12 {{cardTitles[1]}}
+    b-col(md="6" lg="4" v-for="(item,index) in hotPots" :key="index")
+      b-card
+        b-row.item-body-row
+          b-col.item-body
+            Photoswipe
+              b-img(fluid :src="item.img" v-pswp="item.img")
+          b-col.item-body
+            b-card-body
+              h4 {{ item.name }}
+              p NT {{ item.price }}
+              p {{item.description}}
+              .btn-default
+                p-button(@click.native="deduct(item)")
+                  i.ti-minus
+                p-button.btn-count(disabled) {{item.count}}
+                p-button(@click.native="add(item)")
+                  i.ti-plus
+  //- 飯類套餐
+  b-row#rices
+    h3.col-12 {{cardTitles[2]}}
+    b-col(md="6" lg="4" v-for="(item,index) in rices" :key="index")
+      b-card
+        b-row.item-body-row
+          b-col
+            Photoswipe
+              b-img(fluid :src="item.img" v-pswp="item.img")
+          b-col
+            b-card-body
+              h4 {{ item.name }}
+              p NT {{ item.price }}
+              p {{item.description}}
+              .btn-default
+                p-button(@click.native="deduct(item)")
+                  i.ti-minus
+                p-button.btn-count(disabled) {{item.count}}
+                p-button(@click.native="add(item)")
+                  i.ti-plus
+  //- 麵類套餐
+  b-row#noodles
+    h3.col-12 {{cardTitles[3]}}
+    b-col(md="6" lg="4" v-for="(item,index) in noodles" :key="index")
+      b-card
+        b-row.item-body-row
+          b-col
+            Photoswipe
+              b-img(fluid :src="item.img" v-pswp="item.img")
+          b-col
+            b-card-body
+              h4 {{ item.name }}
+              p NT {{ item.price }}
+              p {{item.description}}
+              .btn-default
+                p-button(@click.native="deduct(item)")
+                  i.ti-minus
+                p-button.btn-count(disabled) {{item.count}}
+                p-button(@click.native="add(item)")
+                  i.ti-plus
+  //- 單點系列
+  b-row#aLaCartes
+    h3.col-12 {{cardTitles[4]}}
+    b-col(md="6" lg="4" v-for="(item,index) in aLaCartes" :key="index")
+      b-card
+        b-row.item-body-row
+          b-col
+            Photoswipe
+              b-img(fluid :src="item.img" v-pswp="item.img")
+          b-col
+            b-card-body
+              h4 {{ item.name }}
+              p NT {{ item.price }}
+              p {{item.description}}
+              .btn-default
+                p-button(@click.native="deduct(item)")
+                  i.ti-minus
+                p-button.btn-count(disabled) {{item.count}}
+                p-button(@click.native="add(item)")
+                  i.ti-plus
+  //- 預購系列
+  b-row#preOrders
+    h3.col-12 {{cardTitles[5]}}
+    b-col(md="6" lg="4" v-for="(item,index) in preOrders" :key="index")
+      b-card
+        b-row.item-body-row
+          b-col.item-body
+            Photoswipe
+              b-img(fluid :src="item.img" v-pswp="item.img")
+          b-col.item-body
+            b-card-body
+              h4 {{ item.name }}
+              p NT {{ item.price }}
+              p {{item.description}}
+              .btn-default
+                p-button(@click.native="deduct(item)")
+                  i.ti-minus
+                p-button.btn-count(disabled) {{item.count}}
+                p-button(@click.native="add(item)")
+                  i.ti-plus
 </template>
 
 <script>

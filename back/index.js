@@ -38,6 +38,8 @@ app.use(cors({ // cors 跨網域設定
   credentials: true
 }))
 
+app.set('trust proxy', 1) // chrome 更新後的cookie 解法
+
 app.use(session({ // express-session 設定
   secret: '19101',
   store: new MongoStore({ // 將session 存進mongoDB
@@ -45,16 +47,14 @@ app.use(session({ // express-session 設定
     collection: process.env.COLLECTION_SESSION // 設定存入的collection
   }),
   cookie: { // session 有效期間
-    maxAge: 1000 * 60 * 30 // 1000ms * 60s * 30m = 30分鐘
-    // sameSite: 'none',
-    // secure: true
+    maxAge: 1000 * 60 * 30, // 1000ms * 60s * 30m = 30分鐘
+    sameSite: 'none',
+    secure: true
   },
   saveUninitialized: false, // 保存未修改的session
   rolling: true, // 重設過期時間
   resave: true
 }))
-
-app.set('trust proxy', 1) // chrome 更新後的cookie 解法
 
 let storage // 宣告stroage 變數，根據.env 環境決定storage 存放的位置
 if (process.env.FTP === 'false') {
@@ -102,6 +102,12 @@ app.listen(process.env.PORT, () => {
 })
 
 // API Post 新增區 --------------------------------------------------------------------------------
+app.get('/test', (req, res) => {
+  console.log(req.session)
+  console.log(req.sessionID)
+  res.send('HEOOL')
+})
+
 app.post('/signin', async (req, res) => { // 登入驗證
   try {
     const result = await db.users.find(

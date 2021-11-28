@@ -1,33 +1,33 @@
 <template lang="pug">
-  #signin
-    .wrapper
-      .section.page-header.header-filter
-        b-form.container(@submit="submit")
-          .md-layout
-            .md-layout-item.md-size-33.md-small-size-66.md-xsmall-size-100.md-medium-size-40.mx-auto
-              h4.card-title(slot='title') 會員登入
-                small.card-sub-title Sign in
-              p.description(slot='description')
-                md-field.md-form-group(slot='inputs')
-                  md-icon account_circle
-                  label 帳號
-                  md-input(
-                    v-model='account'
-                    type="text"
-                    required
-                    )
-                md-field.md-form-group(slot='inputs')
-                  md-icon lock_outline
-                  label 密碼
-                  md-input(
-                    v-model='password'
-                    type='password'
-                    required
-                    )
-                footer.md-simple.md-lg(slot='footer')
-                  router-link(to="/signup")
-                    md-button 註冊
-                  md-button(type="submit") 登入
+#signin
+  .wrapper
+    .section.page-header.header-filter
+      b-form.container(@submit="submit")
+        .md-layout
+          .md-layout-item.md-size-33.md-small-size-66.md-xsmall-size-100.md-medium-size-40.mx-auto
+            h4.card-title(slot='title') 會員登入
+              small.card-sub-title Sign in
+            p.description(slot='description')
+              md-field.md-form-group(slot='inputs')
+                md-icon account_circle
+                label 帳號
+                md-input(
+                  v-model='account'
+                  type="text"
+                  required
+                  )
+              md-field.md-form-group(slot='inputs')
+                md-icon lock_outline
+                label 密碼
+                md-input(
+                  v-model='password'
+                  type='password'
+                  required
+                  )
+              footer.md-simple.md-lg(slot='footer')
+                router-link(to="/signup")
+                  md-button 註冊
+                md-button(type="submit") 登入
 </template>
 
 <script>
